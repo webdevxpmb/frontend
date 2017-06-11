@@ -2,6 +2,9 @@
 *
 * Navigation
 *
+* @TODO
+* [] Navbar responsive
+* [] Navbar bisa ngelink ke halaman lain
 */
 
 import React from 'react';
