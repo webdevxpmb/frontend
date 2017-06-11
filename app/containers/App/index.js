@@ -12,6 +12,19 @@
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
+import styled from 'styled-components';
+
+import Navigation from 'components/Navigation';
+
+const AppWrapper = styled.div`
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  min-height: 100%;
+  padding: 0 16px;
+  flex-direction: column;
+`;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -21,9 +34,17 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   render() {
     return (
-      <div>
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - PMB Fasilkom UI 2017"
+          defaultTitle="PMB Fasilkom UI 2017"
+          meta={[
+            { name: 'description', content: 'PMB Fasilkom UI application' },
+          ]}
+        />
+        <Navigation />
         {React.Children.toArray(this.props.children)}
-      </div>
+      </AppWrapper>
     );
   }
 }
