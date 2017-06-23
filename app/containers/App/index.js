@@ -14,15 +14,15 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-
+import Input from 'components/InputForm';
 import Navigation from 'components/Navigation';
+const Spinner = require('react-spinkit');
 
 const AppWrapper = styled.div`
-  max-width: 100%;
   margin: 0 auto;
   display: flex;
   min-height: 100%;
-  padding: 0 16px;
+  padding: 0 0;
   flex-direction: column;
 `;
 
@@ -43,6 +43,8 @@ export default class App extends React.PureComponent { // eslint-disable-line re
           ]}
         />
         <Navigation />
+        <Input type="text" />
+        <Spinner name="ball-clip-rotate-multiple" color="coral" />
         {React.Children.toArray(this.props.children)}
       </AppWrapper>
     );
