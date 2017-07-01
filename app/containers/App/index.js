@@ -14,9 +14,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import Input from 'components/InputForm';
 import Navigation from 'components/Navigation';
-const Spinner = require('react-spinkit');
+import NewsItem from 'components/NewsItem';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -43,9 +42,13 @@ export default class App extends React.PureComponent { // eslint-disable-line re
           ]}
         />
         <Navigation />
-        <Input type="text" />
-        <Spinner name="ball-clip-rotate-multiple" color="coral" />
+        <div className="main-profile">
+
+        </div>
         {React.Children.toArray(this.props.children)}
+        <div className="main-info">
+
+        </div>
       </AppWrapper>
     );
   }

@@ -8,7 +8,9 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
+import NewsItem from 'components/NewsItem';
 import makeSelectEventPage from './selectors';
+
 
 export class EventPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -20,7 +22,10 @@ export class EventPage extends React.Component { // eslint-disable-line react/pr
             { name: 'description', content: 'Description of EventPage' },
           ]}
         />
-        <h1>Event</h1>
+        <NewsItem />
+        <NewsItem />
+        <NewsItem />
+        <NewsItem />
       </div>
     );
   }
