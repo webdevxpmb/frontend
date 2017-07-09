@@ -10,10 +10,10 @@ import Button from 'components/Button';
 
 const Item = styled.div`
   background-color: #fff;
-  width: 95%;
+  width: 70%;
   padding: 1em;
   border-radius: 0.5em;
-  margin: 0.5em auto;
+  margin: 0.5em 0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   overflow: auto;
   .media-primary {
@@ -37,6 +37,9 @@ const Item = styled.div`
     margin-top: 1em;
     float: right;
     .comment { margin: 0 0.5em; }
+  }
+  @media screen and (max-width: 960px) {
+    width: 100%;
   }
 `;
 

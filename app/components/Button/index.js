@@ -12,7 +12,7 @@ const Button = styled.button`
   color: white;
   padding: 0.5em 0.75em;
   cursor: pointer;
-
+  
   &:active{
     background-color: #17385D;
   }
