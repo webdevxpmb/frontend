@@ -65,6 +65,7 @@ class NewsItem extends React.Component { // eslint-disable-line react/prefer-sta
             </div>
           </div>
         </div>
+        
         <div className="media-action">
           <a className="comment" href="#">6 comments</a>
           <Button className="action">Reply</Button>
@@ -73,6 +74,8 @@ class NewsItem extends React.Component { // eslint-disable-line react/prefer-sta
     );
   }
 }
+
+
 
 NewsItem.propTypes = {
 
