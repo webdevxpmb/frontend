@@ -12,6 +12,7 @@
  */
 
 import React from 'react';
+import ProgressBar from 'components/ProgressBar';
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -22,6 +23,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
   render() {
     return (
       <div>
+        <ProgressBar currentProgress={51} maxProgress={89} />
         {React.Children.toArray(this.props.children)}
       </div>
     );
