@@ -14,7 +14,7 @@ class AnnouncementItem extends React.Component { // eslint-disable-line react/pr
   render() {
     return (
       <div>
-        <FormattedMessage {...messages.header} />
+        <p>{this.props.article}</p>
       </div>
     );
   }
