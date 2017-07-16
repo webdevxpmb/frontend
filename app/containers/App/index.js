@@ -13,16 +13,16 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Navigation from 'components/Navigation';
-import NewsItem from 'components/NewsItem';
+
+import { theme } from './theme';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
-  display: flex;
+  width: 100%:
   min-height: 100%;
-  padding: 0 0;
-  flex-direction: column;
+  max-width: 1200px;
 `;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -33,23 +33,19 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   render() {
     return (
-      <AppWrapper>
-        <Helmet
-          titleTemplate="%s - PMB Fasilkom UI 2017"
-          defaultTitle="PMB Fasilkom UI 2017"
-          meta={[
-            { name: 'description', content: 'PMB Fasilkom UI application' },
-          ]}
-        />
-        <Navigation />
-        <div className="main-profile">
-
-        </div>
-        {React.Children.toArray(this.props.children)}
-        <div className="main-info">
-
-        </div>
-      </AppWrapper>
+      <ThemeProvider theme={theme}>
+        <AppWrapper>
+          <Helmet
+            titleTemplate="%s - PMB Fasilkom UI 2017"
+            defaultTitle="PMB Fasilkom UI 2017"
+            meta={[
+              { name: 'description', content: 'PMB Fasilkom UI application' },
+            ]}
+          />
+          <Navigation />
+          {React.Children.toArray(this.props.children)}
+        </AppWrapper>
+      </ThemeProvider>
     );
   }
 }

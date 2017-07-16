@@ -11,6 +11,7 @@ import 'babel-polyfill';
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
+import FontFaceObserver from 'fontfaceobserver';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -34,6 +35,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './store';
+import createRoutes from './routes';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -41,8 +43,17 @@ import { translationMessages } from './i18n';
 // Import CSS reset and Global Styles
 import './global-styles';
 
+// Observe loading of Montserrat font
+const montserratObserver = new FontFaceObserver('Montserrat', {});
+
+// When Montserrat is loaded, add a font-family using Montserrat to the body
+montserratObserver.load().then(() => {
+  document.body.classList.add('fontLoaded');
+}, () => {
+  document.body.classList.remove('fontLoaded');
+});
+
 // Import root routes
-import createRoutes from './routes';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router

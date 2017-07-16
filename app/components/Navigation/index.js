@@ -8,21 +8,28 @@
 */
 
 import React from 'react';
-import { push } from 'react-router-redux';
+// import { push } from 'react-router-redux';
 
-import Nav from './Nav';
+import Card from 'components/Card';
+
+import {
+  Nav,
+  Content,
+} from './styled';
 
 class Navigation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <Nav>
-        <div>
-          <a>Event</a>
-          <a>Tugas</a>
-          <a>Apa Kata Element?</a>
-          <a>Statistik Maba</a>
-          <a>Gallery</a>
-        </div>
+        <Card radius="bottom">
+          <Content>
+            <a>Event</a>
+            <a>Tugas</a>
+            <a>Apa Kata Element?</a>
+            <a>Statistik Maba</a>
+            <a>Gallery</a>
+          </Content>
+        </Card>
       </Nav>
     );
   }

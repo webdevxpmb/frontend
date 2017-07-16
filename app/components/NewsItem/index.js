@@ -29,7 +29,7 @@ const Item = styled.div`
       border-radius: 50%;
       overflow: hidden;
       .media-img { width: 100%; }
-    } 
+    }
   }
   .media-body { width: 90%; }
   .media-info , .media-heading { margin: 0; }
@@ -51,7 +51,7 @@ class NewsItem extends React.Component { // eslint-disable-line react/prefer-sta
             </div>
           </div>
           <div className="media-body">
-            <h2 className="media-heading"><a href="#">Lorem ipsum dolor sit amet</a></h2>
+            <h2 className="media-heading"><a href="">Lorem ipsum dolor sit amet</a></h2>
             <p className="media-info">oleh <a href="https://google.com">Harry Akbar Ali Munir</a> - Friday, 26 May 2017, 1:06 PM</p>
             <div className="media-content">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consequat semper condimentum. Nullam quis velit eu elit dictum consectetur. Quisque diam odio, sollicitudin et lobortis ut, commodo ac purus. Donec ac purus commodo, pharetra nisl ac, ultricies purus. Pellentesque non dui sollicitudin, convallis sem ac, vulputate quam. Donec luctus bibendum velit, eget facilisis magna viverra ut. Vivamus eget ex turpis.
@@ -63,7 +63,7 @@ class NewsItem extends React.Component { // eslint-disable-line react/prefer-sta
           </div>
         </div>
         <div className="media-action">
-          <a className="comment" href="#">6 comments</a>
+          <a className="comment" href="">6 comments</a>
           <Button className="action">Reply</Button>
         </div>
       </Item>
