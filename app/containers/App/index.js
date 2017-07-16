@@ -12,6 +12,7 @@
  */
 
 import React from 'react';
+import AnnouncementItem from 'components/AnnouncementItem';
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
