@@ -40,7 +40,7 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
     return (
       <Bar>
         <div className="progress-info">
-          <h3>{this.props.title}: <span>{parseInt(current / max * 100)}%</span> ({current}/{max})</h3>
+          <h4>{this.props.title}: <span>{parseInt(current / max * 100)}%</span> ({current}/{max})</h4>
         </div>
         <div className="max-progress">
           <div className="current-progress" style={divStyle} ></div>
@@ -53,6 +53,8 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
 // Specifies the default values for props:
 ProgressBar.defaultProps = {
   title: 'Progress',
+  currentProgress: 0,
+  maxProgress: 1,
 };
 
 ProgressBar.propTypes = {
