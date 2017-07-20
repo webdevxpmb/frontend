@@ -16,6 +16,7 @@ import Helmet from 'react-helmet';
 import styled, { ThemeProvider } from 'styled-components';
 import Navigation from 'components/Navigation';
 import AnnouncementItem from 'components/AnnouncementItem';
+import ProgressBar from 'components/ProgressBar';
 import { theme } from './theme';
 
 const AppWrapper = styled.div`
@@ -51,6 +52,33 @@ export default class App extends React.PureComponent { // eslint-disable-line re
             time="1:10 AM"
             countComment="9"
           />
+          <AnnouncementItem
+            header="Halo"
+            article="Lorem Lorem LoremLorem Lorem LoremLorem Lorem LoremLorem Lorem LoremLorem Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, vel? Architecto consectetur doloribus quo voluptas, officiis impedit ipsam incidunt voluptates accusantium error maxime eligendi magni consequatur ex id assumenda, veniam? Lorem Lorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem Lorem"
+            publisher="Satria"
+            date="20 September 2017"
+            time="1:10 AM"
+            countComment="9"
+          />
+          <AnnouncementItem
+            header="Halo"
+            article="Lorem Lorem LoremLorem Lorem LoremLorem Lorem LoremLorem Lorem LoremLorem Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, vel? Architecto consectetur doloribus quo voluptas, officiis impedit ipsam incidunt voluptates accusantium error maxime eligendi magni consequatur ex id assumenda, veniam? Lorem Lorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem Lorem"
+            publisher="Satria"
+            date="20 September 2017"
+            time="1:10 AM"
+            countComment="9"
+          />
+          <AnnouncementItem
+            header="Halo"
+            article="Lorem Lorem LoremLorem Lorem LoremLorem Lorem LoremLorem Lorem LoremLorem Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, vel? Architecto consectetur doloribus quo voluptas, officiis impedit ipsam incidunt voluptates accusantium error maxime eligendi magni consequatur ex id assumenda, veniam? Lorem Lorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem LoremLorem Lorem"
+            publisher="Satria"
+            date="20 September 2017"
+            time="1:10 AM"
+            countComment="9"
+          />
+          <ProgressBar />
+          <ProgressBar />
+          <ProgressBar />
           {React.Children.toArray(this.props.children)}
         </AppWrapper>
       </ThemeProvider>

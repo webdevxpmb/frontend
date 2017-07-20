@@ -16,6 +16,8 @@ const Item = styled.div`
   .media-primary {
     display: -webkit-flex;
     display: flex;
+    border-bottom: 1px solid #e9ebee;
+    padding-bottom: 0.5em;
   }
   .media-body { width: 100%; }
   .media-info , .media-heading { margin: 0; }
@@ -23,8 +25,18 @@ const Item = styled.div`
     margin-top: 1em;
     .comment { margin: 0 0.5em; }
   }
+  .media-command {
+    display: -webkit-flex;
+    display: flex;
+    padding-top: 0.5em;
+  }
   @media screen and (max-width: 960px) {
     width: 90%;
+  }
+  @media screen and (max-width: 600px) {
+    .media-command p {
+      font-size: 0.75em;
+    }
   }
 `;
 
