@@ -89,7 +89,7 @@ class OffscreenMenu extends React.Component { // eslint-disable-line react/prefe
           <div className="actions">
             <h3>Hai, Ricky!</h3>
             <button onClick={this.showOffsetMenu}>
-              <span className="icon-menu" />
+              <span className="icon-menu" />x
             </button>
           </div>
         </div>
