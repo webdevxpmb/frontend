@@ -15,6 +15,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled, { ThemeProvider } from 'styled-components';
 import Navigation from 'components/Navigation';
+import OffScreenMenu from 'components/OffscreenMenu';
 
 import { theme } from './theme';
 
@@ -42,7 +43,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
               { name: 'description', content: 'PMB Fasilkom UI application' },
             ]}
           />
-          <Navigation />
+          <OffScreenMenu />
           {React.Children.toArray(this.props.children)}
         </AppWrapper>
       </ThemeProvider>
