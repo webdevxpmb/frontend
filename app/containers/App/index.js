@@ -43,6 +43,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
               { name: 'description', content: 'PMB Fasilkom UI application' },
             ]}
           />
+          <Navigation />
           <OffScreenMenu />
           {React.Children.toArray(this.props.children)}
         </AppWrapper>
