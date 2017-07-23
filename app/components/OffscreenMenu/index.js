@@ -7,6 +7,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import logoPmbImg from 'assets/logopmb.png';
+import Card from 'components/Card';
 import messages from './messages';
 import OffScreenMenu from './OffScreenMenu';
 
@@ -82,45 +83,47 @@ class OffscreenMenu extends React.Component { // eslint-disable-line react/prefe
   render() {
     return (
       <OffScreenMenu>
-        <div className="header">
-          <button className="logo" onClick={() => this.goTo('/')}>
-            <img src={logoPmbImg} alt="Logo PMB Fasilkom 2017" />
-          </button>
-          <div className="actions">
-            <h3>Hai, Ricky!</h3>
-            <button onClick={this.showOffsetMenu}>
-              <span className="icon-menu" />x
+        <Card radius="bottom">
+          <div className="header">
+            <button className="logo" onClick={() => this.goTo('/')}>
+              <img src={logoPmbImg} alt="Logo PMB Fasilkom 2017" />
             </button>
+            <div className="actions">
+              <h3>Hai, Ricky!</h3>
+              <button onClick={this.showOffsetMenu}>
+                <span className="icon-menu" />x
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div
-          className={this.state.offsetMenuDisplay
-            ? 'offsetMenu active'
-            : 'offsetMenu passive'
-          }
-        >
-          <div className="content">
-            <button className="close-btn" onClick={this.hideOffsetMenu}><span className="icon-close">X</span></button>
-            <div className="container">
-              <div className="user-action">
-                <h1>Hai, <span className="username">Ricky</span></h1>
-              </div>
-              <div className="navigations">
-                <p><FormattedMessage {...messages.navHeaderMessage} /></p>
-                <div className="ul-button">
-                  <button className="li-button">Beranda</button>
-                  <button className="li-button">Dashboard</button>
-                  <button className="li-button">Event</button>
-                  <button className="li-button">Pengumuman</button>
-                  <button className="li-button">Profil</button>
-                  <button className="li-button">Tugas</button>
-                  <button id="btn-bantuan" className="li-button">Bantuan</button>
+          <div
+            className={this.state.offsetMenuDisplay
+              ? 'offsetMenu active'
+              : 'offsetMenu passive'
+            }
+          >
+            <div className="content">
+              <button className="close-btn" onClick={this.hideOffsetMenu}><span className="icon-close">X</span></button>
+              <div className="container">
+                <div className="user-action">
+                  <h1>Hai, <span className="username">Ricky</span></h1>
+                </div>
+                <div className="navigations">
+                  <p><FormattedMessage {...messages.navHeaderMessage} /></p>
+                  <div className="ul-button">
+                    <button className="li-button">Beranda</button>
+                    <button className="li-button">Dashboard</button>
+                    <button className="li-button">Event</button>
+                    <button className="li-button">Pengumuman</button>
+                    <button className="li-button">Profil</button>
+                    <button className="li-button">Tugas</button>
+                    <button id="btn-bantuan" className="li-button">Bantuan</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </OffScreenMenu>
     );
   }

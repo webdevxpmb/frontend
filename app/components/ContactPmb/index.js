@@ -5,16 +5,36 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import Card from 'components/Card';
+import Contact from './Contact';
 
 function ContactPmb() {
   return (
-    <div>
-      <FormattedMessage {...messages.header} />
-    </div>
+    <Card>
+      <Contact>
+        <h4>Kontak Panitia</h4>
+        <br />
+        <ul>
+          <li>
+            Grace Angelica:
+            <ul>
+              <li>HP: +6289628752338</li>
+              <li>LINE: grcanglc</li>
+            </ul>
+          </li>
+          <br />
+          <li>
+            Wilda Septiani:
+            <ul>
+              <li>HP: +6289618469501</li>
+              <li>LINE: queenstar1</li>
+            </ul>
+          </li>
+        </ul>
+      </Contact>
+    </Card>
   );
 }
 

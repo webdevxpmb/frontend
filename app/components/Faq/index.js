@@ -5,15 +5,50 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import Card from 'components/Card';
+import FAQ from './FAQ';
+
+const listQa = [
+  {
+    question: 'Apa?',
+    answer: 'Halo',
+  },
+  {
+    question: 'Apa?',
+    answer: 'Halo',
+  },
+  {
+    question: 'Apa?',
+    answer: 'Halo',
+  },
+  {
+    question: 'Apa?',
+    answer: 'Halo',
+  },
+];
 
 function Faq() {
   return (
-    <div>
-      <FormattedMessage {...messages.header} />
+    <Card>
+      <FAQ>
+        <h4>Frequently Answered Questions (FAQs)</h4>
+        <br />
+        {
+          listQa.map(item => (
+            <QA question={item.question} answer={item.answer} />
+          ))
+        }
+      </FAQ>
+    </Card>
+  );
+}
+
+function QA(props) {
+  return (
+    <div className="qa-item">
+      <p><span className="cyan-item">Q: </span>{props.question}</p>
+      <p><span className="cyan-item">A: </span>{props.answer}</p>
     </div>
   );
 }
