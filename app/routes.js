@@ -34,6 +34,42 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/event',
+      name: 'eventPage',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/EventPage/reducer'),
+          import('containers/EventPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('eventPage', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/tugas',
+      name: 'tugasPage',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/TugasPage/reducer'),
+          import('containers/TugasPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('tugasPage', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

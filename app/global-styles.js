@@ -1,5 +1,7 @@
 import { injectGlobal } from 'styled-components';
 
+import './app.css';
+
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   html,
@@ -13,18 +15,12 @@ injectGlobal`
   }
 
   body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #app {
-    background-color: #fafafa;
+    background-color: #FAFAFA;
     min-height: 100%;
     min-width: 100%;
-  }
-
-  p,
-  label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
-    line-height: 1.5em;
   }
 `;
