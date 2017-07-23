@@ -6,10 +6,9 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import logoPmbImg from 'assets/logopmb.png';
 import messages from './messages';
 import OffScreenMenu from './OffScreenMenu';
-
-import logoPmbImg from 'assets/logopmb.png';
 
 class OffscreenMenu extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -19,10 +18,10 @@ class OffscreenMenu extends React.Component { // eslint-disable-line react/prefe
         {
           title: 'Event',
           link: '/event',
-        }, 
+        },
         {
           title: 'Apa Kata Element?',
-          link: '/apakataelement'
+          link: '/apakataelement',
         },
         {
           title: 'Statistik Maba',
