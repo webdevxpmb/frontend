@@ -14,15 +14,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled, { ThemeProvider } from 'styled-components';
-import Navigation from 'components/Navigation';
+import Navbar from 'containers/Navbar';
 
 import { theme } from './theme';
 
 const AppWrapper = styled.div`
-  margin: 0 auto;
-  width: 100%:
-  min-height: 100%;
-  max-width: 1200px;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 `;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -42,7 +41,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
               { name: 'description', content: 'PMB Fasilkom UI application' },
             ]}
           />
-          <Navigation />
+          <Navbar />
           {React.Children.toArray(this.props.children)}
         </AppWrapper>
       </ThemeProvider>

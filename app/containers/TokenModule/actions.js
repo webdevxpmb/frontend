@@ -1,6 +1,6 @@
 /*
  *
- * Navbar actions
+ * TokenModule actions
  *
  */
 

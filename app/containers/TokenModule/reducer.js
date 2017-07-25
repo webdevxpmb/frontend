@@ -1,6 +1,6 @@
 /*
  *
- * Navbar reducer
+ * TokenModule reducer
  *
  */
 
@@ -11,7 +11,7 @@ import {
 
 const initialState = fromJS({});
 
-function navbarReducer(state = initialState, action) {
+function tokenModuleReducer(state = initialState, action) {
   switch (action.type) {
     case DEFAULT_ACTION:
       return state;
@@ -20,4 +20,4 @@ function navbarReducer(state = initialState, action) {
   }
 }
 
-export default navbarReducer;
+export default tokenModuleReducer;

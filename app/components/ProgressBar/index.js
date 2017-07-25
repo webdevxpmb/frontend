@@ -33,14 +33,14 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
   render() {
     const current = this.props.currentProgress;
     const max = this.props.maxProgress;
-    let persentage = current / max * 100;
+    const percentage = (current / max) * 100;
     const divStyle = {
-      width: persentage + '%',
+      width: `${percentage}%`,
     };
     return (
       <Bar>
         <div className="progress-info">
-          <h3>{this.props.title}: <span>{parseInt(current / max * 100)}%</span> ({current}/{max})</h3>
+          <h3>{this.props.title}: <span>{percentage}%</span> ({current}/{max})</h3>
         </div>
         <div className="max-progress">
           <div className="current-progress" style={divStyle} ></div>

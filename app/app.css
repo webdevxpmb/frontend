@@ -15,7 +15,6 @@
      *    IE on Windows Phone and in iOS.
      */
 html {
-  font-family: sans-serif;
   /* 1 */
   line-height: 1.15;
   /* 2 */
@@ -89,7 +88,6 @@ main {
      * 2. Correct the odd `em` font sizing in all browsers.
      */
 pre {
-  font-family: monospace, monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */ }
@@ -149,7 +147,6 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */ }
@@ -229,7 +226,6 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
   /* 1 */
   font-size: 100%;
   /* 1 */
@@ -438,7 +434,6 @@ body {
   margin: 0;
   padding: 0;
   background: #fefefe;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-weight: normal;
   line-height: 1.5;
   color: #0a0a0a;
@@ -546,7 +541,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   color: inherit;
@@ -806,4 +800,53 @@ ul.no-bullet, ol.no-bullet {
   h3 {
     page-break-after: avoid; }
   .print-break-inside {
-    page-break-inside: auto; } }
+    page-break-inside: auto; } }  /*
+    Flaticon icon font: Flaticon
+    Creation date: 24/07/2017 15:23
+    */
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./assets/fonts/Flaticon.eot");
+  src: url("./assets/fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./assets/fonts/Flaticon.woff") format("woff"),
+       url("./assets/fonts/Flaticon.ttf") format("truetype"),
+       url("./assets/fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./assets/fonts/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before,
+[class^="icon-"]:after, [class*=" icon-"]:after {
+  font-family: Flaticon;
+  font-style: normal;
+}
+
+.icon-tag:before { content: "\f100"; }
+.icon-right:before { content: "\f101"; }
+.icon-left:before { content: "\f102"; }
+.icon-resize:before { content: "\f103"; }
+.icon-chat:before { content: "\f104"; }
+.icon-exit:before { content: "\f105"; }
+.icon-link:before { content: "\f106"; }
+.icon-checked:before { content: "\f107"; }
+.icon-down:before { content: "\f108"; }
+.icon-up:before { content: "\f109"; }
+.icon-task:before { content: "\f10a"; }
+.icon-menu:before { content: "\f10b"; }
+.icon-announcement:before { content: "\f10c"; }
+.icon-token:before { content: "\f10d"; }
+.icon-time:before { content: "\f10e"; }
+.icon-event:before { content: "\f10f"; }
+.icon-user:before { content: "\f110"; }
+.icon-help:before { content: "\f111"; }
+.icon-send:before { content: "\f112"; }
+.icon-dashboard:before { content: "\f113"; }
+.icon-home:before { content: "\f114"; }
