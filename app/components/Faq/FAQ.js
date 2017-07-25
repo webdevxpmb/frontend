@@ -11,9 +11,15 @@ const FAQ = styled.div`
 
   .qa-item {
     margin: 0.5em;
-    
-    .cyan-item {
+
+    p{
+      width: 100%
+      word-wrap: break-word;
+    }
+    .qa-li { display: flex; }
+    .prefix {
       color: ${(props) => props.theme.cyan};
+      margin-right: 0.5em;
     }
   }
 

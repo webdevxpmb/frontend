@@ -6,6 +6,11 @@ const OffScreenMenu = styled.nav`
   z-index: 1000;
   margin: 0 0 2rem;
   
+  .icon-menu {
+    max-width: 256px;
+    max-height: 256px;
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDI0IDI0IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CiAgPGc+CiAgICA8cGF0aCBkPSJNMjQsM2MwLTAuNi0wLjQtMS0xLTFIMUMwLjQsMiwwLDIuNCwwLDN2MmMwLDAuNiwwLjQsMSwxLDFoMjJjMC42LDAsMS0wLjQsMS0xVjN6IiBmaWxsPSIjMDBmZmZmIi8+CiAgICA8cGF0aCBkPSJNMjQsMTFjMC0wLjYtMC40LTEtMS0xSDFjLTAuNiwwLTEsMC40LTEsMXYyYzAsMC42LDAuNCwxLDEsMWgyMmMwLjYsMCwxLTAuNCwxLTFWMTF6IiBmaWxsPSIjMDBmZmZmIi8+CiAgICA8cGF0aCBkPSJNMjQsMTljMC0wLjYtMC40LTEtMS0xSDFjLTAuNiwwLTEsMC40LTEsMXYyYzAsMC42LDAuNCwxLDEsMWgyMmMwLjYsMCwxLTAuNCwxLTFWMTl6IiBmaWxsPSIjMDBmZmZmIi8+CiAgPC9nPgo8L3N2Zz4K)
+  }
   .offsetMenu {
     width: 100%;
     height: 100vh;
@@ -118,7 +123,7 @@ const OffScreenMenu = styled.nav`
     padding: 1rem;
 
     .logo {
-      width:30px;
+      width:50px;
       text-align: left;
       
       img {
@@ -136,9 +141,18 @@ const OffScreenMenu = styled.nav`
       text-align: right;
 
       h3 {
-        color: ${(props) => props.theme.grayDarkSuper};
+        color: ${(props) => props.theme.tosca};
         font-size: 1rem;
-        border-bottom: 0.2rem solid transparent;
+        font-family: 'Montserrat';
+        font-weight: bold;
+        margin: 0 1em;
+
+        span {
+          color: ${(props) => props.theme.cyan};
+        }
+      }
+      button {
+        line-height: 0;
       }
     }
 
@@ -186,9 +200,6 @@ const OffScreenMenu = styled.nav`
         padding: 0;
 
         &.logo {
-          width:30px;
-          text-align: left;
-          
           img {
             width: 100%;
           }
