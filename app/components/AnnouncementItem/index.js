@@ -13,6 +13,7 @@ import Card from '../Card';
 const Item = styled.div`
   width: 100%;
   padding: 1em;
+  margin: 1em 0;
   .media-primary {
     display: -webkit-flex;
     display: flex;

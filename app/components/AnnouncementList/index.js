@@ -5,17 +5,32 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import AnnouncementItem from '../AnnouncementItem';
+
+const Announcement = styled.div`
+  .item {
+    margin: 2em;
+  }
+`;
 
 class AnnouncementList extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
-        <FormattedMessage {...messages.header} />
-      </div>
+      <Announcement>
+        {this.props.items.map(item =>
+          <AnnouncementItem
+            className="item"
+            header={item.header}
+            article={item.article}
+            publisher={item.publisher}
+            date={item.date}
+            time={item.time}
+            countComment={item.countComment}
+          />
+        )}
+      </Announcement>
     );
   }
 }
