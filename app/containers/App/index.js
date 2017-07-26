@@ -15,6 +15,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled, { ThemeProvider } from 'styled-components';
 import Navigation from 'components/Navigation';
+import ProfileCard from 'components/ProfileCard';
 import OffScreenMenu from 'components/OffscreenMenu';
 import ContactPmb from 'components/ContactPmb';
 
@@ -45,6 +46,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
             ]}
           />
           <Navigation />
+          <ProfileCard />
           {React.Children.toArray(this.props.children)}
         </AppWrapper>
       </ThemeProvider>
