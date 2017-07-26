@@ -15,6 +15,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled, { ThemeProvider } from 'styled-components';
 import Navigation from 'components/Navigation';
+import Footer from 'components/Footer';
 import OffScreenMenu from 'components/OffscreenMenu';
 import ContactPmb from 'components/ContactPmb';
 
@@ -46,6 +47,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
           />
           <Navigation />
           {React.Children.toArray(this.props.children)}
+          <Footer />
         </AppWrapper>
       </ThemeProvider>
     );
