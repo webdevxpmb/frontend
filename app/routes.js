@@ -98,6 +98,26 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/pengumuman',
+      name: 'announcementPage',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/AnnouncementPage/reducer'),
+          import('containers/AnnouncementPage/sagas'),
+          import('containers/AnnouncementPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('announcementPage', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
