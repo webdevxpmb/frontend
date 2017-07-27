@@ -12,32 +12,35 @@ import Card from '../Card';
 
 const Item = styled.div`
   width: 100%;
-  padding: 1em;
-  margin: 1em 0;
+  padding: 0.5em;
+  margin: 1em auto;
+  background: ${(props) => props.theme.greyLighten};
+
   .media-primary {
     display: -webkit-flex;
     display: flex;
-    border-bottom: 1px solid #e9ebee;
+    border-bottom: 1px solid ${(props) => props.theme.lightGray};
     padding-bottom: 0.5em;
   }
   .media-body { width: 100%; }
-  .media-info , .media-heading { margin: 0; }
+  .media-heading {
+    margin: 0;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    a {color: black;}
+  }
   .media-action {
     margin-top: 1em;
+
     .comment { margin: 0 0.5em; }
   }
-  .media-command {
-    display: -webkit-flex;
+  .command {
+    font-size: 0.75em;
     display: flex;
     padding-top: 0.5em;
   }
   @media screen and (max-width: 960px) {
     width: 90%;
-  }
-  @media screen and (max-width: 600px) {
-    .media-command p {
-      font-size: 0.75em;
-    }
   }
 `;
 
@@ -51,23 +54,20 @@ class AnnouncementItem extends React.Component { // eslint-disable-line react/pr
 
   render() {
     return (
-      <Card>
-        <Item>
-          <div className="media-primary">
-            <div className="media-body">
-              <h2 className="media-heading"><a href="#">{this.props.header}</a></h2>
-              <div className="media-content">
-                <p>{this.props.article}</p>
-              </div>
-            </div>
+      <Item>
+        <div className="media-primary">
+          <div className="media-body">
+            <h5 className="media-heading"><a href="#">{this.props.header}</a></h5>
+            <br />
+            <div className="media-content" dangerouslySetInnerHTML={{ __html: this.props.article }} />
           </div>
-          <div className="media-command">
-            <p>
-              <a href="https://google.com">{this.props.publisher}</a> - {this.props.date}, {this.props.time} {this.props.countComment} {this.state.comment} <a href="#">Reply</a>
-            </p>
-          </div>
-        </Item>
-      </Card>
+        </div>
+        <div className="command">
+          <p>
+            <a href="https://google.com">{this.props.publisher}</a> - {this.props.date}, {this.props.time} {this.props.countComment} {this.state.comment} <a href="#">Reply</a>
+          </p>
+        </div>
+      </Item>
     );
   }
 }
