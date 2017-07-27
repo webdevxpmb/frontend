@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const FAQ = styled.div`
   padding: 2rem;
-  margin: 2rem 0;
   color: ${(props) => props.theme.tosca};
   h1,h2,h3,h4,h5,h6 {
     font-family: "Montserrat";
@@ -10,7 +9,6 @@ const FAQ = styled.div`
   }
 
   .qa-item {
-    margin: 0.5em;
 
     p{
       width: 100%

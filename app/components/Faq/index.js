@@ -16,7 +16,7 @@ const listQa = [
   },
   {
     question: 'Apa?',
-    answer: 'Jawaban bertele2tele2tel e2le2t ele2tele2tele2 tele2tele2te le2tele2tele2tele2t ele2tele2tele2tele2tel e2tele2tele2tele2te le2tele2tele2t ele2tele2tele2 tele2t ele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2tele2',
+    answer: 'Jawaban bertele2 tele2tel e2le2t ele2tele2tele2 tele2t ele2te le2tele2tel e2tele2t ele2t ele2tele 2tele2tel e2tele2tele2te le2te le2tele2tele2t ele2tele2tele2 tele2t ele2tele2tele2tel e2tele2te le2tele2tel e2tele2tele2tele2tele2tele2tele2tele2t ele2tel e2tele2tele2tele2t le2tele2tele2t ele2tele2tele2tel e2tele2tele2tele2tele2tele2tele2tele2 tele2tele2tele2tele2tele2',
   },
   {
     question: 'Apa?',

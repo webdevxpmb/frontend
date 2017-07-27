@@ -12,16 +12,36 @@ import Faq from 'components/Faq';
 import styled from 'styled-components';
 
 const Bantuan = styled.div`
-  .title {
-    font-weight: bold;
-    font-family: "Montserrat";
-    color: ${(props) => props.theme.tosca};
-  }
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
 
-  @media screen and (max-width: 40em) {
-    padding: 3rem 1rem;
+  .help-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    
+    &>div {
+      margin: 1em 0;
+    }
     .title {
-      margin: 2rem auto;
+      margin: 1em 0;
+      font-weight: bold;
+      font-family: "Montserrat";
+      color: ${(props) => props.theme.tosca};
+    }
+
+    @media screen and (max-width: 40em) {
+      padding: 3rem 1rem;
+      .title {
+        margin: 2rem auto;
+      }
     }
   }
 `;
@@ -36,9 +56,11 @@ export class BantuanPage extends React.PureComponent { // eslint-disable-line re
             { name: 'description', content: 'PMB Fasilkom UI 2017' },
           ]}
         />
-        <h3 className="title">BANTUAN</h3>
-        <ContactPmb />
-        <Faq />
+        <div className="help-content">
+          <h3 className="title">BANTUAN</h3>
+          <ContactPmb />
+          <Faq />
+        </div>
       </Bantuan>
     );
   }

@@ -90,6 +90,14 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/help',
+      name: 'bantuanPage',
+      getComponent(location, cb) {
+        import('containers/BantuanPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
