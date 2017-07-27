@@ -8,7 +8,7 @@ export const Token = styled.div`
   color: ${(props) => props.theme.white};
   background-image: ${(props) => props.theme.blueGradient};
 
-  .content {
+  .tokenContent {
     width: 100%;
     height: 100%;
     max-width: 1200px;
@@ -101,7 +101,7 @@ export const Token = styled.div`
   @media screen and (max-width: 64em) {
     padding: 5rem 2rem;
 
-    .content {
+    .tokenContent {
       .token {
         margin-bottom: 2rem;
 
@@ -161,7 +161,7 @@ export const TokenForm = styled.div`
   color: ${(props) => props.theme.white};
   background-image: ${(props) => props.theme.blueGradient};
 
-  .content {
+  .tokenContent {
     width: 100%;
     height: 100%;
     max-width: 1200px;
@@ -223,7 +223,7 @@ export const TokenForm = styled.div`
   @media screen and (max-width: 64em) {
     padding: 5rem 2rem;
 
-    .content {
+    .tokenContent {
       h1 {
         font-size: 1rem;
         margin-bottom: 2rem;

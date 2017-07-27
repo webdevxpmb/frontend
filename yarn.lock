@@ -1583,6 +1583,10 @@ clone@^1.0.0, clone@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149"
 
+clone@~2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.1.tgz#d217d1e961118e3ac9a4b8bba3285553bf647cdb"
+
 co@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/co/-/co-3.1.0.tgz#4ea54ea5a08938153185e15210c68d9092bc1b78"
@@ -2109,7 +2113,7 @@ decompress@^3.0.0:
     vinyl-assign "^1.0.1"
     vinyl-fs "^2.2.0"
 
-deep-equal@1.0.1:
+deep-equal@1.0.1, deep-equal@^1.0.1, deep-equal@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -2686,6 +2690,10 @@ event-emitter@~0.3.4:
     d "~0.1.1"
     es5-ext "~0.10.7"
 
+eventemitter3@~2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
+
 events@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
@@ -2806,9 +2814,9 @@ extend-shallow@^2.0.1:
   dependencies:
     is-extendable "^0.1.0"
 
-extend@^3.0.0, extend@~3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
+extend@^3.0.0, extend@~3.0.0, extend@~3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
 
 external-editor@^1.1.0:
   version "1.1.1"
@@ -2834,6 +2842,10 @@ fancy-log@^1.1.0:
   dependencies:
     chalk "^1.1.1"
     time-stamp "^1.0.0"
+
+fast-diff@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.1.1.tgz#0aea0e4e605b6a2189f0e936d4b7fbaf1b7cfd9b"
 
 fast-levenshtein@~2.0.4:
   version "2.0.5"
@@ -4828,9 +4840,13 @@ lodash.templatesettings@^3.0.0:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
 
-lodash@4.17.2, lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.2:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
+
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 log-driver@1.2.5:
   version "1.2.5"
@@ -5569,6 +5585,10 @@ param-case@^1.1.0:
   dependencies:
     sentence-case "^1.1.2"
 
+parchment@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/parchment/-/parchment-1.1.0.tgz#c79387a80fc4af4ba8947b94fc55a835f62850a5"
+
 parse-asn1@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/parse-asn1/-/parse-asn1-5.0.0.tgz#35060f6d5015d37628c770f4e091a0b5a278bc23"
@@ -6102,6 +6122,25 @@ querystring@0.2.0, querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
+quill-delta@3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/quill-delta/-/quill-delta-3.5.0.tgz#5b67e685da60c34eabed4449c416c74aab89157b"
+  dependencies:
+    deep-equal "^1.0.1"
+    extend "^3.0.0"
+    fast-diff "1.1.1"
+
+quill@^1.2.6:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/quill/-/quill-1.3.0.tgz#1fa485dcd0f4c45925ed32158f50d8129ccab134"
+  dependencies:
+    clone "~2.1.1"
+    deep-equal "~1.0.1"
+    eventemitter3 "~2.0.3"
+    extend "~3.0.1"
+    parchment "1.1.0"
+    quill-delta "3.5.0"
+
 railroad-diagrams@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/railroad-diagrams/-/railroad-diagrams-1.0.0.tgz#eb7e6267548ddedfb899c1b90e57374559cddb7e"
@@ -6141,6 +6180,10 @@ react-addons-test-utils@15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.4.1.tgz#1e4caab151bf27cce26df5f9cb714f4fd8359ae1"
 
+react-chartjs@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-chartjs/-/react-chartjs-0.8.0.tgz#d41386b3d3cbfef9003f5a655e7ea48a49fbfa19"
+
 react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
@@ -6178,6 +6221,13 @@ react-proxy@^1.1.7:
   dependencies:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
+
+react-quill@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-quill/-/react-quill-1.0.0.tgz#26c41746a0deb298a7549362cfa69c87db4d9399"
+  dependencies:
+    lodash "^4.17.4"
+    quill "^1.2.6"
 
 react-redux@4.4.6:
   version "4.4.6"

@@ -22,12 +22,12 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
 
     if (isMaba) {
       return (
-        <TokenForm progress={80}>
-          <div className="content">
-            <h1>Masukkan token, mulai berkenalan.</h1>
+        <TokenForm>
+          <div className="tokenContent">
+            <h1>Write down the token, get to know your new friend now.</h1>
             <div className="form">
               <input className="input" type="text" placeholder="Token elemen" />
-              <button><span className="icon-send" />Kenalan</button>
+              <button><span className="icon-send" />Go</button>
             </div>
           </div>
         </TokenForm>
@@ -36,9 +36,9 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
 
     return (
       <Token progress={80}>
-        <div className="content">
+        <div className="tokenContent">
           <div className="token">
-            <h3>Selamat datang, gunakan token ini untuk berkenalan</h3>
+            <h3>Welcome, give this token to your new friend</h3>
             <div className="textPack">
               <span className="icon-token" />
               <h1>743829</h1>

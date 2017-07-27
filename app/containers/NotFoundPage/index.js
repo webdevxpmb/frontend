@@ -10,16 +10,20 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
-import messages from './messages';
+import {
+  FourOFour,
+} from './styled';
 
 export default class NotFound extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <FourOFour>
+        <div className="fourOFourContent">
+          <h1>Oh no, you{"'"}re lost</h1>
+          <h2>We{"'"}ve been looking for your request everywhere, its not here.</h2>
+        </div>
+      </FourOFour>
     );
   }
 }

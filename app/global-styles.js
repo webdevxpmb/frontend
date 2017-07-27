@@ -6,7 +6,6 @@ import './app.css';
 injectGlobal`
   html,
   body {
-    background-color: #000;
     height: 100%;
     width: 100%;
     padding: 0;
@@ -17,7 +16,7 @@ injectGlobal`
   }
 
   body.fontLoaded {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #app {

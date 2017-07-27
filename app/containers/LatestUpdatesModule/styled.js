@@ -6,16 +6,14 @@ export const LatestUpdates = styled.div`
   max-width: 1200px;
   margin: -7rem auto 0;
 
-  .content {
-    padding: 0 2rem 1rem;
+  .updatesContent {
+    padding: 2rem;
 
     .title {
-      height: 3rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
 
       h1 {
         font-size: 1rem;
@@ -100,9 +98,9 @@ export const LatestUpdates = styled.div`
   }
 
   @media screen and (max-width: 64em) {
-    margin-top: -3rem;
+    margin-top: -5rem;
 
-    .content {
+    .updatesContent {
       .updates {
         flex-direction: column;
 

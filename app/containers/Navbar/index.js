@@ -21,24 +21,24 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
     return (
       <Nav>
         <Card smallRadius="bottom">
-          <div className="content showForLarge">
-            <button className="logoSet">
+          <div className="navbarContent showForLarge">
+            <button onClick={() => this.props.push('/')} className="logoSet">
               <div className="logo">
                 <img src={Logo} alt="Logo PMB 2017" />
               </div>
               <h1>#BersamaMenggenggamMasaDepan</h1>
             </button>
             <div className="navigations">
-              <button className="link">Pengumuman</button>
-              <button className="link">Tugas</button>
-              <button className="link">Acara</button>
-              <button className="link">Bantuan</button>
-              <button className="dashboard">Dashboard</button>
-              <button className="logout">Logout</button>
+              <button onClick={() => this.props.push('/announcement')} className="link">Announcement</button>
+              <button onClick={() => this.props.push('/task')} className="link">Task</button>
+              <button onClick={() => this.props.push('/event')} className="link">Event</button>
+              <button onClick={() => this.props.push('/help')} className="link">Help</button>
+              <button onClick={() => this.props.push('/dashboard')} className="dashboard">Dashboard</button>
+              <button onClick={() => this.props.push('/logout')} className="logout">Logout</button>
             </div>
           </div>
-          <div className="content hideForLarge">
-            <button className="logo">
+          <div className="navbarContent hideForLarge">
+            <button onClick={() => this.props.push('/')} className="logo">
               <img src={Logo} alt="Logo PMB 2017" />
             </button>
             <button className="link">

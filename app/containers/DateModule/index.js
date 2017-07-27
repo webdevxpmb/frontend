@@ -7,6 +7,12 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { isEmpty } from 'lodash';
+
+import {
+  Dates,
+  SpecialDate,
+} from './styled';
 
 const moment = window.moment;
 
@@ -19,6 +25,7 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
     this.state = {
       today: now.toObject(),
       active: now.toObject(),
+      context: {},
     };
 
     this.getDaysInMonth = this.getDaysInMonth.bind(this);
@@ -26,10 +33,7 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
     this.getContainerizedDaysInMonth = this.getContainerizedDaysInMonth.bind(this);
     this.setPrevMonth = this.setPrevMonth.bind(this);
     this.setNextMonth = this.setNextMonth.bind(this);
-  }
-
-  componentDidMount() {
-    this.setNextMonth();
+    this.handleContextClick = this.handleContextClick.bind(this);
   }
 
   getDaysInMonth() {
@@ -54,13 +58,13 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
     const daysArray = this.injectImportantDates();
 
     const container = [
-      ['Sen'],
-      ['Sel'],
-      ['Rab'],
-      ['Kam'],
-      ['Jum'],
-      ['Sab'],
-      ['Min'],
+      ['Mon'],
+      ['Tue'],
+      ['Wed'],
+      ['Thu'],
+      ['Fri'],
+      ['Sat'],
+      ['Sun'],
     ];
 
     daysArray.map((value, index) => {
@@ -97,13 +101,14 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
     const active = new moment(this.state.active);
     active.date(1);
     const activeMonth = active.month();
+    const activeYear = active.year();
     const activeOffset = active.day() - 1;
 
 
     this.props.days.map((value) => {
       const valMoment = new moment(value);
 
-      if (valMoment.month() === activeMonth) {
+      if (valMoment.month() === activeMonth && valMoment.year() === activeYear) {
         if (typeof daysArray[(valMoment.date() + activeOffset) - 1] === 'object') {
           daysArray[(valMoment.date() + activeOffset) - 1].actions.push(value);
         } else {
@@ -120,29 +125,72 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
     return daysArray;
   }
 
+  handleContextClick(context) {
+    this.setState({
+      ...this.state,
+      context,
+    });
+  }
+
   render() {
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
     const daysToRender = this.getContainerizedDaysInMonth();
+    const active = new moment(this.state.active);
+
+    const currentMonth = monthNames[active.month()];
+    const currentYear = active.year();
 
     const calender = daysToRender.map((value, index) => {
       const dayItems = value.map((innerVal, innerIndex) => {
         if (innerIndex === 0) {
           return (<h1 key={`innerIndex-${innerIndex}`}>{innerVal}</h1>);
         } else if (innerVal === 'skip') {
-          return (<h2 key={`innerIndex-${innerIndex}`}>e</h2>);
+          return (<button className="date" key={`innerIndex-${innerIndex}`} disabled />);
         } else if (typeof innerVal === 'object') {
-          return (<h2 key={`innerIndex-${innerIndex}`}>{innerVal.date}</h2>);
+          return (<SpecialDate onClick={() => this.handleContextClick(innerVal)} color="green" key={`innerIndex-${innerIndex}`}>{innerVal.date}</SpecialDate>);
         }
 
-        return (<h2 key={`innerIndex-${innerIndex}`}>{innerVal}</h2>);
+        return (<button className="date" key={`innerIndex-${innerIndex}`}>{innerVal}</button>);
       });
 
-      return (<div key={`index-${index}`}>{dayItems}</div>);
+      return (<div key={`index-${index}`} className="days">{dayItems}</div>);
     });
 
     return (
-      <div>
-        {calender}
-      </div>
+      <Dates>
+        <div className="navigation">
+          <button onClick={this.setPrevMonth}><span className="icon-left" /></button>
+          <h1>{currentMonth}, {currentYear}</h1>
+          <button onClick={this.setNextMonth}><span className="icon-right" /></button>
+        </div>
+        <div className="dateContent">
+          {calender}
+        </div>
+        {!isEmpty(this.state.context) &&
+          <div className="dateContext">
+            <h1>Activity on {this.state.context.date}</h1>
+            <button onClick={() => this.handleContextClick({})} className="close"><span className="icon-close" /></button>
+            <div className="activity">
+              <h2>Tugas Kenalan tahap 1</h2>
+              <button><span className="icon-send" />Go</button>
+            </div>
+          </div>
+        }
+      </Dates>
     );
   }
 }

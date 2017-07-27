@@ -44,7 +44,7 @@ import { translationMessages } from './i18n';
 import './global-styles';
 
 // Observe loading of Montserrat font
-const montserratObserver = new FontFaceObserver('Lato', {});
+const montserratObserver = new FontFaceObserver('Montserrat', {});
 
 // When Montserrat is loaded, add a font-family using Montserrat to the body
 montserratObserver.load().then(() => {

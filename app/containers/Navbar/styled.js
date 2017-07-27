@@ -11,7 +11,7 @@ export const Nav = styled.nav`
   left: 50%;
   transform: translateX(-50%);
 
-  .content {
+  .navbarContent {
     width: 100%;
     height: 3rem;
     padding: 0 2rem;
@@ -113,7 +113,7 @@ export const Nav = styled.nav`
     right: 0;
     transform: none;
 
-    .content {
+    .navbarContent {
       width: 100%;
       height: 3rem;
       padding: 0 2rem;

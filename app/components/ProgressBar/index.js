@@ -1,27 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const Bar = styled.div`
-  margin: 1em 0;
-  .progress-info {
-    color: #40514E;
-    h3 { margin: 0; }
-    span { color: #8BEFE5; }
-  }
-  .max-progress {
-    border-radius: 0.5em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 100%;
-    height: 0.75rem;
-    margin: auto;
-    background-color: #40514E;
-    .current-progress {
-      border-radius: 0.5em;
-      height: 0.75rem;
-      background-color: #8BEFE5;
-    }
-  }
-`;
+import {
+  Bar,
+} from './styled';
 
 /**
  * Global progress bar for any components to use
@@ -31,19 +12,17 @@ const Bar = styled.div`
  */
 class ProgressBar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const current = this.props.currentProgress;
-    const max = this.props.maxProgress;
-    const percentage = (current / max) * 100;
-    const divStyle = {
-      width: `${percentage}%`,
-    };
+    const current = this.props.current;
+    const max = this.props.max;
+    const percentage = Math.floor((current / max) * 100);
+
     return (
-      <Bar>
-        <div className="progress-info">
+      <Bar percentage={percentage}>
+        <div className="info">
           <h3>{this.props.title}: <span>{percentage}%</span> ({current}/{max})</h3>
         </div>
-        <div className="max-progress">
-          <div className="current-progress" style={divStyle} ></div>
+        <div className="max">
+          <div className="current" />
         </div>
       </Bar>
     );
@@ -57,8 +36,8 @@ ProgressBar.defaultProps = {
 
 ProgressBar.propTypes = {
   title: React.PropTypes.string.isRequired,
-  currentProgress: React.PropTypes.number.isRequired,
-  maxProgress: React.PropTypes.number.isRequired,
+  current: React.PropTypes.number.isRequired,
+  max: React.PropTypes.number.isRequired,
 };
 
 export default ProgressBar;

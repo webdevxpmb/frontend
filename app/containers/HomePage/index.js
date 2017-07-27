@@ -12,9 +12,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import Footer from 'components/Footer';
+import Card from 'components/Card';
+
 import TokenModule from 'containers/TokenModule';
 import LatestUpdatesModule from 'containers/LatestUpdatesModule';
 import DateModule from 'containers/DateModule';
+import ForumModule from 'containers/ForumModule';
+import WhatElementSaysModule from 'containers/WhatElementSaysModule';
 
 import {
   Home,
@@ -39,7 +44,33 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         />
         <TokenModule />
         <LatestUpdatesModule />
-        <DateModule days={importantDays} />
+        <div className="homeContent">
+          <div className="leftColumn">
+            <div className="calendar">
+              <Card>
+                <div className="container">
+                  <h2 className="label">Server Time</h2>
+                  <h1 className="serverTime">05:00</h1>
+                  <h2 className="label">PMB Calendar</h2>
+                  <DateModule days={importantDays} />
+                </div>
+              </Card>
+            </div>
+            <div className="whatElementSays">
+              <Card>
+                <WhatElementSaysModule />
+              </Card>
+            </div>
+          </div>
+          <div className="rightColumn">
+            <Card>
+              <ForumModule />
+            </Card>
+          </div>
+          <div className="footer">
+            <Footer />
+          </div>
+        </div>
       </Home>
     );
   }
