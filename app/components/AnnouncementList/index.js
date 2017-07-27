@@ -26,7 +26,7 @@ const Announcement = styled.div`
   .pagination button {
     padding: 1em;
     &.active {
-      background: ${(props) => props.theme.dark};
+      background: ${(props) => props.theme.darkGray};
       color: white;
     }
   }

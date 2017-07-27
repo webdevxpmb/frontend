@@ -98,7 +98,7 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
-      path: '/pengumuman',
+      path: '/announcement',
       name: 'announcementPage',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
