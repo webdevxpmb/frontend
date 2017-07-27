@@ -4,6 +4,7 @@ import './app.css';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
   html,
   body {
     height: 100%;
@@ -12,7 +13,7 @@ injectGlobal`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   body.fontLoaded {

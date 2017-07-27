@@ -32,6 +32,8 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
 // Specifies the default values for props:
 ProgressBar.defaultProps = {
   title: 'Progress',
+  currentProgress: 0,
+  maxProgress: 1,
 };
 
 ProgressBar.propTypes = {

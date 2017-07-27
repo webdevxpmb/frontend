@@ -20,4 +20,7 @@ export const theme = {
   borderRadius: '0.25rem',
   transitionColor: 'color 0.5s ease-in-out',
   transitionBg: 'background 0.5s ease-in-out',
+  cyan: '#00FFFF',
+  tosca: '#004D40',
+  shadow: 'rgba(33, 33, 33, 0.5)',
 };
