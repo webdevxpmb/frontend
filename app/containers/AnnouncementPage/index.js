@@ -8,6 +8,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+import SectionHeading from 'components/SectionHeading';
 import AnnouncementList from 'components/AnnouncementList';
 import { createStructuredSelector } from 'reselect';
 import makeSelectAnnouncementPage from './selectors';
@@ -41,6 +42,9 @@ export class AnnouncementPage extends React.Component { // eslint-disable-line r
           ]}
         />
         <div className="announce-content">
+          <SectionHeading>
+            Pengumuman
+          </SectionHeading>
           <AnnouncementList />
         </div>
       </Style>

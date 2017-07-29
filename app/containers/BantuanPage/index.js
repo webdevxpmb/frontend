@@ -7,6 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import SectionHeading from 'components/SectionHeading';
 import ContactPmb from 'components/ContactPmb';
 import Faq from 'components/Faq';
 import styled from 'styled-components';
@@ -27,9 +28,6 @@ const Bantuan = styled.div`
     justify-content: space-between;
     align-items: stretch;
     
-    &>div {
-      margin: 1em 0;
-    }
     .title {
       margin: 1em 0;
       font-weight: bold;
@@ -57,8 +55,13 @@ export class BantuanPage extends React.PureComponent { // eslint-disable-line re
           ]}
         />
         <div className="help-content">
-          <h3 className="title">BANTUAN</h3>
+          <SectionHeading>
+            Kontak Panitia
+          </SectionHeading>
           <ContactPmb />
+          <SectionHeading>
+            Frequently Answered Questions (FAQs)
+          </SectionHeading>
           <Faq />
         </div>
       </Bantuan>

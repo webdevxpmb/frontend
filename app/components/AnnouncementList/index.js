@@ -10,10 +10,7 @@ import Card from '../Card';
 import AnnouncementItem from '../AnnouncementItem';
 
 const Announcement = styled.div`
-  padding: 1em;
-  .item {
-    margin: 2em;
-  }
+  padding: 2em;
   h4 {
     font-family: 'Montserrat';
     font-weight: 700;
@@ -25,8 +22,9 @@ const Announcement = styled.div`
   }
   .pagination button {
     padding: 1em;
+    border-radius: ${(props) => props.theme.borderRadius};
     &.active {
-      background: ${(props) => props.theme.darkGray};
+      background: ${(props) => props.theme.blueGradient};
       color: white;
     }
   }
@@ -79,7 +77,6 @@ class AnnouncementList extends React.Component { // eslint-disable-line react/pr
         postItems.push(
           <AnnouncementItem
             key={i}
-            className="item"
             header="BESOK EVAL WLEEEE!!"
             article="Lorem iIta commodo nisl non hendrerit. Vestibulum a interdum ipsum, at lacinia nisl. Quisque vitae elit finibus, gravida ipsum non, vehicula massa. Donec finibus bibendum vulputate. Maecenas gravida, nibh et semper malesuada, dui dolor ornare nibh, sed eleifend diam ipsum ac mi. Ut rutrum augue sed enim convallis, eget finibus felis feugiat. Donec malesuada, dolor non vulputate sagittis, libero quam pretium nibh, at vulputate risus nisi in metus. Cras porta ligula ex, non interdum sapien dictum a. Vivamus blandit varius velit vel sodales. Ut vehicula ligula tortor, non aliquet ipsum convallis vitae.<br /><br/>Donec bibendum sagittis rhoncus. Aenean a dapibus nisi. Nulla vehicula ultrices purus, vel egestas orci venenatis a. Vestibulum porta at odio at placerat. Praesent eleifend sit amet ipsum nec finibus. Morbi eu fermentum leo, eget gravida nibh. Fusce tellus mauris, dignissim a velit vitae, commodo imperdiet risus. Nulla nec lorem ligula."
             publisher="Admin"
@@ -104,7 +101,6 @@ class AnnouncementList extends React.Component { // eslint-disable-line react/pr
     return (
       <Card>
         <Announcement>
-          <h4>Pengumuman</h4>
           {postItems}
           <div className="pagination">
             {pagination}

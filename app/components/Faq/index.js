@@ -43,8 +43,6 @@ function Faq() {
   return (
     <Card>
       <FAQ>
-        <h4>Frequently Answered Questions (FAQs)</h4>
-        <br />
         {
           listQa.map(item => (
             <QA question={item.question} answer={item.answer} />

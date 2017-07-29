@@ -14,8 +14,6 @@ function ContactPmb() {
   return (
     <Card>
       <Contact>
-        <h4>Kontak Panitia</h4>
-        <br />
         <ul>
           <li>
             Grace Angelica:
