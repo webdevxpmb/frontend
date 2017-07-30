@@ -69,7 +69,7 @@ export const Item = styled.div`
       color: white;
       margin: 0.5rem 0;
       border-radius: ${(props) => props.theme.borderRadius};
-      background: ${(props) => props.theme.blueGradient};
+      background: ${(props) => props.theme.greenGradient};
     }
   }
   @media screen and (max-width: 960px) {
