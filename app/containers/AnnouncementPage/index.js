@@ -23,7 +23,7 @@ export class AnnouncementPage extends React.Component { // eslint-disable-line r
             { name: 'Pengumuman', content: 'Description of AnnouncementPage' },
           ]}
         />
-        <div className="announce-content">
+        <div className="content">
           <SectionHeading>
             Announcement
           </SectionHeading>

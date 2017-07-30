@@ -22,7 +22,7 @@ export class BantuanPage extends React.PureComponent { // eslint-disable-line re
             { name: 'description', content: 'PMB Fasilkom UI 2017' },
           ]}
         />
-        <div className="help-content">
+        <div className="content">
           <SectionHeading>
             Kontak Panitia
           </SectionHeading>

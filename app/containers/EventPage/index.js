@@ -23,7 +23,7 @@ export class EventPage extends React.Component { // eslint-disable-line react/pr
             { name: 'description', content: 'Description of EventPage' },
           ]}
         />
-        <div className="event-content">
+        <div className="content">
           <SectionHeading>
             Event PMB
           </SectionHeading>

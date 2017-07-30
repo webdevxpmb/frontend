@@ -6,7 +6,7 @@ const Bantuan = styled.div`
   height: auto;
   min-height: 100vh;
 
-  .help-content {
+  .content {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -22,12 +22,16 @@ const Bantuan = styled.div`
       font-family: "Montserrat";
       color: ${(props) => props.theme.tosca};
     }
+  }
 
-    @media screen and (max-width: 40em) {
-      padding: 3rem 1rem;
-      .title {
-        margin: 2rem auto;
-      }
+  @media screen and (max-width: 40em) {
+    padding: 3rem 1rem;
+    .title {
+      margin: 2rem auto;
+    }
+
+    .content {
+      padding: 1rem 0 2rem;
     }
   }
 `;

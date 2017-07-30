@@ -6,7 +6,7 @@ const Style = styled.div`
   height: auto;
   min-height: 100vh;
 
-  .event-content {
+  .content {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -15,6 +15,12 @@ const Style = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
+  }
+
+  @media screen and (max-width: 960px) {
+    .content {
+      padding: 4rem 0 1rem;
+    }
   }
 `;
 
