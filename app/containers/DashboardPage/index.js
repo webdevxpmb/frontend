@@ -51,13 +51,27 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
           </SectionHeading>
           <Card>
             <div className="stats">
-              <ProgressBar title="Task" current={13} max={24} />
-              <ProgressBar title="Attendance" current={13} max={15} />
-              <ProgressBar title="Omega Target" current={15} max={150} />
-              <ProgressBar title="Capung Target" current={24} max={100} />
-              <ProgressBar title="Orion Target" current={48} max={50} />
-              <ProgressBar title="Angklung Target" current={15} max={25} />
-              <ProgressBar title="Astro ++ Target" current={4} max={10} />
+              <div className="progress">
+                <ProgressBar title="Task" current={13} max={24} />
+              </div>
+              <div className="progress">
+                <ProgressBar className="progress" title="Attendance" current={13} max={15} />
+              </div>
+              <div className="progress">
+                <ProgressBar className="progress" title="Omega Target" current={15} max={150} />
+              </div>
+              <div className="progress">
+                <ProgressBar className="progress" title="Capung Target" current={24} max={100} />
+              </div>
+              <div className="progress">
+                <ProgressBar className="progress" title="Orion Target" current={48} max={50} />
+              </div>
+              <div className="progress">
+                <ProgressBar className="progress" title="Angklung Target" current={15} max={25} />
+              </div>
+              <div className="progress">
+                <ProgressBar className="progress" title="Astro ++ Target" current={4} max={10} />
+              </div>
             </div>
           </Card>
           <SectionHeading>

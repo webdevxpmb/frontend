@@ -67,6 +67,10 @@ export const Dashboard = styled.div`
       flex-wrap: wrap;
       flex-direction: column;
       justify-content: center;
+
+      .progress {
+        margin: 1rem 0;
+      }
     }
 
     .friends {
