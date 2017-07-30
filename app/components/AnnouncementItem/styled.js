@@ -59,4 +59,8 @@ export const Item = styled.div`
   }
 `;
 
-export default Item;
+export const Comment = styled.div`
+  width: 100%;
+  padding: 2rem;
+  margin: 1rem auto;
+`;
