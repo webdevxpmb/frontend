@@ -7,29 +7,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
 import SectionHeading from 'components/SectionHeading';
 import AnnouncementList from 'components/AnnouncementList';
 import { createStructuredSelector } from 'reselect';
 import makeSelectAnnouncementPage from './selectors';
-
-const Style = styled.div`
-  position: relative;
-  width: 100%;
-  height: auto;
-  min-height: 100vh;
-
-  .announce-content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 7rem 0 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
-  }
-`;
+import Style from './styled';
 
 export class AnnouncementPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
