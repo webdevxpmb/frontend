@@ -16,6 +16,26 @@ const Item = styled.div`
   margin: 1em auto;
   background: ${(props) => props.theme.greyLighten};
 
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: ${(props) => props.theme.black};
+  }
+
+  h2 {
+    font-size: 1rem;
+    line-height: 1.25;
+    color: ${(props) => props.theme.darkGray};
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1;
+    color: ${(props) => props.theme.gray};
+  }
+  
   .media-primary {
     display: -webkit-flex;
     display: flex;
@@ -64,7 +84,7 @@ class AnnouncementItem extends React.Component { // eslint-disable-line react/pr
         </div>
         <div className="command">
           <p>
-            <a href="https://google.com">{this.props.publisher}</a> - {this.props.date}, {this.props.time} {this.props.countComment} {this.state.comment} <a href="#">Reply</a>
+            <a href="https://google.com">{this.props.publisher}</a> | {this.props.date}, {this.props.time} {this.props.countComment} {this.state.comment} <a href="#">Reply</a>
           </p>
         </div>
       </Item>

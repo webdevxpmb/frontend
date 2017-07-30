@@ -43,7 +43,7 @@ export class AnnouncementPage extends React.Component { // eslint-disable-line r
         />
         <div className="announce-content">
           <SectionHeading>
-            Pengumuman
+            Announcement
           </SectionHeading>
           <AnnouncementList />
         </div>

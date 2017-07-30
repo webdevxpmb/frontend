@@ -5,30 +5,8 @@
 */
 
 import React from 'react';
-import styled from 'styled-components';
 import Card from '../Card';
-import AnnouncementItem from '../AnnouncementItem';
-
-const Announcement = styled.div`
-  padding: 2em;
-  h4 {
-    font-family: 'Montserrat';
-    font-weight: 700;
-  }
-
-  .pagination {
-    margin: auto;
-    text-align: center;
-  }
-  .pagination button {
-    padding: 1em;
-    border-radius: ${(props) => props.theme.borderRadius};
-    &.active {
-      background: ${(props) => props.theme.blueGradient};
-      color: white;
-    }
-  }
-`;
+import { Item, Announcement } from './styled';
 
 class AnnouncementList extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
@@ -73,17 +51,41 @@ class AnnouncementList extends React.Component { // eslint-disable-line react/pr
     for (let i = this.state.currentPage * maxPostPerPage; i < 50; i += 1) {
       if (postsRendered < maxPostPerPage) {
         // const post = posts[i];
-
+        const post = `1. Pendaftar dan peserta wajib mengikuti semua peraturan yang tertera pada guideline.<br />
+                      2. Peserta adalah pihak yang telah mengikuti mekanisme pendaftaran pada website resmi CompFest 9.<br />
+                      3. Masa pendaftaran Data Science Academy adalah 14 Mei 2017 sampai 18 Juni 2017.<br />
+                      4. Data Science Academy dibuka untuk umum dengan batasan umur dari 17 sampai 25 tahun.<br />
+                      5. Peserta harus mengisi formulir pendaftaran dengan lengkap dan memberikan informasi yang bisa dipertanggungjawabkan.<br />
+                      6. Peserta merupakan Warga Negara Indonesia dan wajib membawa kartu pengenal. Kartu pengenal yang kami terima adalah KTP/SIM/kartu pelajar yang masih berlaku.<br />
+                      7. Setiap tim terdiri dari minimal 1 peserta dan maksimal 3 orang peserta.<br />
+                      8. Setiap peserta hanya diperbolehkan terdaftar di satu tim.<br />
+                      9. Setiap anggota tim diperbolehkan berasal dari sekolah/institusi yang berbeda.<br />
+                      10. Peserta yang boleh mengikuti akademi adalah peserta yang sudah terdaftar dan tidak boleh diganti oleh orang lain selama akademi berlangsung.<br />
+                      11. Peserta yang tidak memenuhi persyaratan pendaftaran sampai waktu yang ditentukan akan dinyatakan gugur.<br />
+                      12. Peserta menyetujui apabila sewaktu-waktu dihubungi oleh panitia CompFest 9 maupun partner dari CompFest 9.`;
+        let content;
+        if (post.length > 240) {
+          content = `${post.substring(0, 300)} ...`;
+        } else {
+          content = post;
+        }
         postItems.push(
-          <AnnouncementItem
-            key={i}
-            header="BESOK EVAL WLEEEE!!"
-            article="Lorem iIta commodo nisl non hendrerit. Vestibulum a interdum ipsum, at lacinia nisl. Quisque vitae elit finibus, gravida ipsum non, vehicula massa. Donec finibus bibendum vulputate. Maecenas gravida, nibh et semper malesuada, dui dolor ornare nibh, sed eleifend diam ipsum ac mi. Ut rutrum augue sed enim convallis, eget finibus felis feugiat. Donec malesuada, dolor non vulputate sagittis, libero quam pretium nibh, at vulputate risus nisi in metus. Cras porta ligula ex, non interdum sapien dictum a. Vivamus blandit varius velit vel sodales. Ut vehicula ligula tortor, non aliquet ipsum convallis vitae.<br /><br/>Donec bibendum sagittis rhoncus. Aenean a dapibus nisi. Nulla vehicula ultrices purus, vel egestas orci venenatis a. Vestibulum porta at odio at placerat. Praesent eleifend sit amet ipsum nec finibus. Morbi eu fermentum leo, eget gravida nibh. Fusce tellus mauris, dignissim a velit vitae, commodo imperdiet risus. Nulla nec lorem ligula."
-            publisher="Admin"
-            date="20-September-2017"
-            time="11.00 PM"
-            countComment={i}
-          />
+          <Item key={i}>
+            <div className="media-primary">
+              <div className="media-body">
+                <div className="header">
+                  <a href="#"><h1 className="media-heading">BESOK EVAL WLEEEE!!</h1></a>
+                  <p className="command">
+                    <a href="https://google.com">Admin</a> | {i}-September-2017, 11.00 PM
+                  </p>
+                </div>
+                <div className="media-content" dangerouslySetInnerHTML={{ __html: content }} />
+                <button className="read-more">
+                  Read More
+                </button>
+              </div>
+            </div>
+          </Item>
         );
       }
       postsRendered += 1;
@@ -116,115 +118,3 @@ AnnouncementList.propTypes = {
 };
 
 export default AnnouncementList;
-
-
-{/*<AnnouncementItem
-  className="item"
-  header={item.header}
-  article={item.article}
-  publisher={item.publisher}
-  date={item.date}
-  time={item.time}
-  countComment={item.countComment}
-/>*/}
-
-// return (
-//   <Card>
-//     <Announcement>
-//       <h4>Pengumuman</h4>
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Lorem iIta commodo nisl non hendrerit. Vestibulum a interdum ipsum, at lacinia nisl. Quisque vitae elit finibus, gravida ipsum non, vehicula massa. Donec finibus bibendum vulputate. Maecenas gravida, nibh et semper malesuada, dui dolor ornare nibh, sed eleifend diam ipsum ac mi. Ut rutrum augue sed enim convallis, eget finibus felis feugiat. Donec malesuada, dolor non vulputate sagittis, libero quam pretium nibh, at vulputate risus nisi in metus. Cras porta ligula ex, non interdum sapien dictum a. Vivamus blandit varius velit vel sodales. Ut vehicula ligula tortor, non aliquet ipsum convallis vitae.<br /><br/>Donec bibendum sagittis rhoncus. Aenean a dapibus nisi. Nulla vehicula ultrices purus, vel egestas orci venenatis a. Vestibulum porta at odio at placerat. Praesent eleifend sit amet ipsum nec finibus. Morbi eu fermentum leo, eget gravida nibh. Fusce tellus mauris, dignissim a velit vitae, commodo imperdiet risus. Nulla nec lorem ligula."
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet lectus ante. Suspendisse sollicitudin porta mi, sit amet malesuada ante. Morbi eu eros et risus aliquam faucibus sollicitudin eget enim. Praesent euismod augue id lorem efficitur imperdiet. Nam efficitur lorem vel tincidunt condimentum. Maecenas vestibulum metus elit, in venenatis risus pellentesque vel. Phasellus iaculis augue ante, sit amet ullamcorper est volutpat vitae. In hac habitasse platea dictumst.<br/><br/>
-//                 In faucibus finibus nulla, scelerisque rutrum ligula ultrices ut. Vestibulum faucibus eros nec sapien volutpat suscipit. Nullam cursus dolor in suscipit aliquet. Praesent et turpis leo. Cras viverra massa in tortor facilisis, vel semper sapien vehicula. Cras euismod eros sed lacinia pharetra. Pellentesque pulvinar diam lorem, ut blandit elit molestie quis. Pellentesque auctor justo urna, id volutpat eros mollis vitae. Mauris condimentum semper justo, at semper ex fringilla a. In vel semper nunc. In iaculis, est ac vestibulum venenatis, risus libero egestas lacus, at pellentesque arcu nisi vitae ligula. Proin dui odio, pretium eu libero sit amet, pulvinar aliquam diam. Curabitur tincidunt, nisi ac hendrerit efficitur, nibh tellus porttitor odio, ut efficitur massa magna sed neque. In a turpis non mauris gravida commodo.<br /><br/>
-//                 Proin eu nunc quam. In in tristique tellus. Ut non magna in sapien imperdiet maximus at sed felis. Maecenas condimentum, velit eget consectetur pretium, metus ex mollis risus, in consectetur sem urna sed erat. Vestibulum sollicitudin id dolor at finibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum quis dui gravida augue facilisis consequat. Nam gravida, lorem non laoreet tempus, neque lectus tempor lectus, at pretium leo ante ut nunc. Curabitur aliquet arcu id arcu suscipit, eu rhoncus est vehicula. Fusce a laoreet elit. Curabitur facilisis dolor eget turpis consectetur, eget pharetra massa fermentum.<br /><br/>
-//                 Donec porta commodo nisl non hendrerit. Vestibulum a interdum ipsum, at lacinia nisl. Quisque vitae elit finibus, gravida ipsum non, vehicula massa. Donec finibus bibendum vulputate. Maecenas gravida, nibh et semper malesuada, dui dolor ornare nibh, sed eleifend diam ipsum ac mi. Ut rutrum augue sed enim convallis, eget finibus felis feugiat. Donec malesuada, dolor non vulputate sagittis, libero quam pretium nibh, at vulputate risus nisi in metus. Cras porta ligula ex, non interdum sapien dictum a. Vivamus blandit varius velit vel sodales. Ut vehicula ligula tortor, non aliquet ipsum convallis vitae.<br /><br/>Donec bibendum sagittis rhoncus. Aenean a dapibus nisi. Nulla vehicula ultrices purus, vel egestas orci venenatis a. Vestibulum porta at odio at placerat. Praesent eleifend sit amet ipsum nec finibus. Morbi eu fermentum leo, eget gravida nibh. Fusce tellus mauris, dignissim a velit vitae, commodo imperdiet risus. Nulla nec lorem ligula."
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet lectus ante. Suspendisse sollicitudin porta mi, sit amet malesuada ante. Morbi eu eros et risus aliquam faucibus sollicitudin eget enim. Praesent euismod augue id lorem efficitur imperdiet. Nam efficitur lorem vel tincidunt condimentum. Maecenas vestibulum metus elit, in venenatis risus pellentesque vel. Phasellus iaculis augue ante, sit amet ullamcorper est volutpat vitae. In hac habitasse platea dictumst.."
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Oi"
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Oi"
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Oi"
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Oi"
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Oi"
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Oi"
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//       <AnnouncementItem
-//         className="item"
-//         header="BESOK EVAL WLEEEE!!"
-//         article="Oi"
-//         publisher="Admin"
-//         date="20-September-2017"
-//         time="11.00 PM"
-//         countComment="7"
-//       />
-//     </Announcement>
-//   </Card>
-// );
