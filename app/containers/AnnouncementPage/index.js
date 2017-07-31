@@ -8,7 +8,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import SectionHeading from 'components/SectionHeading';
-import AnnouncementList from 'components/AnnouncementList';
 import AnnouncementItem from 'components/AnnouncementItem';
 import { createStructuredSelector } from 'reselect';
 import makeSelectAnnouncementPage from './selectors';
@@ -68,5 +67,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnnouncementPage);
-
-{ /*<AnnouncementList />*/ }

@@ -5,7 +5,7 @@
  *
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
 // import makeSelectForumModule from './selectors';
@@ -135,7 +135,7 @@ export class ForumModule extends React.Component { // eslint-disable-line react/
 ForumModule.propTypes = {
   title: React.PropTypes.string.isRequired,
   postLabel: React.PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
 };
 
 ForumModule.defaultProps = {

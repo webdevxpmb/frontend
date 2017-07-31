@@ -8,15 +8,14 @@ import React from 'react';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 // import Card from '../Card';
-import Helmet from 'react-helmet';
+// import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-
-import WyswygEditor from 'components/WyswygEditor';
-import SectionHeading from 'components/SectionHeading';
+// import WyswygEditor from 'components/WyswygEditor';
+// import SectionHeading from 'components/SectionHeading';
 import Card from 'components/Card';
 import ForumModule from 'containers/ForumModule';
-import { Item, Comment } from './styled';
+import { Item } from './styled';
 
 class AnnouncementItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -40,7 +39,7 @@ class AnnouncementItem extends React.Component { // eslint-disable-line react/pr
           <div className="media-primary">
             <div className="media-body">
               <div className="header">
-                <a href="#"><h1 className="media-heading">{this.props.title}</h1></a>
+                <a><h1 className="media-heading">{this.props.title}</h1></a>
                 <p className="command">
                   <a href="https://google.com">{this.props.publisher}</a> | {this.props.date}, {this.props.time}
                 </p>
