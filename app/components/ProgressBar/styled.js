@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Bar = styled.div`
-  margin: 1em 0;
-
   .info {
     color: ${(props) => props.theme.darkGray};
     margin-bottom: 0.5rem;
