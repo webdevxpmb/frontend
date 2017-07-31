@@ -43,7 +43,7 @@ export class AnnouncementPage extends React.Component { // eslint-disable-line r
           <AnnouncementItem
             title="Briefing Angkatan dan PSAF Mahasiswa Baru Fasilkom UI 2017"
             content={content}
-            publisher="Najwa Satirah"
+            publisher="Najwa Satirah "
             date="31 Juli 2017"
             time="20.00 PM"
           />
@@ -69,4 +69,4 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnnouncementPage);
 
-{/*<AnnouncementList />*/}
+{ /*<AnnouncementList />*/ }

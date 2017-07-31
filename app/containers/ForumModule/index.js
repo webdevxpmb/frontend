@@ -112,7 +112,7 @@ export class ForumModule extends React.Component { // eslint-disable-line react/
 
     return (
       <Forum>
-        <h1 className="label">Student Forum</h1>
+        <h1 className="label">{this.props.title}</h1>
         <div className="newPost">
           <WyswygEditor
             onSubmit={(value) => {
@@ -124,7 +124,7 @@ export class ForumModule extends React.Component { // eslint-disable-line react/
           />
         </div>
         <div className="posts">
-          <h1 className="label">All Posting</h1>
+          <h1 className="label">{this.props.postLabel}</h1>
           {posts}
         </div>
       </Forum>
@@ -133,7 +133,14 @@ export class ForumModule extends React.Component { // eslint-disable-line react/
 }
 
 ForumModule.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  postLabel: React.PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
+};
+
+ForumModule.defaultProps = {
+  title: 'Student Forum',
+  postLabel: 'All Posts',
 };
 
 // const mapStateToProps = createStructuredSelector({
