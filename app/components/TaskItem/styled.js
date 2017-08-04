@@ -5,6 +5,13 @@ export const Task = styled.div`
   width: 100%;
   height: auto;
   margin: 0 0 2rem;
+  filter: ${(props) => {
+    if (props.overdue) {
+      return 'grayscale(1)';
+    }
+
+    return 'none';
+  }};
 
   .taskItem {
     padding: 2rem;
@@ -26,13 +33,14 @@ export const Task = styled.div`
     }
 
     p {
-      font-size: 0.8rem;
       line-height: 1.25;
       color: ${(props) => props.theme.gray};
     }
 
     .progress {
-      margin: 1rem 0 0;
+      .entry {
+        margin: 1rem 0;
+      }
     }
 
     .submission {
@@ -66,6 +74,24 @@ export const Task = styled.div`
           padding: 1rem 2rem;
           box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
           border-radius: ${(props) => props.theme.borderRadius};
+          background: ${(props) => {
+            if (props.isSubmitted) {
+              return props.theme.green;
+            }
+            if (!props.isValid && !props.isEmpty) {
+              return props.theme.red;
+            }
+
+            return props.theme.white;
+          }};
+          color: ${(props) => {
+            if (props.isSubmitted || (!props.isValid && !props.isEmpty)) {
+              return props.theme.white;
+            }
+
+            return props.theme.black;
+          }};
+          transition: ${(props) => props.theme.transitionBg}, ${(props) => props.theme.transitionColor};
         }
 
         .submit {
@@ -74,7 +100,7 @@ export const Task = styled.div`
           font-size: 1rem;
           background: ${(props) => props.theme.altGreen};
           background-image: ${(props) => props.theme.greenGradient};
-          transition: ${(props) => props.theme.transitionBg};
+          transition: ${(props) => props.theme.transitionBg}, ${(props) => props.theme.transitionOpacity};
           color: ${(props) => props.theme.white};
           padding: 0.5rem 1rem;
           border: none;
@@ -84,6 +110,11 @@ export const Task = styled.div`
           &:hover {
             background: ${(props) => props.theme.green};
             transition: ${(props) => props.theme.transitionBg};
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            transition: ${(props) => props.theme.transitionBg}, ${(props) => props.theme.transitionOpacity};
           }
 
           .icon-send {

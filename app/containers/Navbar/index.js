@@ -8,6 +8,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import { createStructuredSelector } from 'reselect';
+import makeSelectGlobal from 'globalSelectors';
+
+import {
+  logout,
+} from 'globalActions';
+
+import { API_PREFIX } from 'request';
+
 import Card from 'components/Card';
 
 import Logo from 'assets/logo.png';
@@ -17,6 +26,12 @@ import {
 } from './styled';
 
 export class Navbar extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    if (!this.props.Global.loggedIn) {
+      this.props.push('/login');
+    }
+  }
+
   render() {
     return (
       <Nav>
@@ -34,7 +49,7 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
               <button onClick={() => this.props.push('/event')} className="link">Event</button>
               <button onClick={() => this.props.push('/help')} className="link">Help</button>
               <button onClick={() => this.props.push('/dashboard')} className="dashboard">Dashboard</button>
-              <button onClick={() => this.props.push('/logout')} className="logout">Logout</button>
+              <button onClick={this.props.logout} className="logout">Logout</button>
             </div>
           </div>
           <div className="navbarContent hideForLarge">
@@ -53,12 +68,19 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
 
 Navbar.propTypes = {
   push: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  Global: PropTypes.object,
 };
+
+const mapStateToProps = createStructuredSelector({
+  Global: makeSelectGlobal(),
+});
 
 function mapDispatchToProps(dispatch) {
   return {
     push: (url) => dispatch(push(url)),
+    logout: () => dispatch(logout()),
   };
 }
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

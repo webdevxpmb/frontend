@@ -32,16 +32,17 @@ export const LatestUpdates = styled.div`
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: stretch;
 
       .border {
         width: 0.1rem;
+        margin: 0 2rem;
         background: ${(props) => props.theme.ultraLightGray};
       }
 
       .updatesCard {
-        width: 30%;
+        width: calc((100% - 8.2rem) / 3);
         padding: 1rem 0;
 
         h1 {
@@ -103,10 +104,13 @@ export const LatestUpdates = styled.div`
     .updatesContent {
       .updates {
         flex-direction: column;
+        justify-content: stretch;
+        align-items: stretch;
 
         .border {
-          width: auto;
+          width: 100%;
           height: 0.1rem;
+          margin: 1rem 0;
         }
 
         .updatesCard {

@@ -30,9 +30,9 @@ export const Home = styled.div`
 
     .leftColumn {
       width: 30%;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-content: flex-start;
+      justify-content: stretch;
+      align-items: stretch;
+      align-content: stretch;
     }
 
     .rightColumn {

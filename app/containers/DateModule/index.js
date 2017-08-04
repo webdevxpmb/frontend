@@ -7,7 +7,10 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { isEmpty } from 'lodash';
+
+import DateString from 'components/DateString';
 
 import {
   Dates,
@@ -105,22 +108,37 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
     const activeOffset = active.day() - 1;
 
 
-    this.props.days.map((value) => {
-      const valMoment = new moment(value);
+    // this.props.days.map((value) => {
+    //   const valMoment = new moment(value);
+
+    //   if (valMoment.month() === activeMonth && valMoment.year() === activeYear) {
+    //     if (typeof daysArray[(valMoment.date() + activeOffset) - 1] === 'object') {
+    //       daysArray[(valMoment.date() + activeOffset) - 1].actions.push(value);
+    //     } else {
+    //       daysArray[(valMoment.date() + activeOffset) - 1] = {
+    //         date: valMoment.date(),
+    //         actions: [value],
+    //       };
+    //     }
+    //   }
+
+    //   return true;
+    // });
+
+    this.props.importantDates.forEach((value) => {
+      const valMoment = new moment(value.end_time);
 
       if (valMoment.month() === activeMonth && valMoment.year() === activeYear) {
         if (typeof daysArray[(valMoment.date() + activeOffset) - 1] === 'object') {
           daysArray[(valMoment.date() + activeOffset) - 1].actions.push(value);
         } else {
           daysArray[(valMoment.date() + activeOffset) - 1] = {
-            date: valMoment.date(),
+            date: value.end_time,
             actions: [value],
           };
         }
       }
-
-      return true;
-    });
+    })
 
     return daysArray;
   }
@@ -161,7 +179,7 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
         } else if (innerVal === 'skip') {
           return (<button className="date" key={`innerIndex-${innerIndex}`} disabled />);
         } else if (typeof innerVal === 'object') {
-          return (<SpecialDate onClick={() => this.handleContextClick(innerVal)} color="green" key={`innerIndex-${innerIndex}`}>{innerVal.date}</SpecialDate>);
+          return (<SpecialDate onClick={() => this.handleContextClick(innerVal)} color="green" key={`innerIndex-${innerIndex}`}>{new moment(innerVal.date).date()}</SpecialDate>);
         }
 
         return (<button className="date" key={`innerIndex-${innerIndex}`}>{innerVal}</button>);
@@ -169,6 +187,29 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
 
       return (<div key={`index-${index}`} className="days">{dayItems}</div>);
     });
+
+    let contextItems = (<span>none</span>);
+
+    if (!isEmpty(this.state.context)) {
+      contextItems = this.state.context.actions.map((value, index) => (
+        <div className="activity">
+          <h2>{value.name}</h2>
+          <button onClick={() => {
+              if ('is_kenalan' in value) {
+                this.props.push('/task');
+              } else if ('location' in value) {
+                this.props.push('/event');
+              }
+            }}
+          >
+            <span className="icon-send" />
+            {
+              'is_kenalan' in value ? 'View Tasks' : 'location' in value ? 'View Event' : 'Go'
+            }
+          </button>
+        </div>
+      ));
+    }
 
     return (
       <Dates>
@@ -182,12 +223,9 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
         </div>
         {!isEmpty(this.state.context) &&
           <div className="dateContext">
-            <h1>Activity on {this.state.context.date}</h1>
+            <h1>Activity on <DateString date={this.state.context.date} notime /></h1>
             <button onClick={() => this.handleContextClick({})} className="close"><span className="icon-close" /></button>
-            <div className="activity">
-              <h2>Tugas Kenalan tahap 1</h2>
-              <button><span className="icon-send" />Go</button>
-            </div>
+            {contextItems}
           </div>
         }
       </Dates>
@@ -196,14 +234,15 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
 }
 
 DateModule.propTypes = {
-  // dispatch: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
   days: PropTypes.array,
+  importantDates: PropTypes.array,
 };
 
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    push: (url) => dispatch(push(url)),
   };
 }
 

@@ -68,20 +68,23 @@ export class WhatElementSaysModule extends React.Component { // eslint-disable-l
 
     return (
       <WhatElementSays>
-        <h1 className="label">Apa Kata Elemen</h1>
-        <div className="posts">
-          {posts}
-        </div>
-        <div className="newPost">
-          <WyswygEditor
-            onSubmit={(value) => {
-              if (value) {
-                this.onNewPost(value);
-              }
-            }}
-            placeholder="Write down your post here"
-          />
-        </div>
+        <p>Apa Kata Elemen Coming Soon</p>
+        {
+          // <h1 className="label">Apa Kata Elemen</h1>
+          // <div className="posts">
+          //   {posts}
+          // </div>
+          // <div className="newPost">
+          //   <WyswygEditor
+          //     onSubmit={(value) => {
+          //       if (value) {
+          //         this.onNewPost(value);
+          //       }
+          //     }}
+          //     placeholder="Write down your post here"
+          //   />
+          // </div>
+        }
       </WhatElementSays>
     );
   }

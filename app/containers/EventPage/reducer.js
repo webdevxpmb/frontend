@@ -5,16 +5,40 @@
  */
 
 import { fromJS } from 'immutable';
+
 import {
-  DEFAULT_ACTION,
+  FETCH_EVENTS_SUCCESS,
+  FETCH_EVENTS_FAILED,
+  FETCH_EVENT_STATISTICS_SUCCESS,
+  FETCH_EVENT_STATISTICS_FAILED,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  events: [],
+  eventStatistics: [],
+});
 
 function eventPageReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case FETCH_EVENTS_SUCCESS:
+      return state.set('events', action.events.slice(0).sort((a, b) => {
+        const aMoment = new moment(a.end_time);
+        const bMoment = new moment(b.end_time);
+
+        const diff = aMoment.diff(bMoment);
+
+        if (diff < 0) {
+          return -1;
+        }
+
+        if (diff > 0) {
+          return 1;
+        }
+
+        return 0;
+      }));
+    case FETCH_EVENT_STATISTICS_SUCCESS:
+      return state.set('eventStatistics', action.eventStatistics);
     default:
       return state;
   }

@@ -112,21 +112,24 @@ export class ForumModule extends React.Component { // eslint-disable-line react/
 
     return (
       <Forum>
-        <h1 className="label">Student Forum</h1>
-        <div className="newPost">
-          <WyswygEditor
-            onSubmit={(value) => {
-              if (value) {
-                this.onNewPost(value);
-              }
-            }}
-            placeholder="Write down your post here"
-          />
-        </div>
-        <div className="posts">
-          <h1 className="label">All Posting</h1>
-          {posts}
-        </div>
+        <p>PMB Forum Coming Soon</p>
+        {
+          // <h1 className="label">Student Forum</h1>
+          // <div className="newPost">
+          //   <WyswygEditor
+          //     onSubmit={(value) => {
+          //       if (value) {
+          //         this.onNewPost(value);
+          //       }
+          //     }}
+          //     placeholder="Write down your post here"
+          //   />
+          // </div>
+          // <div className="posts">
+          //   <h1 className="label">All Posting</h1>
+          //   {posts}
+          // </div>
+        }
       </Forum>
     );
   }

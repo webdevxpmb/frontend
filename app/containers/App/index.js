@@ -30,6 +30,12 @@ export default class App extends React.PureComponent { // eslint-disable-line re
   };
 
   render() {
+    let renderNavbar = true;
+
+    if (window.location.pathname.startsWith('/login')) {
+      renderNavbar = false;
+    }
+
     return (
       <ThemeProvider theme={theme}>
         <AppWrapper>
@@ -40,7 +46,10 @@ export default class App extends React.PureComponent { // eslint-disable-line re
               { name: 'description', content: 'PMB Fasilkom UI application' },
             ]}
           />
-          <Navbar />
+          {
+            renderNavbar &&
+            <Navbar />
+          }
           {React.Children.toArray(this.props.children)}
         </AppWrapper>
       </ThemeProvider>

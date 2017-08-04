@@ -18,39 +18,49 @@ import {
 
 export class TokenModule extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const isMaba = false;
+    // const isMaba = this.props.user.role === 'mahasiswa baru';
 
-    if (isMaba) {
-      return (
-        <TokenForm>
-          <div className="tokenContent">
-            <h1>Write down the token, get to know your new friend now.</h1>
-            <div className="form">
-              <input className="input" type="text" placeholder="Token elemen" />
-              <button><span className="icon-send" />Go</button>
-            </div>
-          </div>
-        </TokenForm>
-      );
-    }
+    // if (isMaba) {
+    //   return (
+    //     <TokenForm>
+    //       <div className="tokenContent">
+    //         <h1>Write down the token, get to know your new friend now.</h1>
+    //         <div className="form">
+    //           <input className="input" type="text" placeholder="Token elemen" />
+    //           <button><span className="icon-send" />Go</button>
+    //         </div>
+    //       </div>
+    //     </TokenForm>
+    //   );
+    // }
+
+    // return (
+    //   <Token progress={80}>
+    //     <div className="tokenContent">
+    //       <div className="token">
+    //         <h3>Welcome, give this token to your new friend</h3>
+    //         <div className="textPack">
+    //           <span className="icon-token" />
+    //           <h1>743829</h1>
+    //         </div>
+    //       </div>
+    //       <div className="progress">
+    //         <div className="bar">
+    //           <div className="current" />
+    //           <div className="max" />
+    //         </div>
+    //         <span className="icon-time" />
+    //         <h1>03:45</h1>
+    //       </div>
+    //     </div>
+    //   </Token>
+    // );
 
     return (
       <Token progress={80}>
         <div className="tokenContent">
           <div className="token">
-            <h3>Welcome, give this token to your new friend</h3>
-            <div className="textPack">
-              <span className="icon-token" />
-              <h1>743829</h1>
-            </div>
-          </div>
-          <div className="progress">
-            <div className="bar">
-              <div className="current" />
-              <div className="max" />
-            </div>
-            <span className="icon-time" />
-            <h1>03:45</h1>
+            <h3>Welcome to PMB 2017 beta website, more feature will be added in the near future.<br /><br />In the mean time, you can check for announcements, events, and tasks or help here</h3>
           </div>
         </div>
       </Token>
@@ -60,6 +70,7 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
 
 TokenModule.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
 
 // const mapStateToProps = createStructuredSelector({

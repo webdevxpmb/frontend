@@ -5,110 +5,115 @@
 */
 
 import React from 'react';
-import styled from 'styled-components';
+import { isEmpty } from 'lodash';
+
 import EventItem from 'components/EventItem';
+import SectionHeading from 'components/SectionHeading';
 
-const Event = styled.div`
-  h4 {
-    font-family: 'Montserrat';
-    font-weight: 700;
-  }
+import {
+  Event,
+} from './styled';
 
-  .pagination {
-    margin: auto;
-    text-align: center;
-  }
-  .pagination button {
-    padding: 1em;
-    border-radius: ${(props) => props.theme.borderRadius};
-    &.active {
-      background: ${(props) => props.theme.blueGradient};
-      color: white;
-    }
-  }
-`;
+const moment = window.moment;
 
 class EventList extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor() {
-    super();
-
-    this.state = {
-      currentPage: 0,
-    };
-
-    this.setCurrentPage = this.setCurrentPage.bind(this);
-    this.prev = this.prev.bind(this);
-    this.next = this.next.bind(this);
-  }
-
-
-  setCurrentPage(index) {
-    this.setState({
-      currentPage: index,
-    });
-  }
-
-  next() {
-    this.setState({
-      currentPage: this.state.currentPage + 1,
-    });
-  }
-
-  prev() {
-    this.setState({
-      currentPage: this.state.currentPage - 1,
-    });
-  }
-
   render() {
-    const eventItems = [];
-    const pagination = [];
-    // const posts = this.props.posts.posts;
-    const maxPostPerPage = 5;
-    let postsRendered = 0;
+    let activeEventsItem = (<div className="emptyState">No Events Available</div>);
+    let overdueEventsItem = (<div className="emptyState">No Events Available</div>);
 
-    for (let i = this.state.currentPage * maxPostPerPage; i < 50; i += 1) {
-      if (postsRendered < maxPostPerPage) {
-        // const post = posts[i];
+    let events = this.props.events;
+    const now = new moment();
 
-        eventItems.push(
+    if (!isEmpty(events)) {
+      const activeEvents = events.filter((value) => {
+        const deadline = new moment(value.start_time);
+
+        if (deadline.diff(now) > 0) {
+          return true;
+        }
+
+        return false;
+      });
+
+      const overdueEvents = events.filter((value) => {
+        const deadline = new moment(value.start_time);
+
+        if (deadline.diff(now) > 0) {
+          return false;
+        }
+
+        return true;
+      });
+
+      activeEventsItem = activeEvents.map((value, index) => {
+        // let itemSubmission = null;
+
+        // if (this.props.taskPage.submissions) {
+        //   this.props.taskPage.submissions.forEach((subValue) => {
+        //     if (subValue.task.id === value.id) {
+        //       itemSubmission = subValue;
+        //     }
+        //   });
+
+        //   return (
+        //     <TaskItem key={`pmb-task-${index}`} task={value} submission={itemSubmission} submit={this.props.submit} user={this.props.Global.user} />
+        //   );
+        // }
+
+        return (
           <EventItem
-            key={i}
-            className="item"
-            title="BESOK EVAL WLEEEE!!"
-            startTime="11.00 AM"
-            endTime="11.00 PM"
-            date={`${i}-September-2017`}
-            location="Pacil"
-            detail="LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!"
+            key={`pmb-events-${index}`}
+            event={value}
           />
         );
-      }
-      postsRendered += 1;
-    }
+      });
 
-    for (let i = 0; i < 50 / maxPostPerPage; i += 1) {
-      const index = i;
-      pagination.push(
-        <button key={i} className={index === this.state.currentPage ? 'active' : ''} onClick={() => this.setCurrentPage(index)}>
-          {i >= 0 && i + 1}
-        </button>
-      );
+      overdueEventsItem = overdueEvents.map((value, index) => {
+        let eventStatistic = null;
+
+        if (this.props.eventStatistics) {
+          this.props.eventStatistics.forEach((subValue) => {
+            if (subValue.event.id === value.id) {
+              eventStatistic = subValue;
+            }
+          });
+
+          return (
+            <EventItem
+              key={`pmb-task-${index}`}
+              event={value}
+              eventStatistic={eventStatistic}
+            />
+          );
+        }
+
+        return (
+          <EventItem
+            key={`pmb-events-${index}`}
+            event={value}
+          />
+        );
+      });
     }
 
     return (
       <Event>
-        {eventItems}
-        <div className="pagination">
-          {pagination}
-        </div>
+        <SectionHeading>
+          Upcoming PMB Events
+        </SectionHeading>
+        {activeEventsItem}
+        <SectionHeading>
+          Past PMB Events
+        </SectionHeading>
+        {overdueEventsItem}
       </Event>
     );
   }
 }
 
 EventList.propTypes = {
-
+  events: React.PropTypes.array,
+  eventStatistics: React.PropTypes.array,
 };
 
 export default EventList;

@@ -6,8 +6,10 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import Card from 'components/Card';
+import DateString from 'components/DateString';
 
 import {
   LatestUpdates,
@@ -20,54 +22,87 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
         <Card>
           <div className="updatesContent">
             <div className="title">
-              <h1>Latest Updates</h1>
+              <h1>Upcoming Events & Tasks</h1>
               <span className="icon-down" />
             </div>
             <div className="updates">
-              <div className="updatesCard">
-                <h1>Sabtu Pelangi 1</h1>
-                <div className="date">
-                  <span className="icon-event" />
-                  <h2>1 October 2017, 09:00 AM</h2>
+              {
+                this.props.importantDates.length > 0 &&
+                <div className="updatesCard">
+                  <h1>{this.props.importantDates[0].name}</h1>
+                  <div className="date">
+                    <span className="icon-event" />
+                    <h2><DateString date={this.props.importantDates[0].end_time} /> </h2>
+                  </div>
+                  <p>{this.props.importantDates[0].description}</p>
+                  <button
+                    onClick={() => {
+                      if ('is_kenalan' in this.props.importantDates[0]) {
+                        this.props.push('/task');
+                      } else if ('location' in this.props.importantDates[0]) {
+                        this.props.push('/event');
+                      }
+                    }}
+                  >
+                    <span className="icon-send" />
+                    Read More
+                  </button>
                 </div>
-                <p>
-                  Porta a sociis nibh vestibulum lacinia a cras a faucibus scelerisque a a sed fames erat lectus pulvinar turpis eros.
-                </p>
-                <button>
-                  <span className="icon-send" />
-                  Read More
-                </button>
-              </div>
-              <div className="border" />
-              <div className="updatesCard">
-                <h1>Sabtu Pelangi 1</h1>
-                <div className="date">
-                  <span className="icon-event" />
-                  <h2>1 October 2017, 09:00 AM</h2>
+              }
+              {
+                this.props.importantDates.length > 0 &&
+                <div className="border" />
+              }
+              {
+                this.props.importantDates.length > 1 &&
+                <div className="updatesCard">
+                  <h1>{this.props.importantDates[1].name}</h1>
+                  <div className="date">
+                    <span className="icon-event" />
+                    <h2><DateString date={this.props.importantDates[1].end_time} /> </h2>
+                  </div>
+                  <p>{this.props.importantDates[1].description}</p>
+                  <button
+                    onClick={() => {
+                      if ('is_kenalan' in this.props.importantDates[1]) {
+                        this.props.push('/task');
+                      } else if ('location' in this.props.importantDates[1]) {
+                        this.props.push('/event');
+                      }
+                    }}
+                  >
+                    <span className="icon-send" />
+                    Read More
+                  </button>
                 </div>
-                <p>
-                  Porta a sociis nibh vestibulum lacinia a cras a faucibus scelerisque a a sed fames erat lectus pulvinar turpis eros.
-                </p>
-                <button>
-                  <span className="icon-send" />
-                  Read More
-                </button>
-              </div>
-              <div className="border" />
-              <div className="updatesCard">
-                <h1>Sabtu Pelangi 1 ela elo aowkeoawkeo</h1>
-                <div className="date">
-                  <span className="icon-event" />
-                  <h2>1 October 2017, 09:00 AM</h2>
+              }
+              {
+                this.props.importantDates.length > 2 &&
+                <div className="border" />
+              }
+              {
+                this.props.importantDates.length > 2 &&
+                <div className="updatesCard">
+                  <h1>{this.props.importantDates[2].name}</h1>
+                  <div className="date">
+                    <span className="icon-event" />
+                    <h2><DateString date={this.props.importantDates[2].end_time} /> </h2>
+                  </div>
+                  <p>{this.props.importantDates[2].description}</p>
+                  <button
+                    onClick={() => {
+                      if ('is_kenalan' in this.props.importantDates[2]) {
+                        this.props.push('/task');
+                      } else if ('location' in this.props.importantDates[2]) {
+                        this.props.push('/event');
+                      }
+                    }}
+                  >
+                    <span className="icon-send" />
+                    Read More
+                  </button>
                 </div>
-                <p>
-                  Porta a sociis nibh vestibulum lacinia a cras a faucibus scelerisque a a sed fames erat lectus pulvinar turpis eros.
-                </p>
-                <button>
-                  <span className="icon-send" />
-                  Read More
-                </button>
-              </div>
+              }
             </div>
           </div>
         </Card>
@@ -77,13 +112,14 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
 }
 
 LatestUpdatesModule.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+  importantDates: PropTypes.array,
 };
 
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    push: (url) => dispatch(push(url)),
   };
 }
 

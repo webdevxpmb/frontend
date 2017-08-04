@@ -8,33 +8,31 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import { createStructuredSelector } from 'reselect';
-import SectionHeading from 'components/SectionHeading';
+
+import Footer from 'components/Footer';
 import EventList from 'components/EventList';
+
+import { createStructuredSelector } from 'reselect';
 import makeSelectEventPage from './selectors';
 
-const Style = styled.div`
-  position: relative;
-  width: 100%;
-  height: auto;
-  min-height: 100vh;
+import {
+  fetchEvents,
+  fetchEventStatistics,
+} from './actions';
 
-  .event-content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 7rem 0 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
-  }
-`;
+import {
+  Event,
+} from './styled';
 
 export class EventPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    this.props.fetchEvents();
+    this.props.fetchEventStatistics();
+  }
+
   render() {
     return (
-      <Style>
+      <Event>
         <Helmet
           title="Event"
           meta={[
@@ -42,18 +40,20 @@ export class EventPage extends React.Component { // eslint-disable-line react/pr
           ]}
         />
         <div className="event-content">
-          <SectionHeading>
-            Event PMB
-          </SectionHeading>
-          <EventList />
+          <EventList events={this.props.EventPage.events} eventStatistics={this.props.EventPage.eventStatistics} />
+          <div className="footer">
+            <Footer />
+          </div>
         </div>
-      </Style>
+      </Event>
     );
   }
 }
 
 EventPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
+  fetchEventStatistics: PropTypes.func.isRequired,
+  EventPage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -62,48 +62,9 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    fetchEvents: () => dispatch(fetchEvents()),
+    fetchEventStatistics: () => dispatch(fetchEventStatistics()),
   };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventPage);
-
-
-{/*<EventItem
-    title="EVALLL!!!"
-    date="20 September 2017"
-    startTime="09:00 AM"
-    endTime="10:00 AM"
-    location="Fasilkom UI"
-    detail="LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!!
-            LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!"
-  />
-  <EventItem
-    title="EVALLL!!!"
-    date="20 September 2017"
-    startTime="09:00 AM"
-    endTime="10:00 AM"
-    location="Fasilkom UI"
-    detail="LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!!
-            LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!"
-  />
-  <EventItem
-    title="EVALLL!!!"
-    date="20 September 2017"
-    startTime="09:00 AM"
-    endTime="10:00 AM"
-    location="Fasilkom UI"
-    detail="LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!!
-            LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!"
-
-  />
-  <EventItem
-    title="EVALLL!!!"
-    date="20 September 2017"
-    startTime="09:00 AM"
-    endTime="10:00 AM"
-    location="Fasilkom UI"
-    detail="LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!! LET'S ROCKKKK !!!!
-            LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!LET'S ROCKKKK !!!!"
-  />
-</div>*/}
