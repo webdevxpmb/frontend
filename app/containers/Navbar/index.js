@@ -47,7 +47,9 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
               <button onClick={() => this.props.push('/announcement')} className="link">Announcement</button>
               <button onClick={() => this.props.push('/task')} className="link">Task</button>
               <button onClick={() => this.props.push('/event')} className="link">Event</button>
-              <button onClick={() => this.props.push('/help')} className="link">Help</button>
+              {
+                // <button onClick={() => this.props.push('/help')} className="link">Help</button>
+              }
               <button onClick={() => this.props.push('/dashboard')} className="dashboard">Dashboard</button>
               <button onClick={this.props.logout} className="logout">Logout</button>
             </div>
@@ -56,7 +58,7 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
             <button onClick={() => this.props.push('/')} className="logo">
               <img src={Logo} alt="Logo PMB 2017" />
             </button>
-            <button className="link">
+            <button onClick={this.props.toggleOffside} className="link">
               <span className="icon-menu" />
             </button>
           </div>
@@ -68,6 +70,7 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
 
 Navbar.propTypes = {
   push: PropTypes.func.isRequired,
+  toggleOffside: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   Global: PropTypes.object,
 };

@@ -29,7 +29,7 @@ export const EventCard = styled.div`
       font-size: 1rem;
       margin-top: 0.5rem;
 
-      .icon-send {
+      .icon-link {
         margin-right: 0.5rem;
       }
     }

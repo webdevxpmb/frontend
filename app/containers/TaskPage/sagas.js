@@ -65,8 +65,6 @@ export function* fetchSubmissions() {
   try {
     const submissionsResponse = yield call(getSubmissions);
 
-    console.log(submissionsResponse.body);
-
     yield put({ type: FETCH_SUBMISSIONS_SUCCESS, submissions: submissionsResponse.body });
 
     return true;
@@ -96,13 +94,9 @@ export function* createSubmission(data, isNew) {
     if (isNew) {
       const postSubmissionResponse = yield call(postSubmission, data);
 
-      console.log(postSubmissionResponse.body);
-
       yield put({ type: SUBMIT_SUCCESS, submission: postSubmissionResponse.body });
     } else {
       const putSubmissionResponse = yield call(putSubmission, data.id, data);
-
-      console.log(putSubmissionResponse.body);
 
       yield put({ type: SUBMIT_SUCCESS, submission: putSubmissionResponse.body });
     }

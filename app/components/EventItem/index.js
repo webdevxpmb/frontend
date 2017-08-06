@@ -49,7 +49,7 @@ class EventItem extends React.Component { // eslint-disable-line react/prefer-st
               this.props.event.attachment_link &&
               <h6>
                 <a href={this.props.event.attachment_link} target="_blank">
-                  <span className="icon-send" />Event Attachment
+                  <span className="icon-link" />Event Attachment
                 </a>
               </h6>
             }

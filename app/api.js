@@ -11,12 +11,12 @@ export function dateTime() {
   return request.get(`${API_PREFIX}/date-time/`);
 }
 
-export function getUserProfile() {
-  return request.get(`${API_PREFIX}/user-profile/`);
+export function getUserProfile(params) {
+  return request.get(`${API_PREFIX}/user-profile/${params}`);
 }
 
-export function setUserProfile(data) {
-  return request.put(`${API_PREFIX}/user-profile/`).send(data);
+export function setUserProfile(params, data) {
+  return request.put(`${API_PREFIX}/user-profile/${params}`).send(data);
 }
 
 export function getTasks() {
@@ -41,4 +41,12 @@ export function getEvents() {
 
 export function getEventStatistics() {
   return request.get(`${API_PREFIX}/event-statistic/`);
+}
+
+export function getAnnouncements() {
+  return request.get(`${API_PREFIX}/announcement/`);
+}
+
+export function getAnnouncementContent(params) {
+  return request.get(`${API_PREFIX}/announcement/${params}`);
 }

@@ -14,6 +14,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled, { ThemeProvider } from 'styled-components';
+
+import OffsideMenu  from 'components/OffsideMenu';
 import Navbar from 'containers/Navbar';
 
 import { theme } from './theme';
@@ -28,6 +30,22 @@ export default class App extends React.PureComponent { // eslint-disable-line re
   static propTypes = {
     children: React.PropTypes.node,
   };
+
+  constructor() {
+    super();
+
+    this.state = {
+      offside: false,
+    };
+
+    this.toggleOffside = this.toggleOffside.bind(this);
+  }
+
+  toggleOffside() {
+    this.setState({
+      offside: !this.state.offside,
+    });
+  }
 
   render() {
     let renderNavbar = true;
@@ -48,7 +66,11 @@ export default class App extends React.PureComponent { // eslint-disable-line re
           />
           {
             renderNavbar &&
-            <Navbar />
+            <OffsideMenu display={this.state.offside} toggleOffside={this.toggleOffside} />
+          }
+          {
+            renderNavbar &&
+            <Navbar toggleOffside={this.toggleOffside} />
           }
           {React.Children.toArray(this.props.children)}
         </AppWrapper>
