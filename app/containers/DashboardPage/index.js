@@ -81,7 +81,6 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
           this.state.birth_place === nextProps.Dashboard.userProfile.birth_place &&
           this.state.birth_date === nextProps.Dashboard.userProfile.birth_date
         ) {
-          console.log('abc');
           this.setState({
             isEditing: false,
             name: nextProps.Dashboard.userProfile.name,
@@ -147,7 +146,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
     return (
       <Dashboard>
         <Helmet
-          title="DashboardPage"
+          title="Dashboard"
           meta={[
             { name: 'description', content: 'Description of DashboardPage' },
           ]}

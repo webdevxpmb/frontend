@@ -6,7 +6,7 @@ export const Event = styled.div`
   height: auto;
   min-height: 100vh;
 
-  .event-content {
+  .eventContent {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -19,6 +19,12 @@ export const Event = styled.div`
     .footer {
       margin-top: 2rem;
       width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 64em) {
+    .eventContent {
+      padding: 4rem 0 2rem;
     }
   }
 `;

@@ -31,16 +31,20 @@ export class AnnouncementPage extends React.Component { // eslint-disable-line r
   }
 
   render() {
-    let renderedItem =  this.props.AnnouncementPage.announcements.map((value, index) => (
-      <AnnouncementItem key={`pmb-announcement-${index}`} announcement={value} onReadMore={() => this.props.push(`/announcement/${value.id}`)} />
-    ));
+    let renderedItem = (<div className="emptyState">No Announcement Available</div>);
 
-    if (this.props.params.slug) {
-      const announcementContent = this.props.AnnouncementPage.announcements.find((value) => {
-        return value.id === parseInt(this.props.params.slug);
-      });
+    if (this.props.AnnouncementPage.announcements) {
+      renderedItem =  this.props.AnnouncementPage.announcements.map((value, index) => (
+        <AnnouncementItem key={`pmb-announcement-${index}`} announcement={value} onReadMore={() => this.props.push(`/announcement/${value.id}`)} />
+      ));
 
-      renderedItem = (<AnnouncementItem announcement={announcementContent} detailed onBack={() => this.props.push('/announcement')} />)
+      if (this.props.params.slug) {
+        const announcementContent = this.props.AnnouncementPage.announcements.find((value) => {
+          return value.id === parseInt(this.props.params.slug);
+        });
+
+        renderedItem = (<AnnouncementItem announcement={announcementContent} detailed onBack={() => this.props.push('/announcement')} />)
+      }
     }
 
     return (

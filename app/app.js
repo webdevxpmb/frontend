@@ -32,6 +32,8 @@ import LanguageProvider from 'containers/LanguageProvider';
 import '!file-loader?name=[name].[ext]!./favicon.ico';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
+import 'file-loader?name=android-chrome-192x192.[ext]!./assets/logo.png';
+import 'file-loader?name=android-chrome-384x384.[ext]!./assets/logo.png';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './store';

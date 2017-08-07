@@ -19,6 +19,12 @@ export const Announcement = styled.div`
     .announcementList {
       min-height: calc(100vh - 10rem);
       width: 100%;
+
+      .emptyState {
+        color: ${(props) => props.theme.gray};
+        text-align: center;
+        width: 100%;
+      }
     }
 
     .footer {

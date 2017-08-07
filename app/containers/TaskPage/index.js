@@ -35,8 +35,8 @@ export class TaskPage extends React.Component { // eslint-disable-line react/pre
   }
 
   render() {
-    let activeTaskItems = null;
-    let overdueTaskItems = null;
+    let activeTaskItems = (<div className="emptyState">No Tasks Available</div>);
+    let overdueTaskItems = (<div className="emptyState">No Tasks Available</div>);
 
     let tasks = this.props.taskPage.tasks;
     const now = new moment();
@@ -106,7 +106,7 @@ export class TaskPage extends React.Component { // eslint-disable-line react/pre
     return (
       <Task>
         <Helmet
-          title="TaskPage"
+          title="Task"
           meta={[
             { name: 'description', content: 'Description of TaskPage' },
           ]}

@@ -27,6 +27,10 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
             </div>
             <div className="updates">
               {
+                !this.props.importantDates &&
+                <div className="emptyState">No upcoming tasks or events</div>
+              }
+              {
                 this.props.importantDates.length > 0 &&
                 <div className="updatesCard">
                   <h1>{this.props.importantDates[0].name}</h1>
