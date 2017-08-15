@@ -120,6 +120,14 @@ class TaskItem extends React.Component { // eslint-disable-line react/prefer-sta
             <h2><span className="icon-event" />Deadline: <DateString date={this.props.task.end_time} /> Server Time</h2>
             <p dangerouslySetInnerHTML={{ __html: this.props.task.description }} />
             {
+              this.props.task.attachment_link &&
+              <h4>
+                <a href={this.props.task.attachment_link} target="_blank">
+                  <span className="icon-link" />Task Attachment
+                </a>
+              </h4>
+            }
+            {
               this.props.user.role === 'mahasiswa baru' && !this.props.task.is_kenalan &&
               <div className="submission">
                 <h3><span className="icon-task" />Current Submission:</h3>

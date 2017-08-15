@@ -70,7 +70,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
           birth_place: nextProps.Dashboard.userProfile.birth_place,
           birth_date: nextProps.Dashboard.userProfile.birth_date,
         })
-      } else if (this.state.isEditing) {
+      } else if (this.state.isEditing && this.props.Global.currentlySending && !nextProps.Global.currentlySending) {
         if (
           this.state.name === nextProps.Dashboard.userProfile.name &&
           this.state.email === nextProps.Dashboard.userProfile.email &&

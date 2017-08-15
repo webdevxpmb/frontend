@@ -52,9 +52,16 @@ export const Home = styled.div`
       }
 
       .serverTime {
-        font-size: 4rem;
+        font-size: 3.5rem;
         font-weight: 700;
         color: ${(props) => props.theme.black};
+        margin: 0 0 0.5rem;
+        line-height: 1;
+      }
+
+      .serverDate {
+        font-size: 1rem;
+        color: ${(props) => props.theme.darkGray};
         margin: 0 0 2rem;
         line-height: 1;
       }

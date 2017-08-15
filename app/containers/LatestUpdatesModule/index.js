@@ -27,7 +27,7 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
             </div>
             <div className="updates">
               {
-                !this.props.importantDates &&
+                this.props.importantDates.length === 0 &&
                 <div className="emptyState">No upcoming tasks or events</div>
               }
               {
@@ -38,7 +38,6 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
                     <span className="icon-event" />
                     <h2><DateString date={this.props.importantDates[0].end_time} /> </h2>
                   </div>
-                  <p>{this.props.importantDates[0].description}</p>
                   <button
                     onClick={() => {
                       if ('is_kenalan' in this.props.importantDates[0]) {
@@ -49,7 +48,9 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
                     }}
                   >
                     <span className="icon-send" />
-                    Read More
+                    {
+                      'is_kenalan' in this.props.importantDates[0] ? 'Go to Tasks' : 'Go to Events'
+                    }
                   </button>
                 </div>
               }
@@ -65,7 +66,6 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
                     <span className="icon-event" />
                     <h2><DateString date={this.props.importantDates[1].end_time} /> </h2>
                   </div>
-                  <p>{this.props.importantDates[1].description}</p>
                   <button
                     onClick={() => {
                       if ('is_kenalan' in this.props.importantDates[1]) {
@@ -76,7 +76,9 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
                     }}
                   >
                     <span className="icon-send" />
-                    Read More
+                    {
+                      'is_kenalan' in this.props.importantDates[1] ? 'Go to Tasks' : 'Go to Events'
+                    }
                   </button>
                 </div>
               }
@@ -92,7 +94,6 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
                     <span className="icon-event" />
                     <h2><DateString date={this.props.importantDates[2].end_time} /> </h2>
                   </div>
-                  <p>{this.props.importantDates[2].description}</p>
                   <button
                     onClick={() => {
                       if ('is_kenalan' in this.props.importantDates[2]) {
@@ -103,7 +104,9 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
                     }}
                   >
                     <span className="icon-send" />
-                    Read More
+                    {
+                      'is_kenalan' in this.props.importantDates[2] ? 'Go to Tasks' : 'Go to Events'
+                    }
                   </button>
                 </div>
               }

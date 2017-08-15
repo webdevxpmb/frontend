@@ -35,6 +35,13 @@ export const LatestUpdates = styled.div`
       justify-content: flex-start;
       align-items: stretch;
 
+      .emptyState {
+        color: ${(props) => props.theme.gray};
+        text-align: center;
+        width: 100%;
+        margin: 2rem 0 0;
+      }
+
       .border {
         width: 0.1rem;
         margin: 0 2rem;

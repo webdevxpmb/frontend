@@ -11,6 +11,10 @@ import {
   LOGOUT,
   REQUEST_ERROR,
   CLEAR_ERROR,
+  FETCH_SERVER_TIME,
+  FETCH_SERVER_TIME_SUCCESS,
+  FETCH_SERVER_TIME_FAILED,
+  SET_SERVER_TIME,
 } from './globalConstants';
 
 /**
@@ -63,4 +67,30 @@ export function requestError(error) {
  */
 export function clearError() {
   return { type: CLEAR_ERROR };
+}
+
+export function fetchServerTime() {
+  return {
+    type: FETCH_SERVER_TIME,
+  };
+}
+
+export function fetchServerTimeSuccess(serverTime) {
+  return {
+    type: FETCH_SERVER_TIME_SUCCESS,
+    serverTime,
+  };
+}
+
+export function fetchServerTimeFailed() {
+  return {
+    type: FETCH_SERVER_TIME_FAILED,
+  };
+}
+
+export function setServerTime(serverTime) {
+  return {
+    type: SET_SERVER_TIME,
+    serverTime,
+  };
 }

@@ -10,6 +10,9 @@ import auth from 'auth';
 import {
   SET_AUTH,
   SET_USER,
+  FETCH_SERVER_TIME_SUCCESS,
+  FETCH_SERVER_TIME_FAILED,
+  SET_SERVER_TIME,
   SENDING_REQUEST,
   REQUEST_ERROR,
   CLEAR_ERROR,
@@ -22,6 +25,7 @@ const initialState = fromJS({
   error: '',
   currentlySending: false,
   loggedIn: !isEmpty(isLoggedIn),
+  serverTime: '',
 });
 
 function globalReducer(state = initialState, action) {
@@ -38,6 +42,11 @@ function globalReducer(state = initialState, action) {
       return state.set('error', action.error);
     case CLEAR_ERROR:
       return state.set('error', '');
+
+    case FETCH_SERVER_TIME_SUCCESS:
+      return state.set('serverTime', action.serverTime);
+    case SET_SERVER_TIME:
+      return state.set('serverTime', action.serverTime);
 
     default:
       return state;

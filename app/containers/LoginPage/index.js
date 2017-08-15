@@ -40,6 +40,12 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevProps.Global.loggedIn && this.props.Global.loggedIn) {
+      this.props.push('/');
+    }
+  }
+
   /**
    *  Catch login data from message sent by CP ORION via postMessage function
    *  Caught by setting an event listener to 'message' event
@@ -52,7 +58,6 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
     // MAKE SURE FUNCTION CALLER ORIGIN IS FROM CP ORION DOMAIN! SECURITY PURPOSES.
     if (API_PREFIX.startsWith(origin)) {
       this.props.login(user);
-      this.props.push('/');
     }
   }
 
@@ -77,7 +82,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
     return (
       <Login>
         <Helmet
-          title="LoginPage"
+          title="Login"
           meta={[
             { name: 'description', content: 'Description of LoginPage' },
           ]}

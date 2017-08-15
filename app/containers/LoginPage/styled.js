@@ -22,7 +22,6 @@ export const Login = styled.div`
     align-items: flex-start;
     align-content: flex-start;
     color: ${(props) => props.theme.black};
-    padding-top: 4rem;
 
     h1 {
       margin: 0;
@@ -59,12 +58,14 @@ export const Login = styled.div`
     .ristek {
       position: absolute;
       bottom: 2rem;
+      right: 0;
       z-index: 5;
       color: ${(props) => props.theme.black};
 
       h3 {
         font-size: 1rem;
         margin-bottom: 0.25rem;
+        text-align: right;
       }
 
       img {
@@ -127,6 +128,7 @@ export const Login = styled.div`
       }
 
       .ristek {
+        right: 2rem;
         color: ${(props) => props.theme.black};
 
         h3 {

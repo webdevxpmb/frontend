@@ -7,8 +7,8 @@ if (user) {
   request.set('Authorization', `JWT ${user.token}`);
 }
 
-export function dateTime() {
-  return request.get(`${API_PREFIX}/date-time/`);
+export function serverTime() {
+  return request.get(`${API_PREFIX}/server-time/`);
 }
 
 export function getUserProfile(params) {

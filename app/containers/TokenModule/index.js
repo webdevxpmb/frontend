@@ -60,7 +60,7 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
       <Token progress={80}>
         <div className="tokenContent">
           <div className="token">
-            <h3>Welcome to PMB 2017 beta website, more feature will be added in the near future.<br /><br />In the mean time, you can check for announcements, events, and tasks or help here</h3>
+            <h3>Welcome to PMB 2017 website. you can check for announcements, events, and tasks here.<br /><br />More cool features will be added in the near future, so stay tuned for updates.</h3>
           </div>
         </div>
       </Token>

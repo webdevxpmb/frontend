@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
+import { isEmpty } from 'lodash';
 
 import AnnouncementItem from 'components/AnnouncementItem';
 import Footer from 'components/Footer';
@@ -33,7 +34,7 @@ export class AnnouncementPage extends React.Component { // eslint-disable-line r
   render() {
     let renderedItem = (<div className="emptyState">No Announcement Available</div>);
 
-    if (this.props.AnnouncementPage.announcements) {
+    if (!isEmpty(this.props.AnnouncementPage.announcements)) {
       renderedItem =  this.props.AnnouncementPage.announcements.map((value, index) => (
         <AnnouncementItem key={`pmb-announcement-${index}`} announcement={value} onReadMore={() => this.props.push(`/announcement/${value.id}`)} />
       ));

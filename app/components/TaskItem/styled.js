@@ -32,6 +32,19 @@ export const Task = styled.div`
       }
     }
 
+    h4 {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+
+      .icon-link {
+        margin-right: 0.5rem;
+      }
+
+      a {
+        color: ${(props) => props.theme.blue};
+      }
+    }
+
     p {
       line-height: 1.25;
       color: ${(props) => props.theme.gray};

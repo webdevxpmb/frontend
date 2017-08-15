@@ -12,8 +12,15 @@ import auth from './auth';
 import request, { API_PREFIX } from './request';
 
 import {
+  serverTime,
+} from './api';
+
+import {
   SET_AUTH,
   SET_USER,
+  FETCH_SERVER_TIME,
+  FETCH_SERVER_TIME_SUCCESS,
+  FETCH_SERVER_TIME_FAILED,
   SENDING_REQUEST,
   LOGIN,
   LOGOUT,
@@ -72,6 +79,26 @@ export function* logout() {
   }
 }
 
+export function* fetchServerTime() {
+  // We send an action that tells Redux we're sending a request
+  yield put({ type: SENDING_REQUEST, sending: true });
+
+  try {
+    const serverTimeResponse = yield call(serverTime);
+
+    yield put({ type: FETCH_SERVER_TIME_SUCCESS, serverTime: serverTimeResponse.body.server_time });
+
+    return true;
+  } catch (error) {
+    yield put({ type: FETCH_SERVER_TIME_FAILED });
+
+    return false;
+  } finally {
+    // When done, we tell Redux we're not in the middle of a request any more
+    yield put({ type: SENDING_REQUEST, sending: false });
+  }
+}
+
 /**
  * Log in saga
  */
@@ -117,6 +144,14 @@ export function* logoutFlow() {
   }
 }
 
+export function* fetchServerTimeFlow() {
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    yield take(FETCH_SERVER_TIME);
+    yield call(fetchServerTime);
+  }
+}
+
 // The root saga is what we actually send to Redux's middleware. In here we fork
 // each saga so that they are all "active" and listening.
 // Sagas are fired once at the start of an app and can be thought of as processes running
@@ -124,4 +159,5 @@ export function* logoutFlow() {
 export default function* root() {
   yield fork(loginFlow);
   yield fork(logoutFlow);
+  yield fork(fetchServerTimeFlow);
 }

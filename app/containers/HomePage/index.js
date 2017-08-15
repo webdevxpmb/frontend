@@ -108,6 +108,40 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
       activeImportantDates = activeImportantDates.slice(0, 3);
     }
 
+    let currentTime = new moment();
+
+    if (this.props.Global.serverTime) {
+      currentTime = new moment(this.props.Global.serverTime);
+    }
+
+    const dayNames = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    const clockTime = `${currentTime.hour() > 9 ? currentTime.hour() : `0${currentTime.hour()}`}:${currentTime.minute() > 9 ? currentTime.minute() : `0${currentTime.minute()}`}:${currentTime.second() > 9 ? currentTime.second() : `0${currentTime.second()}`}`;
+    const dateTime = `${dayNames[currentTime.day() - 1]}, ${currentTime.date()} ${monthNames[currentTime.month()]} ${currentTime.year()}`;
+
     return (
       <Home>
         <Helmet
@@ -124,7 +158,8 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
               <Card>
                 <div className="container">
                   <h2 className="label">Server Time</h2>
-                  <h1 className="serverTime">05:00</h1>
+                  <h1 className="serverTime">{clockTime}</h1>
+                  <h1 className="serverDate">{dateTime}</h1>
                   <h2 className="label">PMB Calendar</h2>
                   <DateModule importantDates={importantDates} />
                 </div>
