@@ -77,7 +77,30 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
       return false;
     });
 
-    const importantDates = tasks.concat(events);
+    const importantDates = [];
+
+    tasks.concat(events).forEach((value) => {
+      if ('location' in value) {
+        const start = new moment(value.start_time);
+        const end = new moment(value.end_time);
+        const diff = end.diff(start, 'days', true) < 1 && end.diff(start, 'days', true) > 0 ? 0 : Math.ceil(end.diff(start, 'days', true));
+
+        if (diff > 1) {
+          const currentEnd = new moment(start.toISOString());
+
+          for (let i = 0; i < diff; i++) {
+            const current = { ...value, end_time: currentEnd.toISOString() };
+            importantDates.push(current);
+            currentEnd.add(1, 'days');
+          }
+        } else {
+          importantDates.push(value);
+        }
+      } else {
+        importantDates.push(value);
+      }
+    });
+
 
     let activeImportantDates = activeTasks.concat(activeEvents).sort((a, b) => {
       let aMoment = new moment(a.end_time);

@@ -20,6 +20,7 @@ import { API_PREFIX } from 'request';
 import Card from 'components/Card';
 
 import Logo from 'assets/logo.png';
+import DpmLogo from 'assets/dpm.png';
 
 import {
   Nav,
@@ -41,7 +42,9 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
               <div className="logo">
                 <img src={Logo} alt="Logo PMB 2017" />
               </div>
-              <h1>#BersamaMenggenggamMasaDepan</h1>
+              <div className="dpm">
+                <img src={DpmLogo} alt="Logo DPM 2017" />
+              </div>
             </button>
             <div className="navigations">
               <button onClick={() => this.props.push('/announcement')} className="link">Announcement</button>
@@ -55,8 +58,13 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
             </div>
           </div>
           <div className="navbarContent hideForLarge">
-            <button onClick={() => this.props.push('/')} className="logo">
-              <img src={Logo} alt="Logo PMB 2017" />
+            <button onClick={() => this.props.push('/')} className="logoSet">
+              <div className="logo">
+                <img src={Logo} alt="Logo PMB 2017" />
+              </div>
+              <div className="dpm">
+                <img src={DpmLogo} alt="Logo DPM 2017" />
+              </div>
             </button>
             <button onClick={this.props.toggleOffside} className="link">
               <span className="icon-menu" />

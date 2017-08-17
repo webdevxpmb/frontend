@@ -192,7 +192,7 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
 
     if (!isEmpty(this.state.context)) {
       contextItems = this.state.context.actions.map((value, index) => (
-        <div className="activity">
+        <div key={`context-item-${index}`} className="activity">
           <h2>{value.name}</h2>
           <button onClick={() => {
               if ('is_kenalan' in value) {
