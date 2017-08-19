@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const Style = styled.div`
+export const Event = styled.div`
   position: relative;
   width: 100%;
   height: auto;
   min-height: 100vh;
 
-  .content {
+  .eventContent {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -15,13 +15,16 @@ const Style = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
+
+    .footer {
+      margin-top: 2rem;
+      width: 100%;
+    }
   }
 
-  @media screen and (max-width: 960px) {
-    .content {
-      padding: 4rem 0 1rem;
+  @media screen and (max-width: 64em) {
+    .eventContent {
+      padding: 4rem 0 2rem;
     }
   }
 `;
-
-export default Style;

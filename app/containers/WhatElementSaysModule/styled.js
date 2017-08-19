@@ -3,10 +3,14 @@ import styled from 'styled-components';
 export const WhatElementSays = styled.div`
   width: 100%;
   padding: 2rem;
-  height: 64rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  color: ${(props) => props.theme.gray};
 
   .label {
     font-size: 1rem;
@@ -20,3 +24,5 @@ export const WhatElementSays = styled.div`
     overflow: auto;
   }
 `;
+
+// height: 64rem;

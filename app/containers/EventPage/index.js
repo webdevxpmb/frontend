@@ -7,35 +7,52 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { createStructuredSelector } from 'reselect';
-import SectionHeading from 'components/SectionHeading';
+
+import Footer from 'components/Footer';
 import EventList from 'components/EventList';
-import Style from './styled';
+
+import { createStructuredSelector } from 'reselect';
 import makeSelectEventPage from './selectors';
 
+import {
+  fetchEvents,
+  fetchEventStatistics,
+} from './actions';
+
+import {
+  Event,
+} from './styled';
+
 export class EventPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    this.props.fetchEvents();
+    this.props.fetchEventStatistics();
+  }
+
   render() {
     return (
-      <Style>
+      <Event>
         <Helmet
           title="Event"
           meta={[
             { name: 'description', content: 'Description of EventPage' },
           ]}
         />
-        <div className="content">
-          <SectionHeading>
-            Event PMB
-          </SectionHeading>
-          <EventList />
+        <div className="eventContent">
+          <EventList events={this.props.EventPage.events} eventStatistics={this.props.EventPage.eventStatistics} />
+          <div className="footer">
+            <Footer />
+          </div>
         </div>
-      </Style>
+      </Event>
     );
   }
 }
 
 EventPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
+  fetchEventStatistics: PropTypes.func.isRequired,
+  EventPage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -44,7 +61,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    fetchEvents: () => dispatch(fetchEvents()),
+    fetchEventStatistics: () => dispatch(fetchEventStatistics()),
   };
 }
 

@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
 // import makeSelectWhatElementSaysModule from './selectors';
 
-import WyswygEditor from 'components/WyswygEditor';
-import ForumPost from 'components/ForumPost';
+// import WyswygEditor from 'components/WyswygEditor';
+// import ForumPost from 'components/ForumPost';
 
 import {
   WhatElementSays,
@@ -62,26 +62,29 @@ export class WhatElementSaysModule extends React.Component { // eslint-disable-l
   }
 
   render() {
-    const posts = this.state.forumPosts.map((value, index) => (
-      <ForumPost key={`forum-post-home-${index}`} post={value} isElementPost />
-    ));
+    // const posts = this.state.forumPosts.map((value, index) => (
+    //   <ForumPost key={`forum-post-home-${index}`} post={value} isElementPost />
+    // ));
 
     return (
       <WhatElementSays>
-        <h1 className="label">Apa Kata Elemen</h1>
-        <div className="posts">
-          {posts}
-        </div>
-        <div className="newPost">
-          <WyswygEditor
-            onSubmit={(value) => {
-              if (value) {
-                this.onNewPost(value);
-              }
-            }}
-            placeholder="Write down your post here"
-          />
-        </div>
+        <p>Apa Kata Elemen Coming Soon</p>
+        {
+          // <h1 className="label">Apa Kata Elemen</h1>
+          // <div className="posts">
+          //   {posts}
+          // </div>
+          // <div className="newPost">
+          //   <WyswygEditor
+          //     onSubmit={(value) => {
+          //       if (value) {
+          //         this.onNewPost(value);
+          //       }
+          //     }}
+          //     placeholder="Write down your post here"
+          //   />
+          // </div>
+        }
       </WhatElementSays>
     );
   }

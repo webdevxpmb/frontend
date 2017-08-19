@@ -6,11 +6,11 @@
 
 import React from 'react';
 
-const moment = window.moment;
+const Moment = window.moment;
 
 class DateString extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const date = new moment(this.props.date);
+    const date = new Moment(this.props.date);
 
     const dayNames = [
       'Monday',
@@ -39,7 +39,7 @@ class DateString extends React.Component { // eslint-disable-line react/prefer-s
 
     return (
       <span>
-        {`${dayNames[date.day()]}, ${date.date()} ${monthNames[date.month()]} ${date.year()} - ${date.hour() > 9 ? date.hour() : `0${date.hour()}`}:${date.minute() > 9 ? date.minute() : `0${date.minute()}`}`}
+        {`${dayNames[date.day() - 1]}, ${date.date()} ${monthNames[date.month()]} ${date.year()} ${this.props.notime ? '' : `- ${date.hour() > 9 ? date.hour() : `0${date.hour()}`}:${date.minute() > 9 ? date.minute() : `0${date.minute()}`}`}`}
       </span>
     );
   }
@@ -47,6 +47,7 @@ class DateString extends React.Component { // eslint-disable-line react/prefer-s
 
 DateString.propTypes = {
   date: React.PropTypes.string.isRequired,
+  notime: React.PropTypes.bool,
 };
 
 export default DateString;

@@ -1,66 +1,57 @@
 import styled from 'styled-components';
 
-export const Item = styled.div`
+export const AnnouncementElement = styled.div`
+  position: relative;
   width: 100%;
-  padding: 2rem;
-  margin: 1rem auto;
-  background: ${(props) => props.theme.greyLighten};
-  
-  h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.25;
-    color: ${(props) => props.theme.black};
-  }
+  height: auto;
+  margin: 0 0 2rem;
 
-  h2 {
-    font-size: 1rem;
-    line-height: 1.25;
+  .announcementContent {
+    padding: 2rem;
     color: ${(props) => props.theme.darkGray};
-  }
-
-  p {
-    font-size: 0.9rem;
-    line-height: 1;
-  }
-
-  .media-primary {
-    display: -webkit-flex;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 
-    .header {
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: ${(props) => props.theme.black};
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-top: 0.5rem;
       margin-bottom: 1rem;
-      .media-heading {
-        margin: 0;
-        font-weight: 700;
-        font-family: 'Montserrat';
-      }
-      .command {
-        font-size: 1em;
-        display: flex;
-      }
-    }
-    .media-content {
-      width: 100%;
+      color: ${(props) => props.theme.gray};
     }
 
-    .read-more {
-      padding: 0.5rem;
-      color: white;
-      margin: 0.5rem 0;
-      border-radius: ${(props) => props.theme.borderRadius};
-      background: ${(props) => props.theme.greenGradient};
+    p {
+      line-height: 1.25;
+    }
+
+    a,
+    button {
+      margin: 1rem 0 0;
+
+      span {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+
+    a {
+      color: ${(props) => props.theme.blue};
+    }
+
+    button {
+      color: ${(props) => props.theme.gray};
+
+      &.backButton {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
     }
   }
-  @media screen and (max-width: 960px) {
-    width: 100%;
-    margin: 1em auto;
-    padding: 1rem;
-  }
-`;
-
-export const Comment = styled.div`
-  width: 100%;
-  padding: 2rem;
-  margin: 1rem auto;
 `;

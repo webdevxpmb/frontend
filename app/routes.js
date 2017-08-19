@@ -22,12 +22,16 @@ export default function createRoutes(store) {
       name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          import('containers/HomePage/reducer'),
+          import('containers/HomePage/sagas'),
           import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('homePage', reducer.default);
+          injectSagas(sagas.default);
           renderRoute(component);
         });
 
@@ -39,13 +43,15 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/EventPage/reducer'),
+          import('containers/EventPage/sagas'),
           import('containers/EventPage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, component]) => {
+        importModules.then(([reducer, sagas, component]) => {
           injectReducer('eventPage', reducer.default);
+          injectSagas(sagas.default);
           renderRoute(component);
         });
 
@@ -98,6 +104,26 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/announcement/:slug',
+      name: 'announcementPage',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/AnnouncementPage/reducer'),
+          import('containers/AnnouncementPage/sagas'),
+          import('containers/AnnouncementPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('announcementPage', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '/announcement',
       name: 'announcementPage',
       getComponent(nextState, cb) {
@@ -136,6 +162,14 @@ export default function createRoutes(store) {
         });
 
         importModules.catch(errorLoading);
+      },
+    }, {
+      path: 'login',
+      name: 'loginPage',
+      getComponent(location, cb) {
+        import('containers/LoginPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
     }, {
       path: '*',
