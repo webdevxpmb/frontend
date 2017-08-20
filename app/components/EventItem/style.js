@@ -129,12 +129,8 @@ export const Bar = styled.div`
       z-index: 2;
     }
   }
-<<<<<<< HEAD
-  p {
-=======
 
   .labels {
->>>>>>> 36105e7549cd09dd9097af32ee85783a788c0f1a
     margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;

@@ -67,3 +67,5 @@ AnnouncementItem.propTypes = {
   onBack: React.PropTypes.func,
   detailed: React.PropTypes.bool,
 };
+
+export default AnnouncementItem;

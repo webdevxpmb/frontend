@@ -22,7 +22,7 @@ import {
   FETCH_SERVER_TIME_SUCCESS,
   FETCH_SERVER_TIME_FAILED,
   SENDING_REQUEST,
-  // LOGIN,
+  LOGIN,
   LOGOUT,
   REQUEST_ERROR,
 } from './globalConstants';
@@ -67,7 +67,8 @@ export function* logout() {
   // `auth` module. If we get an error, we send an appropiate action. If we don't,
   // we return the response.
   try {
-    // const response = yield call(auth.logout);
+    // const logoutResponse = yield call(auth.logout);
+    yield call(auth.logout);
     yield put({ type: SET_USER, user: {} });
     yield put({ type: SENDING_REQUEST, sending: false });
 
@@ -109,8 +110,8 @@ export function* loginFlow() {
   // eslint-disable-next-line no-constant-condition
   while (true) {
     // And we're listening for `LOGIN` actions and destructuring its payload
-    // const request = yield take(LOGIN);
-    const { user } = request;
+    const loginRequest = yield take(LOGIN);
+    const { user } = loginRequest;
 
     // A `LOGOUT` action may happen while the `authorize` effect is going on, which may
     // lead to a race condition. This is unlikely, but just in case, we call `race` which
