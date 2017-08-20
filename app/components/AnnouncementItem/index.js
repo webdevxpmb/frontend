@@ -5,77 +5,67 @@
 */
 
 import React from 'react';
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
-// import Card from '../Card';
-// import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-// import WyswygEditor from 'components/WyswygEditor';
-// import SectionHeading from 'components/SectionHeading';
+
 import Card from 'components/Card';
-import ForumModule from 'containers/ForumModule';
-import { Item } from './styled';
+import DateString from 'components/DateString';
+
+import {
+  AnnouncementElement,
+} from './styled';
 
 class AnnouncementItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    // const posts = this.props.posts.posts;
-    // let post;
-    // for (let i = 0; i < posts.length; i += 1) {
-    //   if (posts[i].slug === this.props.slug) {
-    //     post = posts[i];
-    //   }
-    // }
+    let renderedItem = null;
 
-    // if (post === undefined) {
-    //   this.props.push('/*');
-    // }
-    // const date = new Date(post.date);
-    // const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oktober', 'November', 'December'];
+    if (this.props.announcement) {
+      renderedItem = (
+        <div className="announcementContent">
+          <h1>{this.props.announcement.title}</h1>
+          <h2>Last updated on <DateString date={this.props.announcement.updated_at} /> by Admin.</h2>
+          <p dangerouslySetInnerHTML={{ __html: this.props.announcement.summary }} />
+          {
+            this.props.announcement.attachment_link &&
+            <a href={this.props.announcement.attachment_link} target="_blank">
+              <span className="icon-link" />Attachment
+            </a>
+          }
+          <button onClick={this.props.onReadMore}><span className="icon-send" />Read More</button>
+        </div>
+      );
+    }
+
+    if (this.props.detailed && this.props.announcement) {
+      renderedItem = (
+        <div className="announcementContent">
+          <button className="backButton" onClick={this.props.onBack}><span className="icon-left" />Back</button>
+          <h1>{this.props.announcement.title}</h1>
+          <h2>Last updated on <DateString date={this.props.announcement.updated_at} /> by Admin.</h2>
+          <p dangerouslySetInnerHTML={{ __html: this.props.announcement.content }} />
+          {
+            this.props.announcement.attachment_link &&
+            <a href={this.props.announcement.attachment_link} target="_blank">
+              <span className="icon-link" />Attachment
+            </a>
+          }
+        </div>
+      );
+    }
 
     return (
-      <div>
-        <Item>
-          <div className="media-primary">
-            <div className="media-body">
-              <div className="header">
-                <a><h1 className="media-heading">{this.props.title}</h1></a>
-                <p className="command">
-                  <a href="https://google.com">{this.props.publisher}</a> | {this.props.date}, {this.props.time}
-                </p>
-              </div>
-              <div className="media-content" dangerouslySetInnerHTML={{ __html: this.props.content }} />
-              <button className="read-more" onClick={() => this.props.push('/announcement')}>
-                Back
-              </button>
-            </div>
-          </div>
-        </Item>
+      <AnnouncementElement>
         <Card>
-          <ForumModule
-            title="Comments"
-            postLabel="All Comments"
-          />
+          {renderedItem}
         </Card>
-      </div>
+      </AnnouncementElement>
     );
   }
 }
 
 AnnouncementItem.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  content: React.PropTypes.string.isRequired,
-  publisher: React.PropTypes.string.isRequired,
-  date: React.PropTypes.string.isRequired,
-  time: React.PropTypes.string.isRequired,
-  push: React.PropTypes.func,
+  announcement: React.PropTypes.object.isRequired,
+  onReadMore: React.PropTypes.func,
+  onBack: React.PropTypes.func,
+  detailed: React.PropTypes.bool,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    push: (url) => (dispatch(push(url))),
-    dispatch,
-  };
-}
-
-export default connect(null, mapDispatchToProps)(AnnouncementItem);
+export default AnnouncementItem;

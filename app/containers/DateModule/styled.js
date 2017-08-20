@@ -73,13 +73,13 @@ export const Dates = styled.div`
     align-content: center;
 
     h1 {
-      font-size: 1rem;
+      font-size: 0.8rem;
       color: ${(props) => props.theme.gray};
       margin-bottom: 1rem;
     }
 
     .close {
-      font-size: 1rem;
+      font-size: 0.8rem;
       color: ${(props) => props.theme.gray};
       margin-bottom: 1rem;
     }

@@ -7,60 +7,62 @@
 import { fromJS } from 'immutable';
 
 import {
-  INITIAL_FETCH,
-  INITIAL_FETCH_SUCCESS,
-  INITIAL_FETCH_FAILED,
-  SUBMIT,
+  FETCH_TASKS_SUCCESS,
+  // FETCH_TASKS_FAILED,
+  FETCH_SUBMISSIONS_SUCCESS,
+  // FETCH_SUBMISSIONS_FAILED,
   SUBMIT_SUCCESS,
-  SUBMIT_FAILED,
+  // SUBMIT_FAILED,
+  // SENDING_REQUEST,
 } from './constants';
 
 const initialState = fromJS({
-  tasks: [
-    {
-      id: 1,
-      name: 'Kenalan (50% dari Kuota minimum)',
-      description: 'tugas',
-      start_time: '2017-07-13T01:00:00+07:00',
-      end_time: '2017-07-31T12:00:00+07:00',
-      is_kenalan: true,
-      expected_amount: 100,
-      created_at: '2017-07-27T15:32:45.939294',
-      updated_at: '2017-07-27T15:34:38.327088',
-    },
-    {
-      id: 1,
-      name: 'Submit CV',
-      description: 'tugas',
-      start_time: '2017-07-13T01:00:00',
-      end_time: '2017-07-31T12:00:00+07:00',
-      is_kenalan: false,
-      created_at: '2017-07-27T15:32:45.939294',
-      updated_at: '2017-07-27T15:34:38.327088',
-    },
-    {
-      id: 2,
-      name: 'Submit CV',
-      description: 'tugas',
-      start_time: '2017-07-13T01:00:00',
-      end_time: '2017-07-31T12:00:00+07:00',
-      is_kenalan: false,
-      created_at: '2017-07-27T15:32:45.939294',
-      updated_at: '2017-07-27T15:34:38.327088',
-    },
-  ],
-  submissions: [
-    {
-      id: 0,
-      user: 19,
-      task: 1,
-      file_link: 'https://drive.google.com/drive/u/0/my-drive',
-    },
-  ],
+  tasks: [],
+  submissions: [],
 });
 
+const Moment = window.moment;
+
 function taskPageReducer(state = initialState, action) {
+  const currentSubmissions = state.get('submissions');
+
   switch (action.type) {
+    case FETCH_TASKS_SUCCESS:
+      return state.set('tasks', action.tasks.slice(0).sort((a, b) => {
+        const aMoment = new Moment(a.end_time);
+        const bMoment = new Moment(b.end_time);
+
+        const diff = aMoment.diff(bMoment);
+
+        if (diff < 0) {
+          return -1;
+        }
+
+        if (diff > 0) {
+          return 1;
+        }
+
+        return 0;
+      }));
+    case FETCH_SUBMISSIONS_SUCCESS:
+      return state.set('submissions', action.submissions);
+    case SUBMIT_SUCCESS: {
+      let currentIndex = null;
+
+      currentSubmissions.forEach((value, index) => {
+        if (action.submission.id === value.id) {
+          currentIndex = index;
+        }
+      });
+
+      if (currentIndex) {
+        currentSubmissions[currentIndex] = action.submission;
+      } else {
+        currentSubmissions.push(action.submission);
+      }
+
+      return state.set('submissions', currentSubmissions);
+    }
     default:
       return state;
   }

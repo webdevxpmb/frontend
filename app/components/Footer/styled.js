@@ -61,12 +61,14 @@ export const Foot = styled.div`
       margin-bottom: 2rem;
 
       img {
-        height: 7.5rem;
+        height: 5rem;
       }
 
       h1 {
         margin-left: 0;
         margin-right: 0.5rem;
+        margin-top: 1rem;
+        font-size: 0.75rem;
       }
     }
 

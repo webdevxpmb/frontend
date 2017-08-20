@@ -5,45 +5,68 @@
  */
 
 import {
-  INITIAL_FETCH,
-  INITIAL_FETCH_SUCCESS,
-  INITIAL_FETCH_FAILED,
+  FETCH_TASKS,
+  FETCH_TASKS_SUCCESS,
+  FETCH_TASKS_FAILED,
+  FETCH_SUBMISSIONS,
+  FETCH_SUBMISSIONS_SUCCESS,
+  FETCH_SUBMISSIONS_FAILED,
   SUBMIT,
   SUBMIT_SUCCESS,
   SUBMIT_FAILED,
+  // SENDING_REQUEST,
 } from './constants';
 
-export function initialFetch() {
+export function fetchTasks() {
   return {
-    type: INITIAL_FETCH,
+    type: FETCH_TASKS,
   };
 }
 
-export function initialFetchSuccess(data) {
+export function fetchTasksSuccess(data) {
   return {
-    type: INITIAL_FETCH_SUCCESS,
-    data,
+    type: FETCH_TASKS_SUCCESS,
+    tasks: data,
   };
 }
 
-export function initialFetchFailed(data, err) {
+export function fetchTasksFailed() {
   return {
-    type: INITIAL_FETCH_SUCCESS,
-    data,
-    err,
+    type: FETCH_TASKS_FAILED,
   };
 }
 
-export function submit(data) {
+export function fetchSubmissions() {
+  return {
+    type: FETCH_SUBMISSIONS,
+  };
+}
+
+export function fetchSubmissionsSuccess(data) {
+  return {
+    type: FETCH_SUBMISSIONS_SUCCESS,
+    submissions: data,
+  };
+}
+
+export function fetchSubmissionsFailed() {
+  return {
+    type: FETCH_SUBMISSIONS_FAILED,
+  };
+}
+
+export function submit(data, isNew) {
   return {
     type: SUBMIT,
     data,
+    isNew,
   };
 }
 
-export function submitSuccess() {
+export function submitSuccess(data) {
   return {
     type: SUBMIT_SUCCESS,
+    submission: data,
   };
 }
 

@@ -9,8 +9,11 @@
  * the linting exception.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { createStructuredSelector } from 'reselect';
+import makeSelectGlobal from 'globalSelectors';
 
 import Footer from 'components/Footer';
 import Card from 'components/Card';
@@ -22,17 +25,145 @@ import ForumModule from 'containers/ForumModule';
 import WhatElementSaysModule from 'containers/WhatElementSaysModule';
 
 import {
+  fetchEvents,
+} from 'containers/EventPage/actions';
+
+import {
+  fetchTasks,
+} from 'containers/TaskPage/actions';
+
+import {
   Home,
 } from './styled';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+import makeSelectHomePage from './selectors';
+
+const Moment = window.moment;
+
+export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    this.props.fetchTasks();
+    this.props.fetchEvents();
+  }
+
   render() {
-    const importantDays = [
-      '2017-07-24T01:05:13+07:00',
-      '2017-07-26T01:05:13+07:00',
-      '2017-07-26T01:05:13+07:00',
-      '2017-08-09T01:05:13+07:00',
+    const now = new Moment();
+
+    const {
+      tasks,
+    } = this.props.homePage.task;
+
+    const {
+      events,
+    } = this.props.homePage.event;
+
+    const activeTasks = tasks.filter((value) => {
+      const deadline = new Moment(value.end_time);
+
+      if (deadline.diff(now) > 0) {
+        return true;
+      }
+
+      return false;
+    });
+
+    const activeEvents = events.filter((value) => {
+      const start = new Moment(value.start_time);
+
+      if (start.diff(now) > 0) {
+        return true;
+      }
+
+      return false;
+    });
+
+    const importantDates = [];
+
+    tasks.concat(events).forEach((value) => {
+      if ('location' in value) {
+        const start = new Moment(value.start_time);
+        const end = new Moment(value.end_time);
+        const diff = end.diff(start, 'days', true) < 1 && end.diff(start, 'days', true) > 0 ? 0 : Math.ceil(end.diff(start, 'days', true));
+
+        if (diff > 1) {
+          const currentEnd = new Moment(start.toISOString());
+
+          for (let i = 0; i < diff; i += 1) {
+            const current = { ...value, end_time: currentEnd.toISOString() };
+            importantDates.push(current);
+            currentEnd.add(1, 'days');
+          }
+        } else {
+          importantDates.push(value);
+        }
+      } else {
+        importantDates.push(value);
+      }
+    });
+
+
+    let activeImportantDates = activeTasks.concat(activeEvents).sort((a, b) => {
+      let aMoment = new Moment(a.end_time);
+      let bMoment = new Moment(b.end_time);
+
+      if ('location' in a) {
+        aMoment = new Moment(a.start_time);
+      }
+
+      if ('location' in b) {
+        bMoment = new Moment(b.start_time);
+      }
+
+      const diff = aMoment.diff(bMoment);
+
+      if (diff < 0) {
+        return -1;
+      }
+
+      if (diff > 0) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    if (activeTasks.length > 3) {
+      activeImportantDates = activeImportantDates.slice(0, 3);
+    }
+
+    let currentTime = new Moment();
+
+    if (this.props.Global.serverTime) {
+      currentTime = new Moment(this.props.Global.serverTime);
+    }
+
+    const dayNames = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ];
+
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    const clockTime = `${currentTime.hour() > 9 ? currentTime.hour() : `0${currentTime.hour()}`}:${currentTime.minute() > 9 ? currentTime.minute() : `0${currentTime.minute()}`}:${currentTime.second() > 9 ? currentTime.second() : `0${currentTime.second()}`}`;
+    const dateTime = `${dayNames[currentTime.day() - 1]}, ${currentTime.date()} ${monthNames[currentTime.month()]} ${currentTime.year()}`;
 
     return (
       <Home>
@@ -42,25 +173,24 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             { name: 'description', content: 'PMB Fasilkom UI application' },
           ]}
         />
-        <TokenModule />
-        <LatestUpdatesModule />
+        <TokenModule user={this.props.Global.user} />
+        <LatestUpdatesModule importantDates={activeImportantDates} />
         <div className="homeContent">
           <div className="leftColumn">
             <div className="calendar">
               <Card>
                 <div className="container">
                   <h2 className="label">Server Time</h2>
-                  <h1 className="serverTime">05:00</h1>
+                  <h1 className="serverTime">{clockTime}</h1>
+                  <h1 className="serverDate">{dateTime}</h1>
                   <h2 className="label">PMB Calendar</h2>
-                  <DateModule days={importantDays} />
+                  <DateModule importantDates={importantDates} />
                 </div>
               </Card>
             </div>
-            <div className="whatElementSays">
-              <Card>
-                <WhatElementSaysModule />
-              </Card>
-            </div>
+            <Card>
+              <WhatElementSaysModule />
+            </Card>
           </div>
           <div className="rightColumn">
             <Card>
@@ -75,3 +205,24 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     );
   }
 }
+
+HomePage.propTypes = {
+  fetchTasks: PropTypes.func.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
+  homePage: PropTypes.object,
+  Global: PropTypes.object,
+};
+
+const mapStateToProps = createStructuredSelector({
+  homePage: makeSelectHomePage(),
+  Global: makeSelectGlobal(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchTasks: () => dispatch(fetchTasks()),
+    fetchEvents: () => dispatch(fetchEvents()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

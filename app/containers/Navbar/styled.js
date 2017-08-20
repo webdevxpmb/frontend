@@ -40,6 +40,8 @@ export const Nav = styled.nav`
         background: ${(props) => props.theme.white};
         border-radius: 5rem;
         box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
+        position: relative;
+        z-index: 100;
 
         img {
           width: 100%;
@@ -47,10 +49,18 @@ export const Nav = styled.nav`
         }
       }
 
-      h1 {
-        font-size: 0.85rem;
-        font-weight: 700;
-        margin-left: 0.5rem;
+      .dpm {
+        width: 7rem;
+        padding: 0.5rem 1rem 0.5rem 2rem;
+        margin-left: -2rem;
+        border-radius: ${(props) => props.theme.borderRadius};
+        background: ${(props) => props.theme.white};
+        box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
 
@@ -131,17 +141,20 @@ export const Nav = styled.nav`
         display: flex;
       }
 
-      .logo {
-        width: 4rem;
-        height: 4rem;
+      .logoSet {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
         margin-top: 1rem;
-        background: ${(props) => props.theme.white};
-        border-radius: 4rem;
-        box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
 
-        img {
-          width: 100%;
-          height: 100%;
+        .logo {
+          width: 4rem;
+          height: 4rem;
+          border-radius: 4rem;
+        }
+
+        .dpm {
+          padding: 0.5rem 0.5rem 0.5rem 2.5rem;
         }
       }
 
