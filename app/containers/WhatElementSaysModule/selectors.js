@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the whatElementSaysModule state domain
  */
-const selectWhatElementSaysModuleDomain = () => (state) => state.get('whatElementSaysModule');
+const selectWhatElementSaysModuleDomain = () => (state) => state.get('homePage').get('whatElementSaysModule');
 
 /**
  * Other specific selectors

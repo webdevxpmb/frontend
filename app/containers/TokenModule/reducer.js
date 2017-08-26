@@ -6,15 +6,21 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  GENERATE_TOKEN_SUCCESS,
+  FETCH_KENALAN_SUCCESS,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  token: fromJS({}),
+  kenalan: fromJS({}),
+});
 
 function tokenModuleReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case GENERATE_TOKEN_SUCCESS:
+      return state.set('token', action.token);
+    case FETCH_KENALAN_SUCCESS:
+      return state.set('kenalan', action.kenalan);
     default:
       return state;
   }

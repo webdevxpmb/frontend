@@ -55,7 +55,7 @@ export class LatestUpdatesModule extends React.Component { // eslint-disable-lin
                 </div>
               }
               {
-                this.props.importantDates.length > 0 &&
+                this.props.importantDates.length > 1 &&
                 <div className="border" />
               }
               {

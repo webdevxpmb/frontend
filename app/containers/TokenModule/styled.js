@@ -114,7 +114,7 @@ export const Token = styled.div`
 
         h1 {
           font-weight: 700;
-          font-size: 4rem;
+          font-size: 3rem;
           line-height: 1;
 
           .icon-token {

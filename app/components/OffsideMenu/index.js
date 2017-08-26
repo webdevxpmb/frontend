@@ -36,7 +36,7 @@ class OffsideMenu extends React.Component { // eslint-disable-line react/prefer-
       <Offside display={this.props.display}>
         <div className="content">
           <h1>
-            Welcome {this.props.Global.user.name}.
+            Welcome, {this.props.Global.user.name}.
             <br />
           </h1>
           <button onClick={() => this.goTo('/')} className="link"><span className="icon-home" />Home</button>

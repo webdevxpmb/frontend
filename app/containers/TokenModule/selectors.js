@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the tokenModule state domain
  */
-const selectTokenModuleDomain = () => (state) => state.get('tokenModule');
+const selectTokenModuleDomain = () => (state) => state.get('homePage').get('tokenModule');
 
 /**
  * Other specific selectors

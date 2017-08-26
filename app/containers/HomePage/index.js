@@ -138,13 +138,13 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     }
 
     const dayNames = [
+      'Sunday',
       'Monday',
       'Tuesday',
       'Wednesday',
       'Thursday',
       'Friday',
       'Saturday',
-      'Sunday',
     ];
 
     const monthNames = [
@@ -163,7 +163,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     ];
 
     const clockTime = `${currentTime.hour() > 9 ? currentTime.hour() : `0${currentTime.hour()}`}:${currentTime.minute() > 9 ? currentTime.minute() : `0${currentTime.minute()}`}:${currentTime.second() > 9 ? currentTime.second() : `0${currentTime.second()}`}`;
-    const dateTime = `${dayNames[currentTime.day() - 1]}, ${currentTime.date()} ${monthNames[currentTime.month()]} ${currentTime.year()}`;
+    const dateTime = `${dayNames[currentTime.day()]}, ${currentTime.date()} ${monthNames[currentTime.month()]} ${currentTime.year()}`;
 
     return (
       <Home>
@@ -173,7 +173,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             { name: 'description', content: 'PMB Fasilkom UI application' },
           ]}
         />
-        <TokenModule user={this.props.Global.user} />
+        <TokenModule />
         <LatestUpdatesModule importantDates={activeImportantDates} />
         <div className="homeContent">
           <div className="leftColumn">

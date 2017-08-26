@@ -7,83 +7,80 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { createStructuredSelector } from 'reselect';
-// import makeSelectWhatElementSaysModule from './selectors';
+import { createStructuredSelector } from 'reselect';
+import { isEmpty } from 'lodash';
 
-// import WyswygEditor from 'components/WyswygEditor';
-// import ForumPost from 'components/ForumPost';
+import makeSelectGlobal from 'globalSelectors';
+
+import WyswygEditor from 'components/WyswygEditor';
+import WhatElementSaysPost from 'components/WhatElementSaysPost';
+
+import makeSelectWhatElementSaysModule from './selectors';
+
+import {
+  fetchWhatElementSays,
+  postWhatElementSays,
+} from './actions';
 
 import {
   WhatElementSays,
 } from './styled';
 
-const moment = window.moment;
-
 export class WhatElementSaysModule extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
 
-    this.state = {
-      forumPosts: [
-        {
-          post: '<p>Halo, Semoga angkatan Rebung semakin jago ya</p>',
-          poster: {
-            name: 'Kenny Reida Dharmawan',
-          },
-          posted_on: '2017-07-25T22:14:42+07:00',
-        },
-        {
-          post: '<p>Rebung mantap, teruskan!</p>',
-          poster: {
-            name: 'Seseorang Yang Namanya Panjang Sekali Kaya ABCDEFG HIJ KLMN O WOOOOOO',
-          },
-          posted_on: '2017-07-25T22:14:42+07:00',
-        },
-      ],
-    };
-
     this.onNewPost = this.onNewPost.bind(this);
   }
 
-  onNewPost(post) {
-    const newForumPosts = this.state.forumPosts.slice(0);
+  componentDidMount() {
+    if (!isEmpty(this.props.Global.user)) {
+      this.props.fetchWhatElementSays();
+    }
+  }
 
-    const newPost = {
-      post,
-      poster: {
-        name: 'Kenny Reida Dharmawan',
-      },
-      posted_on: new moment().toISOString(),
+  onNewPost(testimony) {
+    const whatElementSays = {
+      testimony,
     };
 
-    newForumPosts.push(newPost);
-
-    this.setState({ forumPosts: newForumPosts });
+    this.props.postWhatElementSays(whatElementSays);
   }
 
   render() {
-    // const posts = this.state.forumPosts.map((value, index) => (
-    //   <ForumPost key={`forum-post-home-${index}`} post={value} isElementPost />
-    // ));
+    const isMaba = !isEmpty(this.props.Global.user) ? this.props.Global.user.role === 'mahasiswa baru' : false;
+    let posts = (<p className="empty">There is no approved testimonies from the elements yet, stay tuned.</p>);
+
+    if (this.props.WhatElementSaysModule.whatElementSays) {
+      posts = this.props.WhatElementSaysModule.whatElementSays.map((value, index) => {
+        if (value.approved) {
+          return (
+            <WhatElementSaysPost key={`forum-post-home-${index}`} whatElementSays={value} />
+          );
+        }
+
+        return false;
+      });
+    }
 
     return (
       <WhatElementSays>
-        <p>Apa Kata Elemen Coming Soon</p>
+        <h1 className="label">Apa Kata Elemen</h1>
+        <div className="posts">
+          {posts}
+        </div>
         {
-          // <h1 className="label">Apa Kata Elemen</h1>
-          // <div className="posts">
-          //   {posts}
-          // </div>
-          // <div className="newPost">
-          //   <WyswygEditor
-          //     onSubmit={(value) => {
-          //       if (value) {
-          //         this.onNewPost(value);
-          //       }
-          //     }}
-          //     placeholder="Write down your post here"
-          //   />
-          // </div>
+          !isMaba &&
+          <div className="newPost">
+            <WyswygEditor
+              onSubmit={(value) => {
+                if (value) {
+                  this.onNewPost(value);
+                }
+              }}
+              placeholder="Write down your post here"
+            />
+          </div>
         }
       </WhatElementSays>
     );
@@ -91,17 +88,22 @@ export class WhatElementSaysModule extends React.Component { // eslint-disable-l
 }
 
 WhatElementSaysModule.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  fetchWhatElementSays: PropTypes.func.isRequired,
+  postWhatElementSays: PropTypes.func.isRequired,
+  WhatElementSaysModule: PropTypes.object,
+  Global: PropTypes.object,
 };
 
-// const mapStateToProps = createStructuredSelector({
-//   WhatElementSaysModule: makeSelectWhatElementSaysModule(),
-// });
+const mapStateToProps = createStructuredSelector({
+  WhatElementSaysModule: makeSelectWhatElementSaysModule(),
+  Global: makeSelectGlobal(),
+});
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    fetchWhatElementSays: () => dispatch(fetchWhatElementSays()),
+    postWhatElementSays: (whatElementSays) => dispatch(postWhatElementSays(whatElementSays)),
   };
 }
 
-export default connect(null, mapDispatchToProps)(WhatElementSaysModule);
+export default connect(mapStateToProps, mapDispatchToProps)(WhatElementSaysModule);

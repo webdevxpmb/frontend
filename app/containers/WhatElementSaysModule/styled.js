@@ -7,14 +7,12 @@ export const WhatElementSays = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   align-content: center;
-  text-align: center;
   color: ${(props) => props.theme.gray};
 
   .label {
     font-size: 1rem;
-    color: ${(props) => props.theme.gray};
     margin: 0 0 1rem;
     line-height: 1;
   }
@@ -22,6 +20,13 @@ export const WhatElementSays = styled.div`
   .posts {
     flex: 1;
     overflow: auto;
+    max-height: 35rem;
+
+    .empty {
+      font-size: 0.85rem;
+      margin: 2rem 0;
+      color: ${(props) => props.theme.lightGray};
+    }
   }
 `;
 

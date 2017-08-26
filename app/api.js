@@ -50,3 +50,19 @@ export function getAnnouncements() {
 export function getAnnouncementContent(params) {
   return request.get(`${API_PREFIX}/announcement/${params}`);
 }
+
+export function generateToken() {
+  return request.get(`${API_PREFIX}/generate-token/`);
+}
+
+export function createKenalan(data) {
+  return request.post(`${API_PREFIX}/create-kenalan/`).send(data);
+}
+
+export function getElementWords() {
+  return request.get(`${API_PREFIX}/element-word/`);
+}
+
+export function postElementWords(data) {
+  return request.post(`${API_PREFIX}/element-word/`).send(data);
+}
