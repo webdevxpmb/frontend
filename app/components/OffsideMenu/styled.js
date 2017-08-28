@@ -12,7 +12,6 @@ export const Offside = styled.div`
   z-index: 10000;
   display: ${(props) => {
     if (props.display) {
-      console.log('abc');
       return 'block';
     }
 

@@ -11,3 +11,7 @@ export const GENERATE_TOKEN_FAILED = 'app/TokenModule/GENERATE_TOKEN_FAILED';
 export const FETCH_KENALAN = 'app/TokenModule/FETCH_KENALAN';
 export const FETCH_KENALAN_SUCCESS = 'app/TokenModule/FETCH_KENALAN_SUCCESS';
 export const FETCH_KENALAN_FAILED = 'app/TokenModule/FETCH_KENALAN_FAILED';
+export const POST_KENALAN = 'app/TokenModule/POST_KENALAN';
+export const POST_KENALAN_SUCCESS = 'app/TokenModule/POST_KENALAN_SUCCESS';
+export const POST_KENALAN_FAILED = 'app/TokenModule/POST_KENALAN_FAILED';
+export const DELETE_KENALAN = 'app/TokenModule/DELETE_KENALAN';

@@ -6,9 +6,9 @@ export const WhatElementSays = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  align-content: center;
+  align-content: flex-start;
   color: ${(props) => props.theme.gray};
 
   .label {
@@ -23,11 +23,18 @@ export const WhatElementSays = styled.div`
     max-height: 35rem;
 
     .empty {
+      font-size: 0.9rem;
+      color: ${(props) => props.theme.lightGray};
+    }
+  }
+
+  .newPost {
+    margin-top: 2rem;
+
+    .empty {
       font-size: 0.85rem;
-      margin: 2rem 0;
+      margin: 1rem 0 0;
       color: ${(props) => props.theme.lightGray};
     }
   }
 `;
-
-// height: 64rem;

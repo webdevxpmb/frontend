@@ -44,7 +44,7 @@ function Faq() {
     <Card>
       <FAQ>
         {
-          listQa.map(item => (
+          listQa.map((item) => (
             <QA question={item.question} answer={item.answer} />
           ))
         }

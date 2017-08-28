@@ -11,6 +11,10 @@ import {
   FETCH_KENALAN,
   FETCH_KENALAN_SUCCESS,
   FETCH_KENALAN_FAILED,
+  POST_KENALAN,
+  POST_KENALAN_SUCCESS,
+  POST_KENALAN_FAILED,
+  DELETE_KENALAN,
 } from './constants';
 
 export function generateToken() {
@@ -51,5 +55,32 @@ export function fetchKenalanFailed(err) {
   return {
     type: FETCH_KENALAN_FAILED,
     err,
+  };
+}
+
+export function postKenalan(detailKenalan) {
+  return {
+    type: POST_KENALAN,
+    detailKenalan,
+  };
+}
+
+export function postKenalanSuccess(detailKenalan) {
+  return {
+    type: POST_KENALAN_SUCCESS,
+    detailKenalan,
+  };
+}
+
+export function postKenalanFailed(err) {
+  return {
+    type: POST_KENALAN_FAILED,
+    err,
+  };
+}
+
+export function deleteKenalan() {
+  return {
+    type: DELETE_KENALAN,
   };
 }

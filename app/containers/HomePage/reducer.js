@@ -7,6 +7,7 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 
+import announcementPageReducer from 'containers/AnnouncementPage/reducer';
 import taskPageReducer from 'containers/TaskPage/reducer';
 import eventPageReducer from 'containers/EventPage/reducer';
 import tokenModuleReducer from 'containers/TokenModule/reducer';
@@ -22,6 +23,7 @@ function homePageReducer(state = initialState, action) {
 }
 
 export default combineReducers({
+  announcement: announcementPageReducer,
   home: homePageReducer,
   task: taskPageReducer,
   event: eventPageReducer,

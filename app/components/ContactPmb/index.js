@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import Card from 'components/Card';
 import Contact from './Contact';
 

@@ -19,6 +19,48 @@ export const CardLayout = styled.div`
   }};
   box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
   width: 100%;
+  flex: ${(props) => {
+    if (props.flex) {
+      return 1;
+    }
+
+    return 'none';
+  }};
+  display: ${(props) => {
+    if (props.flex) {
+      return 'flex';
+    }
+
+    return 'block';
+  }};
+  flex-wrap: ${(props) => {
+    if (props.flex) {
+      return 'wrap';
+    }
+
+    return 'none';
+  }};
+  justify-content: ${(props) => {
+    if (props.flex) {
+      return 'stretch';
+    }
+
+    return 'none';
+  }};
+  align-items: ${(props) => {
+    if (props.flex) {
+      return 'stretch';
+    }
+
+    return 'none';
+  }};
+  align-content: ${(props) => {
+    if (props.flex) {
+      return 'stretch';
+    }
+
+    return 'none';
+  }};
 
   @media screen and (max-width: 64em) {
     border-radius: ${(props) => {

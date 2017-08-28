@@ -11,18 +11,26 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
+import { isEmpty } from 'lodash';
+
 import makeSelectGlobal from 'globalSelectors';
 
+import AnnouncementItem from 'components/AnnouncementItem';
 import Footer from 'components/Footer';
 import Card from 'components/Card';
 
 import TokenModule from 'containers/TokenModule';
 import LatestUpdatesModule from 'containers/LatestUpdatesModule';
 import DateModule from 'containers/DateModule';
-import ForumModule from 'containers/ForumModule';
+// import ForumModule from 'containers/ForumModule';
 import WhatElementSaysModule from 'containers/WhatElementSaysModule';
+
+import {
+  fetchAnnouncements,
+} from 'containers/AnnouncementPage/actions';
 
 import {
   fetchEvents,
@@ -44,6 +52,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   componentDidMount() {
     this.props.fetchTasks();
     this.props.fetchEvents();
+    this.props.fetchAnnouncements();
   }
 
   render() {
@@ -165,6 +174,20 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     const clockTime = `${currentTime.hour() > 9 ? currentTime.hour() : `0${currentTime.hour()}`}:${currentTime.minute() > 9 ? currentTime.minute() : `0${currentTime.minute()}`}:${currentTime.second() > 9 ? currentTime.second() : `0${currentTime.second()}`}`;
     const dateTime = `${dayNames[currentTime.day()]}, ${currentTime.date()} ${monthNames[currentTime.month()]} ${currentTime.year()}`;
 
+    let announcementItemRendered = (<p className="empty">No Announcement Available</p>);
+
+    if (!isEmpty(this.props.homePage.announcement.announcements)) {
+      if (this.props.homePage.announcement.announcements.length > 5) {
+        announcementItemRendered = this.props.homePage.announcement.announcements.slice(0, 5).map((value, index) => (
+          <AnnouncementItem key={`pmb-announcement-${index}`} announcement={value} onReadMore={() => this.props.push(`/announcement/${value.id}`)} />
+        ));
+      } else {
+        announcementItemRendered = this.props.homePage.announcement.announcements.map((value, index) => (
+          <AnnouncementItem key={`pmb-announcement-${index}`} announcement={value} onReadMore={() => this.props.push(`/announcement/${value.id}`)} />
+        ));
+      }
+    }
+
     return (
       <Home>
         <Helmet
@@ -177,25 +200,30 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         <LatestUpdatesModule importantDates={activeImportantDates} />
         <div className="homeContent">
           <div className="leftColumn">
-            <div className="calendar">
-              <Card>
-                <div className="container">
-                  <h2 className="label">Server Time</h2>
-                  <h1 className="serverTime">{clockTime}</h1>
-                  <h1 className="serverDate">{dateTime}</h1>
-                  <h2 className="label">PMB Calendar</h2>
-                  <DateModule importantDates={importantDates} />
-                </div>
-              </Card>
+            <div className="announcements">
+              <h1 className="sectionTitle">Latest Announcements</h1>
+              {announcementItemRendered}
             </div>
-            <Card>
-              <WhatElementSaysModule />
-            </Card>
           </div>
           <div className="rightColumn">
-            <Card>
-              <ForumModule />
-            </Card>
+            <div className="sidebar">
+              <div className="calendar">
+                <Card>
+                  <div className="container">
+                    <h2 className="label">Server Time</h2>
+                    <h1 className="serverTime">{clockTime}</h1>
+                    <h1 className="serverDate">{dateTime}</h1>
+                    <h2 className="label">PMB Calendar</h2>
+                    <DateModule importantDates={importantDates} />
+                  </div>
+                </Card>
+              </div>
+              <div className="whatElementSaysContainer">
+                <Card>
+                  <WhatElementSaysModule />
+                </Card>
+              </div>
+            </div>
           </div>
           <div className="footer">
             <Footer />
@@ -207,8 +235,10 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 }
 
 HomePage.propTypes = {
+  push: PropTypes.func.isRequired,
   fetchTasks: PropTypes.func.isRequired,
   fetchEvents: PropTypes.func.isRequired,
+  fetchAnnouncements: PropTypes.func.isRequired,
   homePage: PropTypes.object,
   Global: PropTypes.object,
 };
@@ -220,8 +250,10 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
+    push: (url) => dispatch(push(url)),
     fetchTasks: () => dispatch(fetchTasks()),
     fetchEvents: () => dispatch(fetchEvents()),
+    fetchAnnouncements: () => dispatch(fetchAnnouncements()),
   };
 }
 

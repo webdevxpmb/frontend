@@ -55,8 +55,20 @@ export function generateToken() {
   return request.get(`${API_PREFIX}/generate-token/`);
 }
 
+export function getKenalan() {
+  return request.get(`${API_PREFIX}/kenalan/`);
+}
+
+export function putKenalan(params, data) {
+  return request.put(`${API_PREFIX}/kenalan/${params}`).send(data);
+}
+
 export function createKenalan(data) {
   return request.post(`${API_PREFIX}/create-kenalan/`).send(data);
+}
+
+export function putDetailKenalan(params, data) {
+  return request.put(`${API_PREFIX}/detail-kenalan/${params}`).send(data);
 }
 
 export function getElementWords() {

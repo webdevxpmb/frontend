@@ -4,7 +4,7 @@ export const WhatElementSays = styled.div`
   background: ${(props) => props.theme.ivory};
   border-radius: ${(props) => props.theme.borderRadius};
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 1rem 0 0;
   text-align: left;
 
   .post {

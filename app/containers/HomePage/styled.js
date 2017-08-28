@@ -21,23 +21,32 @@ export const Home = styled.div`
       width: 100%;
     }
 
-    .leftColumn,
-    .rightColumn {
+    .rightColumn,
+    .leftColumn {
       display: flex;
       flex-align: column;
       flex-wrap: wrap;
     }
 
-    .leftColumn {
+    .rightColumn {
       width: 30%;
       justify-content: stretch;
       align-items: stretch;
       align-content: stretch;
     }
 
-    .rightColumn {
+    .leftColumn {
       width: calc(70% - 2rem);
       align-items: stretch;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-content: flex-start;
     }
 
     .calendar {
@@ -70,19 +79,52 @@ export const Home = styled.div`
         padding: 2rem;
       }
     }
+
+    .announcements {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-content: flex-start;
+      color: ${(props) => props.theme.gray};
+
+      .sectionTitle {
+        font-size: 1rem;
+        margin: 0 0 1rem;
+        font-wiegh: 700;
+        width: 100%;
+      }
+
+      .empty {
+        color: ${(props) => props.theme.lightGray};
+      }
+    }
   }
 
   @media screen and (max-width: 64em) {
     .homeContent {
-      .leftColumn {
+      .rightColumn {
         width: 100%;
         margin-bottom: 2rem;
       }
 
-      .rightColumn {
+      .leftColumn {
         width: 100%;
       }
 
+      .announcements {
+        .sectionTitle,
+        .empty {
+          margin-left: 2rem;
+          margin-right: 2rem;
+        }
+
+        .empty {
+          margin-bottom: 2rem;
+        }
+      }
     }
   }
 `;

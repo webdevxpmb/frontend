@@ -10,6 +10,7 @@ import { take, call, put, fork, cancel } from 'redux-saga/effects';
 import {
   generateToken,
   createKenalan,
+  putDetailKenalan,
 } from 'api';
 
 import {
@@ -23,6 +24,9 @@ import {
   FETCH_KENALAN,
   FETCH_KENALAN_SUCCESS,
   FETCH_KENALAN_FAILED,
+  POST_KENALAN,
+  POST_KENALAN_SUCCESS,
+  POST_KENALAN_FAILED,
 } from './constants';
 
 export function* fetchToken() {
@@ -53,13 +57,12 @@ export function* fetchTokenFlow() {
   }
 }
 
-
 export function* fetchKenalan(token) {
   // We send an action that tells Redux we're sending a request
   yield put({ type: SENDING_REQUEST, sending: true });
 
   try {
-    const kenalan = yield call(createKenalan, { token: parseInt(token, 10) });
+    const kenalan = yield call(createKenalan, { token });
 
     yield put({ type: FETCH_KENALAN_SUCCESS, kenalan: kenalan.body });
 
@@ -84,13 +87,53 @@ export function* fetchKenalanFlow() {
   }
 }
 
+export function* postKenalan(detailKenalan) {
+  // We send an action that tells Redux we're sending a request
+  yield put({ type: SENDING_REQUEST, sending: true });
+
+  try {
+    const detailKenalanData = {
+      phone_number: detailKenalan.phone_number,
+      birth_place: detailKenalan.birth_place,
+      birth_date: detailKenalan.birth_date,
+      asal_sma: detailKenalan.asal_sma,
+      story: detailKenalan.story,
+    };
+
+    const detailKenalanRequest = yield call(putDetailKenalan, detailKenalan.id, detailKenalanData);
+
+    yield put({ type: POST_KENALAN_SUCCESS, detailKenalan: detailKenalanRequest.body });
+
+    return true;
+  } catch (error) {
+    yield put({ type: POST_KENALAN_FAILED });
+
+    return false;
+  } finally {
+    // When done, we tell Redux we're not in the middle of a request any more
+    yield put({ type: SENDING_REQUEST, sending: false });
+  }
+}
+
+export function* postKenalanFlow() {
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const request = yield take(POST_KENALAN);
+    const { detailKenalan } = request;
+
+    yield call(postKenalan, detailKenalan);
+  }
+}
+
 export function* rootSaga() {
   const fetchTokenSaga = yield fork(fetchTokenFlow);
   const fetchKenalanSaga = yield fork(fetchKenalanFlow);
+  const postKenalanSaga = yield fork(postKenalanFlow);
 
   yield take(LOCATION_CHANGE);
   yield cancel(fetchTokenSaga);
   yield cancel(fetchKenalanSaga);
+  yield cancel(postKenalanSaga);
 }
 
 export default [rootSaga];

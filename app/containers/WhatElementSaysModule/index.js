@@ -51,7 +51,7 @@ export class WhatElementSaysModule extends React.Component { // eslint-disable-l
     const isMaba = !isEmpty(this.props.Global.user) ? this.props.Global.user.role === 'mahasiswa baru' : false;
     let posts = (<p className="empty">There is no approved testimonies from the elements yet, stay tuned.</p>);
 
-    if (this.props.WhatElementSaysModule.whatElementSays) {
+    if (!isEmpty(this.props.WhatElementSaysModule.whatElementSays)) {
       posts = this.props.WhatElementSaysModule.whatElementSays.map((value, index) => {
         if (value.approved) {
           return (
@@ -78,8 +78,9 @@ export class WhatElementSaysModule extends React.Component { // eslint-disable-l
                   this.onNewPost(value);
                 }
               }}
-              placeholder="Write down your post here"
+              placeholder="Write down your testimony here"
             />
+            <p className="empty">After posting your testimony, it will be displayed when it has been approved as a valid testimony by the admin.</p>
           </div>
         }
       </WhatElementSays>
