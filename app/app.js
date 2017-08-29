@@ -29,7 +29,9 @@ import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
-import '!file-loader?name=[name].[ext]!./favicon.ico';
+import '!file-loader?name=[name].[ext]!./assets/favicon.ico';
+import '!file-loader?name=[name].[ext]!./assets/android-chrome-192x192.png';
+import '!file-loader?name=[name].[ext]!./assets/android-chrome-512x512.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=.htaccess!./.htaccess';
 import 'file-loader?name=android-chrome-384x384.[ext]!./assets/logo.png';
@@ -120,9 +122,9 @@ if (!window.Intl) {
   render(translationMessages);
 }
 
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
-if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
-}
+// // Install ServiceWorker and AppCache in the end since
+// // it's not most important operation and if main code fails,
+// // we do not want it installed
+// if (process.env.NODE_ENV === 'production') {
+//   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+// }

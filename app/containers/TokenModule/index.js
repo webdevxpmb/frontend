@@ -91,7 +91,7 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
 
   componentDidUpdate(prevProps, prevState) {
     if (!isEmpty(prevProps.TokenModule.token) && prevState.difference > 0 && this.state.difference === 0) {
-      setTimeout(this.props.generateToken(), 3000);
+      setTimeout(this.props.generateToken, 3000);
     }
   }
 

@@ -16,6 +16,11 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import styled, { ThemeProvider } from 'styled-components';
 
+import AppleIcon from 'assets/apple-touch-icon.png';
+import Favicon32 from 'assets/favicon-32x32.png';
+import Favicon16 from 'assets/favicon-16x16.png';
+import MaskIcon from 'assets/safari-pinned-tab.svg';
+
 import { createStructuredSelector } from 'reselect';
 import makeSelectGlobal from 'globalSelectors';
 
@@ -125,7 +130,17 @@ export class App extends React.PureComponent { // eslint-disable-line react/pref
             titleTemplate="%s - PMB Fasilkom UI 2017"
             defaultTitle="PMB Fasilkom UI 2017"
             meta={[
-              { name: 'description', content: 'PMB Fasilkom UI application' },
+              { name: 'description', content: 'Application for PMB Fasilkom UI 2017, add new friends, submit your tasks, attend events and see your stats.' },
+              { name: 'apple-mobile-web-app-title', content: 'PMB 2017' },
+              { name: 'application-name', content: 'PMB 2017' },
+              { name: 'theme-color', content: '#FAFAFA' },
+            ]}
+            link={[
+              { rel: 'apple-touch-icon', sizes: '180x180', href: `${AppleIcon}?v=xQzdYvrOxA` },
+              { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${Favicon32}?v=xQzdYvrOxA` },
+              { rel: 'icon', type: 'image/png', sizes: '16x16', href: `${Favicon16}?v=xQzdYvrOxA` },
+              { rel: 'mask-icon', color: 'e5d224', href: `${MaskIcon}?v=xQzdYvrOxA` },
+              { rel: 'shortcut icon', href: 'favicon.ico?v=xQzdYvrOxA' },
             ]}
           />
           {
