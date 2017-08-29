@@ -693,11 +693,13 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
     }
 
     return (
-      <Card>
-        <div className="friend">
-          <p className="empty">You have no friends yet, go out and get to know your new family members</p>
-        </div>
-      </Card>
+      <div className="friendCard">
+        <Card>
+          <div className="friend">
+            <p className="empty">You have no friends yet, go out there and meet your new family members</p>
+          </div>
+        </Card>
+      </div>
     );
   }
 
