@@ -172,7 +172,7 @@ export const TokenForm = styled.div`
     justify-content: center;
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.5rem;
       margin-bottom: 2rem;
       text-align: center;
     }
@@ -193,6 +193,10 @@ export const TokenForm = styled.div`
         border: none;
         border-radius: ${(props) => props.theme.borderRadius};
         box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
+
+        &:disabled {
+          opacity: 0.75;
+        }
       }
 
       button {
@@ -207,6 +211,10 @@ export const TokenForm = styled.div`
         border: none;
         border-radius: ${(props) => props.theme.borderRadius};
         box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
+
+        &:disabled {
+          opacity: 0.75;
+        }
 
         &:hover {
           background: ${(props) => props.theme.green};

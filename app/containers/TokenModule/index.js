@@ -318,10 +318,13 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
       return (
         <TokenForm currentlyKenalan={currentlyKenalan}>
           <div className="tokenContent">
-            <h1>Write down the token, get to know your new friend now.</h1>
+            {
+              // <h1>Write down the token, get to know your new friend now.</h1>
+            }
+            <h1>Kenalan is coming, stay tuned.</h1>
             <div className="form">
-              <input value={this.state.inputToken} onChange={(evt) => this.onInputChange('inputToken', evt.target.value)} className="input" type="number" placeholder="Token elemen" />
-              <button onClick={this.getKenalan}><span className="icon-send" />Go</button>
+              <input disabled value={this.state.inputToken} onChange={(evt) => this.onInputChange('inputToken', evt.target.value)} className="input" type="number" placeholder="Token elemen" />
+              <button disabled onClick={this.getKenalan}><span className="icon-send" />Go</button>
             </div>
           </div>
           {kenalanFormRender}

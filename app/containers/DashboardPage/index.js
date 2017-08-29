@@ -311,6 +311,16 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
       isInvalid = true;
     }
 
+    if (
+      currentDetailKenalan.phone_number === this.state.fixingData.phone_number &&
+      currentDetailKenalan.birth_place === this.state.fixingData.birth_place &&
+      currentDetailKenalan.birth_date === this.state.fixingData.birth_date &&
+      currentDetailKenalan.asal_sma === this.state.fixingData.asal_sma &&
+      currentDetailKenalan.story === this.state.fixingData.story
+    ) {
+      isInvalid = true;
+    }
+
     if (!isInvalid) {
       const finalData = {
         ...currentDetailKenalan,
@@ -337,6 +347,26 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
             birth_date: '',
             asal_sma: '',
             story: '',
+          },
+        },
+      });
+    } else if (
+      currentDetailKenalan.phone_number === this.state.fixingData.phone_number &&
+      currentDetailKenalan.birth_place === this.state.fixingData.birth_place &&
+      currentDetailKenalan.birth_date === this.state.fixingData.birth_date &&
+      currentDetailKenalan.asal_sma === this.state.fixingData.asal_sma &&
+      currentDetailKenalan.story === this.state.fixingData.story
+    ) {
+      this.setState({
+        ...this.state,
+        fixingData: {
+          ...this.state.fixingData,
+          warning: {
+            phone_number: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
+            birth_place: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
+            birth_date: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
+            asal_sma: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
+            story: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
           },
         },
       });
