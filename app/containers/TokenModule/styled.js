@@ -159,7 +159,7 @@ export const TokenForm = styled.div`
   position: relative;
   padding: 10rem 0;
   color: ${(props) => props.theme.white};
-  background-image: ${(props) => props.theme.blueGradient};
+  background-image: ${(props) => props.theme.blueButtonGradient};
 
   .tokenContent {
     width: 100%;
@@ -237,7 +237,7 @@ export const TokenForm = styled.div`
     width: 100%;
     height: 100%;
     background: ${(props) => props.theme.blue};
-    background-image: ${(props) => props.theme.blueGradient};
+    background-image: ${(props) => props.theme.blueButtonGradient};
     z-index: 1000;
     display: flex;
     flex-wrap: wrap;
@@ -344,7 +344,7 @@ export const TokenForm = styled.div`
           padding: 1rem 2rem;
           border-radius: ${(props) => props.theme.borderRadius};
           background: ${(props) => props.theme.blue};
-          background-image: ${(props) => props.theme.blueGradient};
+          background-image: ${(props) => props.theme.blueButtonGradient};
           box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
           font-weight: 700;
           font-size: 1.5rem;
@@ -372,7 +372,7 @@ export const TokenForm = styled.div`
     width: 100%;
     height: 100%;
     background: ${(props) => props.theme.blue};
-    background-image: ${(props) => props.theme.blueGradient};
+    background-image: ${(props) => props.theme.blueButtonGradient};
     z-index: 1000;
     display: flex;
     flex-wrap: wrap;
