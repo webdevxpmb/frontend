@@ -7,8 +7,8 @@ export const Wyswyg = styled.div`
     width: 100%;
     margin-top: 1rem;
     font-size: 1rem;
-    background: ${(props) => props.theme.altGreen};
-    background-image: ${(props) => props.theme.greenGradient};
+    background: ${(props) => props.theme.altLightBlue};
+    background-image: ${(props) => props.theme.lightBlueGradient};
     transition: ${(props) => props.theme.transitionBg};
     color: ${(props) => props.theme.white};
     padding: 0.5rem 1rem;
@@ -17,7 +17,7 @@ export const Wyswyg = styled.div`
     box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
 
     &:hover {
-      background: ${(props) => props.theme.green};
+      background: ${(props) => props.theme.lightBlue};
       transition: ${(props) => props.theme.transitionBg};
     }
 

@@ -88,7 +88,7 @@ export const LatestUpdates = styled.div`
           padding: 0.5rem 1rem;
           color: ${(props) => props.theme.white};
           background: ${(props) => props.theme.altBlue};
-          background-image: ${(props) => props.theme.blueGradient};
+          background-image: ${(props) => props.theme.blueButtonGradient};
           transition: ${(props) => props.theme.transitionBg};
           border-radius: ${(props) => props.theme.borderRadius};
 

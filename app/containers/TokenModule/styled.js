@@ -23,7 +23,7 @@ export const Token = styled.div`
 
       .textPack {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: wrap; 
         align-items: center;
 
         .icon-token {
@@ -159,7 +159,7 @@ export const TokenForm = styled.div`
   position: relative;
   padding: 10rem 0;
   color: ${(props) => props.theme.white};
-  background-image: ${(props) => props.theme.blueButtonGradient};
+  background-image: ${(props) => props.theme.blueGradient};
 
   .tokenContent {
     width: 100%;

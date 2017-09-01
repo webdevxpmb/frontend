@@ -179,7 +179,7 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
         } else if (innerVal === 'skip') {
           return (<button className="date" key={`innerIndex-${innerIndex}`} disabled />);
         } else if (typeof innerVal === 'object') {
-          return (<SpecialDate onClick={() => this.handleContextClick(innerVal)} color="green" key={`innerIndex-${innerIndex}`}>{new moment(innerVal.date).date()}</SpecialDate>);
+          return (<SpecialDate onClick={() => this.handleContextClick(innerVal)} color="lightBlue" key={`innerIndex-${innerIndex}`}>{new moment(innerVal.date).date()}</SpecialDate>);
         }
 
         return (<button className="date" key={`innerIndex-${innerIndex}`}>{innerVal}</button>);
