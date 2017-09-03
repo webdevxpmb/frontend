@@ -344,11 +344,11 @@ export const Dashboard = styled.div`
             }
 
             .approve {
-              background: ${(props) => props.theme.green};
-              background-image: ${(props) => props.theme.greenGradient};
+              background: ${(props) => props.theme.darkBlue};
+              background-image: ${(props) => props.theme.darkBlueGradient};
 
               &:hover {
-                background: ${(props) => props.theme.altGreen};
+                background: ${(props) => props.theme.altDarkBlue};
                 transition: ${(props) => props.theme.transitionBg};
               }
             }

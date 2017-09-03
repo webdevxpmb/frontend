@@ -12,6 +12,7 @@ import {
   getSubmissions,
   postSubmission,
   putSubmission,
+  getUserStatistic,
 } from 'api';
 
 import {
@@ -25,6 +26,9 @@ import {
   FETCH_SUBMISSIONS,
   FETCH_SUBMISSIONS_SUCCESS,
   FETCH_SUBMISSIONS_FAILED,
+  FETCH_USER_STATISTICS,
+  FETCH_USER_STATISTICS_SUCCESS,
+  FETCH_USER_STATISTICS_FAILED,
   SUBMIT,
   SUBMIT_SUCCESS,
   SUBMIT_FAILED,
@@ -86,6 +90,34 @@ export function* fetchSubmissionsFlow() {
   }
 }
 
+export function* fetchStatistics() {
+  // We send an action that tells Redux we're sending a request
+  yield put({ type: SENDING_REQUEST, sending: true });
+
+  try {
+    const userStatisticsResponse = yield call(getUserStatistic);
+
+    yield put({ type: FETCH_USER_STATISTICS_SUCCESS, userStatistics: userStatisticsResponse.body });
+
+    return true;
+  } catch (error) {
+    yield put({ type: FETCH_USER_STATISTICS_FAILED });
+
+    return false;
+  } finally {
+    // When done, we tell Redux we're not in the middle of a request any more
+    yield put({ type: SENDING_REQUEST, sending: false });
+  }
+}
+
+export function* fetchStatisticsFlow() {
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    yield take(FETCH_USER_STATISTICS);
+    yield call(fetchStatistics);
+  }
+}
+
 export function* createSubmission(data, isNew) {
   // We send an action that tells Redux we're sending a request
   yield put({ type: SENDING_REQUEST, sending: true });
@@ -126,11 +158,13 @@ export function* rootSaga() {
   const fetchTasksSaga = yield fork(fetchTasksFlow);
   const fetchSubmissionsSaga = yield fork(fetchSubmissionsFlow);
   const createSubmissionSaga = yield fork(createSubmissionFlow);
+  const fetchStatisticsSaga = yield fork(fetchStatisticsFlow);
 
   yield take(LOCATION_CHANGE);
   yield cancel(fetchTasksSaga);
   yield cancel(fetchSubmissionsSaga);
   yield cancel(createSubmissionSaga);
+  yield cancel(fetchStatisticsSaga);
 }
 
 export default [rootSaga];

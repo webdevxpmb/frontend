@@ -47,6 +47,7 @@ export const Home = styled.div`
       justify-content: flex-start;
       align-items: flex-start;
       align-content: flex-start;
+      width: 100%;
     }
 
     .calendar {

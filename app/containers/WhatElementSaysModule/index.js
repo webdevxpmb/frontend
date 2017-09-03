@@ -51,16 +51,18 @@ export class WhatElementSaysModule extends React.Component { // eslint-disable-l
     const isMaba = !isEmpty(this.props.Global.user) ? this.props.Global.user.role === 'mahasiswa baru' : false;
     let posts = (<p className="empty">There is no approved testimonies from the elements yet, stay tuned.</p>);
 
-    if (!isEmpty(this.props.WhatElementSaysModule.whatElementSays)) {
-      posts = this.props.WhatElementSaysModule.whatElementSays.map((value, index) => {
-        if (value.approved) {
-          return (
-            <WhatElementSaysPost key={`forum-post-home-${index}`} whatElementSays={value} />
-          );
-        }
+    const approvedWhatElementSays = this.props.WhatElementSaysModule.whatElementSays.filter((value) => {
+      if (value.approved) {
+        return true;
+      }
 
-        return false;
-      });
+      return false;
+    });
+
+    if (!isEmpty(approvedWhatElementSays)) {
+      posts = approvedWhatElementSays.map((value, index) => (
+        <WhatElementSaysPost key={`forum-post-home-${index}`} whatElementSays={value} />
+      ));
     }
 
     return (

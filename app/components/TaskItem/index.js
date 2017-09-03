@@ -27,11 +27,11 @@
 import React from 'react';
 
 import Card from 'components/Card';
-import ProgressBar from 'components/ProgressBar';
 import DateString from 'components/DateString';
 
 import {
   Task,
+  Bar,
 } from './styled';
 
 const Moment = window.moment;
@@ -141,39 +141,89 @@ class TaskItem extends React.Component { // eslint-disable-line react/prefer-sta
                     'No submission has been submited'
                   }
                 </div>
-                <h3><span className="icon-send" />Submission Box:</h3>
-                <div className="box">
-                  <input
-                    value={this.state.submissionInput}
-                    type="text"
-                    placeholder="Paste your submission link here (Starts with HTTP or HTTPS)"
-                    onChange={this.onChange}
-                    disabled={overdue}
-                  />
-                  <button
-                    className="submit"
-                    disabled={(!isValid && isEmpty) || (!isValid && !isEmpty) || overdue || isSubmitted || isEqualInput}
-                    onClick={this.onSubmit}
-                  >
-                    <span className="icon-send" /> Submit
-                  </button>
-                </div>
+                {
+                  !this.props.overdue &&
+                  <h3><span className="icon-send" />Submission Box:</h3>
+                }
+                {
+                  !this.props.overdue &&
+                  <div className="box">
+                    <input
+                      value={this.state.submissionInput}
+                      type="text"
+                      placeholder="Paste your submission link here (Starts with HTTP or HTTPS)"
+                      onChange={this.onChange}
+                      disabled={overdue}
+                    />
+                    <button
+                      className="submit"
+                      disabled={(!isValid && isEmpty) || (!isValid && !isEmpty) || overdue || isSubmitted || isEqualInput}
+                      onClick={this.onSubmit}
+                    >
+                      <span className="icon-send" /> Submit
+                    </button>
+                  </div>
+                }
               </div>
             }
             {
-              this.props.user.role === 'mahasiswa baru' && this.props.task.is_kenalan &&
+              this.props.user.role === 'mahasiswa baru' && this.props.task.is_kenalan && this.props.statistic &&
               <div className="progress">
                 <div className="entry">
-                  <ProgressBar title="Progress Omega" current={10} max={this.props.task.expected_amount_omega} />
+                  <Bar
+                    approved={(this.props.statistic.amount_approved_omega / this.props.task.expected_amount_omega) * 100}
+                    pending={(this.props.statistic.amount_omega / this.props.task.expected_amount_omega) * 100}
+                  >
+                    <div className="info">
+                      <h3>Progress Omega: <span>{Math.floor((this.props.statistic.amount_approved_omega / this.props.task.expected_amount_omega) * 100)}%</span> ({this.props.statistic.amount_approved_omega}/{this.props.statistic.amount_omega}/{this.props.task.expected_amount_omega})</h3>
+                    </div>
+                    <div className="max">
+                      <div className="pending" />
+                      <div className="approved" />
+                    </div>
+                  </Bar>
                 </div>
                 <div className="entry">
-                  <ProgressBar title="Progress Capung" current={10} max={this.props.task.expected_amount_capung} />
+                  <Bar
+                    approved={(this.props.statistic.amount_approved_capung / this.props.task.expected_amount_capung) * 100}
+                    pending={(this.props.statistic.amount_capung / this.props.task.expected_amount_capung) * 100}
+                  >
+                    <div className="info">
+                      <h3>Progress Capung: <span>{Math.floor((this.props.statistic.amount_approved_capung / this.props.task.expected_amount_capung) * 100)}%</span> ({this.props.statistic.amount_approved_capung}/{this.props.statistic.amount_capung}/{this.props.task.expected_amount_capung})</h3>
+                    </div>
+                    <div className="max">
+                      <div className="pending" />
+                      <div className="approved" />
+                    </div>
+                  </Bar>
                 </div>
                 <div className="entry">
-                  <ProgressBar title="Progress Orion" current={10} max={this.props.task.expected_amount_orion} />
+                  <Bar
+                    approved={(this.props.statistic.amount_approved_orion / this.props.task.expected_amount_orion) * 100}
+                    pending={(this.props.statistic.amount_orion / this.props.task.expected_amount_orion) * 100}
+                  >
+                    <div className="info">
+                      <h3>Progress Orion: <span>{Math.floor((this.props.statistic.amount_approved_orion / this.props.task.expected_amount_orion) * 100)}%</span> ({this.props.statistic.amount_approved_orion}/{this.props.statistic.amount_orion}/{this.props.task.expected_amount_orion})</h3>
+                    </div>
+                    <div className="max">
+                      <div className="pending" />
+                      <div className="approved" />
+                    </div>
+                  </Bar>
                 </div>
                 <div className="entry">
-                  <ProgressBar title="Progress Alumni" current={5} max={this.props.task.expected_amount_alumni} />
+                  <Bar
+                    approved={(this.props.statistic.amount_approved_alumni / this.props.task.expected_amount_alumni) * 100}
+                    pending={(this.props.statistic.amount_alumni / this.props.task.expected_amount_alumni) * 100}
+                  >
+                    <div className="info">
+                      <h3>Progress 2013 --: <span>{Math.floor((this.props.statistic.amount_approved_alumni / this.props.task.expected_amount_alumni) * 100)}%</span> ({this.props.statistic.amount_approved_alumni}/{this.props.statistic.amount_alumni}/{this.props.task.expected_amount_alumni})</h3>
+                    </div>
+                    <div className="max">
+                      <div className="pending" />
+                      <div className="approved" />
+                    </div>
+                  </Bar>
                 </div>
               </div>
             }
@@ -186,9 +236,11 @@ class TaskItem extends React.Component { // eslint-disable-line react/prefer-sta
 
 TaskItem.propTypes = {
   task: React.PropTypes.object.isRequired,
+  user: React.PropTypes.object.isRequired,
   submission: React.PropTypes.object,
+  statistic: React.PropTypes.object,
   submit: React.PropTypes.func,
-  user: React.PropTypes.object,
+  overdue: React.PropTypes.bool,
 };
 
 export default TaskItem;

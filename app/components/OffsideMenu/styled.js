@@ -48,6 +48,7 @@ export const Offside = styled.div`
 
       span {
         margin-right: 0.5rem;
+        color: ${(props) => props.theme.blue};
       }
     }
 
@@ -58,11 +59,12 @@ export const Offside = styled.div`
       left: 0;
       width: 100%;
       height: 3rem;
-      color: ${(props) => props.theme.altRed};
+      color: ${(props) => props.theme.darkGray};
       border-top: 0.1rem solid ${(props) => props.theme.ultraLightGray};
 
       span {
         margin-right: 0.5rem;
+        color: ${(props) => props.theme.orange};
       }
     }
   }

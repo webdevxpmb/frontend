@@ -19,6 +19,7 @@ import makeSelectTaskPage from './selectors';
 import {
   fetchTasks,
   fetchSubmissions,
+  fetchUserStatistics,
   submit,
 } from './actions';
 
@@ -32,6 +33,7 @@ export class TaskPage extends React.Component { // eslint-disable-line react/pre
   componentDidMount() {
     this.props.fetchTasks();
     this.props.fetchSubmissions();
+    this.props.fetchUserStatistics();
   }
 
   render() {
@@ -64,41 +66,67 @@ export class TaskPage extends React.Component { // eslint-disable-line react/pre
 
       activeTaskItems = activeTasks.map((value, index) => {
         let itemSubmission = null;
+        let itemStatistic = null;
 
-        if (this.props.taskPage.submissions) {
-          this.props.taskPage.submissions.forEach((subValue) => {
-            if (subValue.task.id === value.id) {
-              itemSubmission = subValue;
-            }
-          });
+        this.props.taskPage.submissions.forEach((subValue) => {
+          if (subValue.task.id === value.id) {
+            itemSubmission = subValue;
+          }
+        });
 
+        this.props.taskPage.statistics.forEach((subValue) => {
+          if (subValue.task.id === value.id) {
+            itemStatistic = subValue;
+          }
+        });
+
+        if (itemSubmission) {
           return (
             <TaskItem key={`pmb-task-${index}`} task={value} submission={itemSubmission} submit={this.props.submit} user={this.props.Global.user} />
           );
         }
 
+        if (itemStatistic) {
+          return (
+            <TaskItem key={`pmb-task-${index}`} task={value} statistic={itemStatistic} user={this.props.Global.user} />
+          );
+        }
+
         return (
-          <TaskItem key={`pmb-task-${index}`} task={value} />
+          <TaskItem key={`pmb-task-${index}`} task={value} user={this.props.Global.user} />
         );
       });
 
       overdueTaskItems = overdueTasks.map((value, index) => {
         let itemSubmission = null;
+        let itemStatistic = null;
 
-        if (this.props.taskPage.submissions) {
-          this.props.taskPage.submissions.forEach((subValue) => {
-            if (subValue.task.id === value.id) {
-              itemSubmission = subValue;
-            }
-          });
+        this.props.taskPage.submissions.forEach((subValue) => {
+          if (subValue.task.id === value.id) {
+            itemSubmission = subValue;
+          }
+        });
 
+        this.props.taskPage.statistics.forEach((subValue) => {
+          if (subValue.task.id === value.id) {
+            itemStatistic = subValue;
+          }
+        });
+
+        if (itemSubmission) {
           return (
-            <TaskItem key={`pmb-task-${index}`} task={value} submission={itemSubmission} submit={this.props.submit} user={this.props.Global.user} />
+            <TaskItem overdue key={`pmb-task-${index}`} task={value} submission={itemSubmission} submit={this.props.submit} user={this.props.Global.user} />
+          );
+        }
+
+        if (itemStatistic) {
+          return (
+            <TaskItem overdue key={`pmb-task-${index}`} task={value} statistic={itemStatistic} user={this.props.Global.user} />
           );
         }
 
         return (
-          <TaskItem key={`pmb-task-${index}`} task={value} />
+          <TaskItem overdue key={`pmb-task-${index}`} task={value} user={this.props.Global.user} />
         );
       });
     }
@@ -134,6 +162,7 @@ export class TaskPage extends React.Component { // eslint-disable-line react/pre
 TaskPage.propTypes = {
   fetchTasks: PropTypes.func.isRequired,
   fetchSubmissions: PropTypes.func.isRequired,
+  fetchUserStatistics: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
   Global: PropTypes.object.isRequired,
   taskPage: PropTypes.object.isRequired,
@@ -148,6 +177,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchTasks: () => dispatch(fetchTasks()),
     fetchSubmissions: () => dispatch(fetchSubmissions()),
+    fetchUserStatistics: () => dispatch(fetchUserStatistics()),
     submit: (data, isNew) => dispatch(submit(data, isNew)),
   };
 }

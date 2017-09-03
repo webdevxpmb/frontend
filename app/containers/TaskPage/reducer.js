@@ -11,6 +11,7 @@ import {
   // FETCH_TASKS_FAILED,
   FETCH_SUBMISSIONS_SUCCESS,
   // FETCH_SUBMISSIONS_FAILED,
+  FETCH_USER_STATISTICS_SUCCESS,
   SUBMIT_SUCCESS,
   // SUBMIT_FAILED,
   // SENDING_REQUEST,
@@ -19,6 +20,7 @@ import {
 const initialState = fromJS({
   tasks: [],
   submissions: [],
+  statistics: [],
 });
 
 const Moment = window.moment;
@@ -46,6 +48,8 @@ function taskPageReducer(state = initialState, action) {
       }));
     case FETCH_SUBMISSIONS_SUCCESS:
       return state.set('submissions', action.submissions);
+    case FETCH_USER_STATISTICS_SUCCESS:
+      return state.set('statistics', action.userStatistics);
     case SUBMIT_SUCCESS: {
       let currentIndex = null;
 

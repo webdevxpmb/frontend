@@ -28,8 +28,8 @@ export const Bar = styled.div`
       border-radius: 0.5em;
       width: ${(props) => props.percentage}%;
       height: 0.25rem;
-      background: ${(props) => props.theme.green};
-      background-image: ${(props) => props.theme.greenGradient};
+      background: ${(props) => props.theme.darkBlue};
+      background-image: ${(props) => props.theme.darkBlueGradient};
     }
   }
 `;
