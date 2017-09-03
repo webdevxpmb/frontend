@@ -203,8 +203,8 @@ export const TokenForm = styled.div`
         font-size: 1.5rem;
         font-weight: 700;
         margin-left: 2rem;
-        background: ${(props) => props.theme.altGreen};
-        background-image: ${(props) => props.theme.greenGradient};
+        background: ${(props) => props.theme.altDarkBlue};
+        background-image: ${(props) => props.theme.darkBlueGradient};
         transition: ${(props) => props.theme.transitionBg};
         color: ${(props) => props.theme.white};
         padding: 1rem 1.5rem;
@@ -217,7 +217,7 @@ export const TokenForm = styled.div`
         }
 
         &:hover {
-          background: ${(props) => props.theme.green};
+          background: ${(props) => props.theme.darkBlue};
           transition: ${(props) => props.theme.transitionBg};
         }
 
