@@ -41,7 +41,7 @@ export const EventCard = styled.div`
 
     p {
       line-height: 1.25;
-      color: ${(props) => props.theme.gray};
+      color: ${(props) => props.theme.darkGray};
     }
 
     .progress {
@@ -97,8 +97,8 @@ export const Bar = styled.div`
       border-radius: 0.5em;
       width: ${(props) => props.onTime}%;
       height: 0.25rem;
-      background: ${(props) => props.theme.green};
-      background-image: ${(props) => props.theme.greenGradient};
+      background: ${(props) => props.theme.darkBlue};
+      background-image: ${(props) => props.theme.darkBlueGradient};
       z-index: 10;
     }
 
@@ -160,8 +160,8 @@ export const Bar = styled.div`
       }
 
       .onTimeLabel {
-        background: ${(props) => props.theme.green};
-        background-image: ${(props) => props.theme.greenGradient};
+        background: ${(props) => props.theme.darkBlue};
+        background-image: ${(props) => props.theme.darkBlueGradient};
       }
 
       .lateLabel {

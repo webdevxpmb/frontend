@@ -103,13 +103,13 @@ export const Nav = styled.nav`
 
       .logout {
         color: ${(props) => props.theme.white};
-        background: ${(props) => props.theme.altRed};
-        background-image: ${(props) => props.theme.redGradient};
+        background: ${(props) => props.theme.altOrange};
+        background-image: ${(props) => props.theme.orangeGradient};
         padding: 0.5rem 1rem;
         border-radius: ${(props) => props.theme.borderRadius};
 
         &:hover {
-          background: ${(props) => props.theme.red};
+          background: ${(props) => props.theme.orange};
           transition: ${(props) => props.theme.transitionBg};
         }
       }

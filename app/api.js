@@ -78,3 +78,7 @@ export function getElementWords() {
 export function postElementWords(data) {
   return request.post(`${API_PREFIX}/element-word/`).send(data);
 }
+
+export function getUserStatistic() {
+  return request.get(`${API_PREFIX}/user-statistic/`);
+}

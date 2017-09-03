@@ -11,6 +11,9 @@ import {
   FETCH_SUBMISSIONS,
   FETCH_SUBMISSIONS_SUCCESS,
   FETCH_SUBMISSIONS_FAILED,
+  FETCH_USER_STATISTICS,
+  FETCH_USER_STATISTICS_SUCCESS,
+  FETCH_USER_STATISTICS_FAILED,
   SUBMIT,
   SUBMIT_SUCCESS,
   SUBMIT_FAILED,
@@ -52,6 +55,25 @@ export function fetchSubmissionsSuccess(data) {
 export function fetchSubmissionsFailed() {
   return {
     type: FETCH_SUBMISSIONS_FAILED,
+  };
+}
+
+export function fetchUserStatistics() {
+  return {
+    type: FETCH_USER_STATISTICS,
+  };
+}
+
+export function fetchUserStatisticsSuccess(userStatistics) {
+  return {
+    type: FETCH_USER_STATISTICS_SUCCESS,
+    userStatistics,
+  };
+}
+
+export function fetchUserStatisticsFailed() {
+  return {
+    type: FETCH_USER_STATISTICS_FAILED,
   };
 }
 

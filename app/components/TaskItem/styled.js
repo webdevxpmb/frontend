@@ -47,7 +47,7 @@ export const Task = styled.div`
 
     p {
       line-height: 1.25;
-      color: ${(props) => props.theme.gray};
+      color: ${(props) => props.theme.darkGray};
     }
 
     .progress {
@@ -89,7 +89,7 @@ export const Task = styled.div`
           border-radius: ${(props) => props.theme.borderRadius};
           background: ${(props) => {
             if (props.isSubmitted) {
-              return props.theme.green;
+              return props.theme.darkBlue;
             }
             if (!props.isValid && !props.isEmpty) {
               return props.theme.red;
@@ -111,8 +111,8 @@ export const Task = styled.div`
           width: 100%;
           margin-top: 1rem;
           font-size: 1rem;
-          background: ${(props) => props.theme.altGreen};
-          background-image: ${(props) => props.theme.greenGradient};
+          background: ${(props) => props.theme.altDarkBlue};
+          background-image: ${(props) => props.theme.darkBlueGradient};
           transition: ${(props) => props.theme.transitionBg}, ${(props) => props.theme.transitionOpacity};
           color: ${(props) => props.theme.white};
           padding: 0.5rem 1rem;
@@ -121,7 +121,7 @@ export const Task = styled.div`
           box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
 
           &:hover {
-            background: ${(props) => props.theme.green};
+            background: ${(props) => props.theme.darkBlue};
             transition: ${(props) => props.theme.transitionBg};
           }
 
@@ -139,5 +139,58 @@ export const Task = styled.div`
   }
 
   @media screen and (max-width: 64em) {
+  }
+`;
+
+export const Bar = styled.div`
+  .info {
+    color: ${(props) => props.theme.darkGray};
+    margin-bottom: 0.5rem;
+
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+
+      span {
+        color: ${(props) => props.theme.blue};
+      }
+    }
+  }
+
+  .max {
+    position: relative;
+    border-radius: 0.5em;
+    box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
+    width: 100%;
+    height: 0.25rem;
+    margin: auto;
+    background: ${(props) => props.theme.ultraLightGray};
+
+    .approved {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 10;
+      border-radius: 0.5em;
+      width: ${(props) => props.approved}%;
+      height: 0.25rem;
+      background: ${(props) => props.theme.darkBlue};
+      background-image: ${(props) => props.theme.darkBlueGradient};
+    }
+
+    .pending {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 5;
+      border-radius: 0.5em;
+      width: ${(props) => props.pending}%;
+      height: 0.25rem;
+      background: ${(props) => props.theme.yellow};
+      background-image: ${(props) => props.theme.yellowGradient};
+    }
   }
 `;

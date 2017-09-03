@@ -1,4 +1,5 @@
 /* eslint new-cap: 0 no-plusplus: 0 */
+/* eslint no-nested-ternary: 0 */
 /*
  *
  * DateModule
@@ -179,7 +180,7 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
         } else if (innerVal === 'skip') {
           return (<button className="date" key={`innerIndex-${innerIndex}`} disabled />);
         } else if (typeof innerVal === 'object') {
-          return (<SpecialDate onClick={() => this.handleContextClick(innerVal)} color="green" key={`innerIndex-${innerIndex}`}>{new moment(innerVal.date).date()}</SpecialDate>);
+          return (<SpecialDate onClick={() => this.handleContextClick(innerVal)} color="darkBlue" key={`innerIndex-${innerIndex}`}>{new moment(innerVal.date).date()}</SpecialDate>);
         }
 
         return (<button className="date" key={`innerIndex-${innerIndex}`}>{innerVal}</button>);
@@ -205,14 +206,8 @@ export class DateModule extends React.Component { // eslint-disable-line react/p
           >
             <span className="icon-send" />
             {
-              // 'is_kenalan' in value ? 'View Tasks' : 'location' in value ? 'View Event' : 'Go'
-              () => {
-                if ('is_kenalan' in value) {
-                  this.props.push('/task');
-                } else if ('location' in value) {
-                  this.props.push('/event');
-                }
-              }
+              // eslint-disable-line no-nested-ternary
+              'is_kenalan' in value ? 'View Tasks' : 'location' in value ? 'View Event' : 'Go'
             }
           </button>
         </div>

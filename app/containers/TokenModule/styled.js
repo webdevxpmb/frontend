@@ -23,7 +23,7 @@ export const Token = styled.div`
 
       .textPack {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: wrap; 
         align-items: center;
 
         .icon-token {
@@ -203,8 +203,8 @@ export const TokenForm = styled.div`
         font-size: 1.5rem;
         font-weight: 700;
         margin-left: 2rem;
-        background: ${(props) => props.theme.altGreen};
-        background-image: ${(props) => props.theme.greenGradient};
+        background: ${(props) => props.theme.altDarkBlue};
+        background-image: ${(props) => props.theme.darkBlueGradient};
         transition: ${(props) => props.theme.transitionBg};
         color: ${(props) => props.theme.white};
         padding: 1rem 1.5rem;
@@ -217,7 +217,7 @@ export const TokenForm = styled.div`
         }
 
         &:hover {
-          background: ${(props) => props.theme.green};
+          background: ${(props) => props.theme.darkBlue};
           transition: ${(props) => props.theme.transitionBg};
         }
 
@@ -284,8 +284,8 @@ export const TokenForm = styled.div`
         width: 100%;
         padding: 1rem 2rem;
         border-radius: ${(props) => props.theme.borderRadius};
-        background: ${(props) => props.theme.green};
-        background-image: ${(props) => props.theme.greenGradient};
+        background: ${(props) => props.theme.darkBlue};
+        background-image: ${(props) => props.theme.darkBlueGradient};
         box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
         font-weight: 700;
         font-size: 1.5rem;
@@ -404,8 +404,8 @@ export const TokenForm = styled.div`
         width: 100%;
         padding: 0.5rem 1rem;
         border-radius: ${(props) => props.theme.borderRadius};
-        background: ${(props) => props.theme.green};
-        background-image: ${(props) => props.theme.greenGradient};
+        background: ${(props) => props.theme.darkBlue};
+        background-image: ${(props) => props.theme.darkBlueGradient};
         box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
         font-size: 1rem;
         margin-top: 2rem;
