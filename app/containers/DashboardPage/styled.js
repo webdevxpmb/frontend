@@ -17,7 +17,7 @@ export const Dashboard = styled.div`
     align-items: center;
     align-content: center;
     background: ${(props) => props.theme.blue};
-    background-image: ${(props) => props.theme.blueGradient};
+    background-image: ${(props) => props.theme.backgroundGradient};
 
     .profileWrapper {
       width: 100%;
@@ -289,11 +289,11 @@ export const Dashboard = styled.div`
             }
 
             .approved {
-              color: ${(props) => props.theme.green};
+              color: ${(props) => props.theme.darkBlue};
             }
 
             .rejected {
-              color: ${(props) => props.theme.red};
+              color: ${(props) => props.theme.purple};
             }
           }
 
@@ -354,11 +354,11 @@ export const Dashboard = styled.div`
             }
 
             .reject {
-              background: ${(props) => props.theme.altRed};
-              background-image: ${(props) => props.theme.redGradient};
+              background: ${(props) => props.theme.altPurple};
+              background-image: ${(props) => props.theme.purpleGradient};
 
               &:hover {
-                background: ${(props) => props.theme.red};
+                background: ${(props) => props.theme.purple};
                 transition: ${(props) => props.theme.transitionBg};
               }
             }
@@ -430,8 +430,8 @@ export const Dashboard = styled.div`
         width: 100%;
         padding: 1rem 2rem;
         border-radius: ${(props) => props.theme.borderRadius};
-        background: ${(props) => props.theme.green};
-        background-image: ${(props) => props.theme.greenGradient};
+        background: ${(props) => props.theme.darkBlue};
+        background-image: ${(props) => props.theme.darkBlueGradient};
         box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
         font-weight: 700;
         font-size: 1.5rem;
@@ -544,11 +544,11 @@ export const Dashboard = styled.div`
           font-weight: 700;
 
           &.approve {
-            color: ${(props) => props.theme.green};
+            color: ${(props) => props.theme.darkBlue};
           }
 
           &.reject {
-            color: ${(props) => props.theme.altRed};
+            color: ${(props) => props.theme.altPurple};
           }
         }
       }
@@ -584,21 +584,21 @@ export const Dashboard = styled.div`
         }
 
         .approve {
-          background: ${(props) => props.theme.green};
-          background-image: ${(props) => props.theme.greenGradient};
+          background: ${(props) => props.theme.darkBlue};
+          background-image: ${(props) => props.theme.darkBlueGradient};
 
           &:hover {
-            background: ${(props) => props.theme.altGreen};
+            background: ${(props) => props.theme.altDarkBlue};
             transition: ${(props) => props.theme.transitionBg};
           }
         }
 
         .reject {
-          background: ${(props) => props.theme.altRed};
-          background-image: ${(props) => props.theme.redGradient};
+          background: ${(props) => props.theme.altPurple};
+          background-image: ${(props) => props.theme.purpleGradient};
 
           &:hover {
-            background: ${(props) => props.theme.red};
+            background: ${(props) => props.theme.purple};
             transition: ${(props) => props.theme.transitionBg};
           }
         }

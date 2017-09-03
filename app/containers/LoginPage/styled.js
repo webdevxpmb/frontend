@@ -109,7 +109,7 @@ export const Login = styled.div`
         right: 0;
         transform: translate(25%, 25%);
         filter: grayscale(100%);
-        opacity: 0.3;
+        opacity: 0.15;
       }
     }
   }
