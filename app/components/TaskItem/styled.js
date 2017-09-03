@@ -154,6 +154,12 @@ export const Bar = styled.div`
 
       span {
         color: ${(props) => props.theme.blue};
+
+        &.detail {
+          font-size: 0.85rem;
+          font-weight: 400;
+          color: ${(props) => props.theme.gray};
+        }
       }
     }
   }
@@ -174,7 +180,13 @@ export const Bar = styled.div`
       bottom: 0;
       z-index: 10;
       border-radius: 0.5em;
-      width: ${(props) => props.approved}%;
+      width: ${(props) => {
+        if (props.approved <= 100) {
+          return props.approved;
+        }
+
+        return 100;
+      }}%;
       height: 0.25rem;
       background: ${(props) => props.theme.darkBlue};
       background-image: ${(props) => props.theme.darkBlueGradient};
@@ -187,7 +199,13 @@ export const Bar = styled.div`
       bottom: 0;
       z-index: 5;
       border-radius: 0.5em;
-      width: ${(props) => props.pending}%;
+      width: ${(props) => {
+        if (props.pending <= 100) {
+          return props.pending;
+        }
+
+        return 100;
+      }}%;
       height: 0.25rem;
       background: ${(props) => props.theme.yellow};
       background-image: ${(props) => props.theme.yellowGradient};
