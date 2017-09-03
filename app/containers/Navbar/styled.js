@@ -90,7 +90,7 @@ export const Nav = styled.nav`
       .dashboard {
         color: ${(props) => props.theme.white};
         background: ${(props) => props.theme.altBlue};
-        background-image: ${(props) => props.theme.blueButtonGradient};
+        background-image: ${(props) => props.theme.blueGradient};
         transition: ${(props) => props.theme.transitionBg};
         padding: 0.5rem 1rem;
         border-radius: ${(props) => props.theme.borderRadius};
@@ -103,13 +103,13 @@ export const Nav = styled.nav`
 
       .logout {
         color: ${(props) => props.theme.white};
-        background: ${(props) => props.theme.altPurple};
-        background-image: ${(props) => props.theme.purpleGradient};
+        background: ${(props) => props.theme.altOrange};
+        background-image: ${(props) => props.theme.orangeGradient};
         padding: 0.5rem 1rem;
         border-radius: ${(props) => props.theme.borderRadius};
 
         &:hover {
-          background: ${(props) => props.theme.purple};
+          background: ${(props) => props.theme.orange};
           transition: ${(props) => props.theme.transitionBg};
         }
       }

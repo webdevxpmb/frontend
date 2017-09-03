@@ -14,7 +14,7 @@ export const Dates = styled.div`
       padding: 0.5rem;
       color: ${(props) => props.theme.white};
       background: ${(props) => props.theme.altBlue};
-      background-image: ${(props) => props.theme.blueButtonGradient};
+      background-image: ${(props) => props.theme.blueGradient};
       transition: ${(props) => props.theme.transitionBg};
       border-radius: ${(props) => props.theme.borderRadius};
 
@@ -97,8 +97,8 @@ export const Dates = styled.div`
 
       button {
         font-size: 1rem;
-        background: ${(props) => props.theme.altLightBlue};
-        background-image: ${(props) => props.theme.lightBlueGradient};
+        background: ${(props) => props.theme.altBlue};
+        background-image: ${(props) => props.theme.blueGradient};
         transition: ${(props) => props.theme.transitionBg};
         color: ${(props) => props.theme.white};
         padding: 0.5rem 1rem;
@@ -107,7 +107,7 @@ export const Dates = styled.div`
         box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
 
         &:hover {
-          background: ${(props) => props.theme.lightBlue};
+          background: ${(props) => props.theme.blue};
           transition: ${(props) => props.theme.transitionBg};
         }
 

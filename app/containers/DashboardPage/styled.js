@@ -17,7 +17,7 @@ export const Dashboard = styled.div`
     align-items: center;
     align-content: center;
     background: ${(props) => props.theme.blue};
-    background-image: ${(props) => props.theme.backgroundGradient};
+    background-image: ${(props) => props.theme.blueGradient};
 
     .profileWrapper {
       width: 100%;
@@ -293,7 +293,7 @@ export const Dashboard = styled.div`
             }
 
             .rejected {
-              color: ${(props) => props.theme.purple};
+              color: ${(props) => props.theme.orange};
             }
           }
 
@@ -354,11 +354,11 @@ export const Dashboard = styled.div`
             }
 
             .reject {
-              background: ${(props) => props.theme.altPurple};
-              background-image: ${(props) => props.theme.purpleGradient};
+              background: ${(props) => props.theme.altOrange};
+              background-image: ${(props) => props.theme.orangeGradient};
 
               &:hover {
-                background: ${(props) => props.theme.purple};
+                background: ${(props) => props.theme.orange};
                 transition: ${(props) => props.theme.transitionBg};
               }
             }
@@ -548,7 +548,7 @@ export const Dashboard = styled.div`
           }
 
           &.reject {
-            color: ${(props) => props.theme.altPurple};
+            color: ${(props) => props.theme.altOrange};
           }
         }
       }
@@ -594,11 +594,11 @@ export const Dashboard = styled.div`
         }
 
         .reject {
-          background: ${(props) => props.theme.altPurple};
-          background-image: ${(props) => props.theme.purpleGradient};
+          background: ${(props) => props.theme.altOrange};
+          background-image: ${(props) => props.theme.orangeGradient};
 
           &:hover {
-            background: ${(props) => props.theme.purple};
+            background: ${(props) => props.theme.orange};
             transition: ${(props) => props.theme.transitionBg};
           }
         }
