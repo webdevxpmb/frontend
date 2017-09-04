@@ -110,6 +110,7 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
   }
 
   postKenalan() {
+    const dateTimeRegex = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/;
     const warning = {
       phone_number: '',
       birth_place: '',
@@ -131,6 +132,9 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
 
     if (!this.state.birth_date || this.state.birth_date.length <= 0) {
       warning.birth_date = 'Birth Date cannot be empty';
+      isInvalid = true;
+    } else if (!this.state.birth_date.match(dateTimeRegex)) {
+      warning.birth_date = 'Birth Date Must be in YYYY-MM-DD Format!';
       isInvalid = true;
     }
 
