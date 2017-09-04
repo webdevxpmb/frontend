@@ -106,6 +106,23 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
   getKenalan() {
     if (this.state.inputToken && this.state.inputToken.length === 6) {
       this.props.fetchKenalan(this.state.inputToken);
+      this.setState({
+        ...this.state,
+        inputToken: '',
+        phone_number: '',
+        birth_place: '',
+        birth_date: '',
+        asal_sma: '',
+        story: '',
+        isCanceling: false,
+        warning: {
+          phone_number: '',
+          birth_place: '',
+          birth_date: '',
+          asal_sma: '',
+          story: '',
+        },
+      });
     }
   }
 
@@ -159,23 +176,6 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
       };
 
       this.props.postKenalan(finalData);
-      this.setState({
-        ...this.state,
-        inputToken: '',
-        phone_number: '',
-        birth_place: '',
-        birth_date: '',
-        asal_sma: '',
-        story: '',
-        isCanceling: false,
-        warning: {
-          phone_number: '',
-          birth_place: '',
-          birth_date: '',
-          asal_sma: '',
-          story: '',
-        },
-      });
     } else {
       this.setState({
         ...this.state,
