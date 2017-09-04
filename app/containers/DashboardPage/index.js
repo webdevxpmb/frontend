@@ -272,6 +272,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
   }
 
   resubmitKenalan() {
+    const dateTimeRegex = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/;
     const { friendlist } = this.props.Dashboard;
     const currentDetailKenalan = friendlist[this.state.isFixing].detail_kenalan;
     const currentId = friendlist[this.state.isFixing].id;
@@ -298,6 +299,9 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
 
     if (!this.state.fixingData.birth_date || this.state.fixingData.birth_date.length <= 0) {
       warning.birth_date = 'Birth Date cannot be empty';
+      isInvalid = true;
+    } else if (!this.state.fixingData.birth_date.match(dateTimeRegex)) {
+      warning.birth_date = 'Birth Date Must be in YYYY-MM-DD Format!';
       isInvalid = true;
     }
 
