@@ -12,11 +12,11 @@ export function serverTime() {
 }
 
 export function getUserProfile(params) {
-  return request.get(`${API_PREFIX}/user-profile/${params}`);
+  return request.get(`${API_PREFIX}/user-profile/${params}/`);
 }
 
 export function setUserProfile(params, data) {
-  return request.put(`${API_PREFIX}/user-profile/${params}`).send(data);
+  return request.put(`${API_PREFIX}/user-profile/${params}/`).send(data);
 }
 
 export function getTasks() {
@@ -48,7 +48,7 @@ export function getAnnouncements() {
 }
 
 export function getAnnouncementContent(params) {
-  return request.get(`${API_PREFIX}/announcement/${params}`);
+  return request.get(`${API_PREFIX}/announcement/${params}/`);
 }
 
 export function generateToken() {
@@ -60,7 +60,7 @@ export function getKenalan() {
 }
 
 export function putKenalan(params, data) {
-  return request.put(`${API_PREFIX}/kenalan/${params}`).send(data);
+  return request.put(`${API_PREFIX}/kenalan/${params}/`).send(data);
 }
 
 export function createKenalan(data) {
@@ -68,7 +68,7 @@ export function createKenalan(data) {
 }
 
 export function putDetailKenalan(params, data) {
-  return request.put(`${API_PREFIX}/detail-kenalan/${params}`).send(data);
+  return request.put(`${API_PREFIX}/detail-kenalan/${params}/`).send(data);
 }
 
 export function getElementWords() {
