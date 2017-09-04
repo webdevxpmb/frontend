@@ -175,7 +175,7 @@ class TaskItem extends React.Component { // eslint-disable-line react/prefer-sta
                     pending={(this.props.statistic.amount_omega / this.props.task.expected_amount_omega) * 100}
                   >
                     <div className="info">
-                      <h3>Progress Omega: <span>{Math.floor((this.props.statistic.amount_approved_omega / this.props.task.expected_amount_omega) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_omega} Approved / {this.props.statistic.amount_omega} Pending / {this.props.task.expected_amount_omega} Required)</span></h3>
+                      <h3>Progress Omega: <span>{Math.floor((this.props.statistic.amount_approved_omega / this.props.task.expected_amount_omega) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_omega} Approved / {this.props.statistic.amount_omega} Total / {this.props.task.expected_amount_omega} Required)</span></h3>
                     </div>
                     <div className="max">
                       <div className="pending" />
@@ -189,7 +189,7 @@ class TaskItem extends React.Component { // eslint-disable-line react/prefer-sta
                     pending={(this.props.statistic.amount_capung / this.props.task.expected_amount_capung) * 100}
                   >
                     <div className="info">
-                      <h3>Progress Capung: <span>{Math.floor((this.props.statistic.amount_approved_capung / this.props.task.expected_amount_capung) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_capung} Approved / {this.props.statistic.amount_capung} Pending / {this.props.task.expected_amount_capung} Required)</span></h3>
+                      <h3>Progress Capung: <span>{Math.floor((this.props.statistic.amount_approved_capung / this.props.task.expected_amount_capung) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_capung} Approved / {this.props.statistic.amount_capung} Total / {this.props.task.expected_amount_capung} Required)</span></h3>
                     </div>
                     <div className="max">
                       <div className="pending" />
@@ -203,7 +203,7 @@ class TaskItem extends React.Component { // eslint-disable-line react/prefer-sta
                     pending={(this.props.statistic.amount_orion / this.props.task.expected_amount_orion) * 100}
                   >
                     <div className="info">
-                      <h3>Progress Orion: <span>{Math.floor((this.props.statistic.amount_approved_orion / this.props.task.expected_amount_orion) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_orion} Approved / {this.props.statistic.amount_orion} Pending / {this.props.task.expected_amount_orion} Required)</span></h3>
+                      <h3>Progress Orion: <span>{Math.floor((this.props.statistic.amount_approved_orion / this.props.task.expected_amount_orion) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_orion} Approved / {this.props.statistic.amount_orion} Total / {this.props.task.expected_amount_orion} Required)</span></h3>
                     </div>
                     <div className="max">
                       <div className="pending" />
@@ -217,7 +217,7 @@ class TaskItem extends React.Component { // eslint-disable-line react/prefer-sta
                     pending={(this.props.statistic.amount_alumni / this.props.task.expected_amount_alumni) * 100}
                   >
                     <div className="info">
-                      <h3>Progress 2013 --: <span>{Math.floor((this.props.statistic.amount_approved_alumni / this.props.task.expected_amount_alumni) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_alumni} Approved / {this.props.statistic.amount_alumni} Pending / {this.props.task.expected_amount_alumni} Required)</span></h3>
+                      <h3>Progress 2013 --: <span>{Math.floor((this.props.statistic.amount_approved_alumni / this.props.task.expected_amount_alumni) * 100)}%</span> <span className="detail">({this.props.statistic.amount_approved_alumni} Approved / {this.props.statistic.amount_alumni} Total / {this.props.task.expected_amount_alumni} Required)</span></h3>
                     </div>
                     <div className="max">
                       <div className="pending" />
