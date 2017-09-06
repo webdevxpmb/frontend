@@ -11,6 +11,7 @@ import SectionHeading from 'components/SectionHeading';
 import ContactPmb from 'components/ContactPmb';
 import Faq from 'components/Faq';
 import Bantuan from './styled';
+import Panitia from 'components/Structure';
 
 export class BantuanPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -31,6 +32,7 @@ export class BantuanPage extends React.PureComponent { // eslint-disable-line re
             Frequently Answered Questions (FAQs)
           </SectionHeading>
           <Faq />
+          <Panitia />
         </div>
       </Bantuan>
     );
