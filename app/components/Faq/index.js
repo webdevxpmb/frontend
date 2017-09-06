@@ -5,7 +5,6 @@
 */
 
 import React from 'react';
-import Card from 'components/Card';
 import FAQ from './style';
 import listQa from './listQA';
 
