@@ -1,23 +1,31 @@
 import styled from 'styled-components';
 
 const FAQ = styled.div`
-  padding: 2rem;
-  color: ${(props) => props.theme.tosca};
+  width: 100%;
   h1,h2,h3,h4,h5,h6 {
     font-family: "Montserrat";
     font-weight: bold;
   }
 
   .qa-item {
+    margin: 1rem 0;
 
-    p{
-      width: 100%
-      word-wrap: break-word;
+    .qa-li {
+      width: 100%;
+      display: flex;
+      padding: 1rem;
+      margin: 1rem 0;
+
+      p { word-wrap: break-word; }
+      .prefix {
+        color: ${(props) => props.theme.tosca};
+        margin-right: 0.5em;
+        font-weight: bold;
+      }
     }
-    .qa-li { display: flex; }
-    .prefix {
-      color: ${(props) => props.theme.cyan};
-      margin-right: 0.5em;
+
+    .answer {
+      margin-left: 2rem;
     }
   }
 

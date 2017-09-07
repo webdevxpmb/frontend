@@ -5,6 +5,7 @@
 */
 
 import React from 'react';
+import Card from 'components/Card';
 import FAQ from './style';
 import listQa from './listQA';
 
@@ -26,16 +27,22 @@ class QA extends React.Component {
 
   render() {
     const answer = (
-      <div className="qa-li">
-        <span className="prefix">A:</span><p dangerouslySetInnerHTML={{ __html: this.props.answer }} />
+      <div className="answer">
+        <Card>
+          <div className="qa-li">
+            <span className="prefix">A:</span><p dangerouslySetInnerHTML={{ __html: this.props.answer }} />
+          </div>
+        </Card>
       </div>
     );
 
     return (
       <div className="qa-item">
-        <button className="qa-li" onClick={() => this.toggleAnswer(this.state.toggle)}>
-          <span className="prefix">Q:</span><p dangerouslySetInnerHTML={{ __html: this.props.question }} />
-        </button>
+        <Card>
+          <button className="qa-li" onClick={() => this.toggleAnswer(this.state.toggle)}>
+            <span className="prefix">Q:</span><p dangerouslySetInnerHTML={{ __html: this.props.question }} />
+          </button>
+        </Card>
         {
           this.state.toggle && answer
         }
