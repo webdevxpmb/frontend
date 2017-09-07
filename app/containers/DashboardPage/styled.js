@@ -206,10 +206,29 @@ export const Dashboard = styled.div`
         .searchBox {
           width: 100%;
           margin-top: 0.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-items: center;
+          align-content: center;
 
           input {
-            width: 100%;
+            flex: 1;
             padding: 1rem 2rem;
+            background: ${(props) => props.theme.white};
+            border-radius: ${(props) => props.theme.borderRadius};
+            box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
+          }
+
+          span {
+            margin: 0 1rem;
+            color: ${(props) => props.theme.white};
+          }
+
+          select {
+            width: 10rem;
+            padding: 1rem 2rem;
+            color: ${(props) => props.theme.darkGray};
             background: ${(props) => props.theme.white};
             border-radius: ${(props) => props.theme.borderRadius};
             box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
@@ -236,6 +255,7 @@ export const Dashboard = styled.div`
           font-size: 2rem;
           margin-bottom: 0.5rem;
           color: ${(props) => props.theme.black};
+          text-transform: capitalize;
         }
 
         .importants,
@@ -272,6 +292,10 @@ export const Dashboard = styled.div`
             font-size: 0.95rem;
             color: ${(props) => props.theme.lightGray};
             margin-bottom: 0.5rem;
+
+            &.notes {
+              margin: 1rem 0 0;
+            }
           }
 
           h3 {
@@ -362,6 +386,36 @@ export const Dashboard = styled.div`
                 transition: ${(props) => props.theme.transitionBg};
               }
             }
+          }
+        }
+      }
+
+      .bottomPagination {
+        margin-top: 2rem;
+        .pagination {
+          color: ${(props) => props.theme.darkGray};
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+
+          button {
+            opacity: 0.75;
+
+            &:hover,
+            &:focus,
+            &:disabled {
+              opacity: 1;
+            }
+
+            &:disabled {
+              font-weight: 700;
+            }
+          }
+
+          .central {
+            margin: 0 0.5rem;
           }
         }
       }
@@ -553,6 +607,16 @@ export const Dashboard = styled.div`
         }
       }
 
+      input {
+        width: 100%;
+        margin: 1rem 0;
+        padding: 0.5rem 2rem;
+        border-radius: 2rem;
+        color: ${(props) => props.theme.darkGray};
+        background: ${(props) => props.theme.white};
+        box-shadow: ${(props) => props.theme.shadowConfig} ${(props) => props.theme.shadowColor};
+      }
+
       .actions {
         margin: 1rem 0 0;
         display: flex;
@@ -703,11 +767,30 @@ export const Dashboard = styled.div`
             color: ${(props) => props.theme.darkGray};
           }
 
-          .searchBox {
-            input {
-              background: ${(props) => props.theme.white};
-            }
+        .searchBox {
+          width: 100%;
+          margin-top: 0.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-items: center;
+          align-content: center;
+
+          input {
+            flex: none;
+            width: 100%;
           }
+
+          span {
+            margin: 1rem 2rem;
+            color: ${(props) => props.theme.darkGray};
+          }
+
+          select {
+            width: 100%;
+            padding: 1rem 2rem;
+          }
+        }
 
           h1 {
             font-size: 1.25rem;

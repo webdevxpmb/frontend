@@ -20,3 +20,4 @@ export const CHANGE_FRIEND_STATUS_FAILED = 'app/DashboardPage/CHANGE_FRIEND_STAT
 export const CHANGE_DETAIL_KENALAN = 'app/DashboardPage/CHANGE_DETAIL_KENALAN';
 export const CHANGE_DETAIL_KENALAN_SUCCESS = 'app/DashboardPage/CHANGE_DETAIL_KENALAN_SUCCESS';
 export const CHANGE_DETAIL_KENALAN_FAILED = 'app/DashboardPage/CHANGE_DETAIL_KENALAN_FAILED';
+export const CHANGE_SORT = 'app/DashboardPage/CHANGE_SORT';

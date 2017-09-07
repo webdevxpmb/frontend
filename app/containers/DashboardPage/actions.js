@@ -21,6 +21,7 @@ import {
   CHANGE_DETAIL_KENALAN,
   CHANGE_DETAIL_KENALAN_SUCCESS,
   CHANGE_DETAIL_KENALAN_FAILED,
+  CHANGE_SORT,
 } from './constants';
 
 export function changePage(page) {
@@ -138,5 +139,13 @@ export function changeDetailKenalanFailed(err) {
   return {
     type: CHANGE_DETAIL_KENALAN_FAILED,
     err,
+  };
+}
+
+export function changeSort(sort, isMaba) {
+  return {
+    type: CHANGE_SORT,
+    sort,
+    isMaba,
   };
 }

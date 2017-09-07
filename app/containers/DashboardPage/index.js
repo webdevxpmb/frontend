@@ -26,6 +26,7 @@ import {
   fetchFriendlist,
   changeFriendStatus,
   changeDetailKenalan,
+  changeSort,
 } from './actions';
 
 import makeSelectDashboardPage from './selectors';
@@ -64,6 +65,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
         },
       },
       isChangingStatus: '',
+      rejectReason: '',
       changeStatusContext: {
         id: '',
         index: '',
@@ -257,12 +259,13 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
   }
 
   reject(id, index) {
-    this.props.changeFriendStatus(id, { status: 3 }, index);
+    this.props.changeFriendStatus(id, { status: 3, notes: this.state.rejectReason }, index);
 
     if (this.state.isChangingStatus) {
       this.setState({
         ...this.state,
         isChangingStatus: '',
+        rejectReason: '',
         changeStatusContext: {
           id: '',
           index: '',
@@ -526,7 +529,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
               <div className="friendCard" key={`dashboard-friend-${index}`}>
                 <Card>
                   <div className="friend">
-                    <h1>{currentUserProfile.name}</h1>
+                    <h1>{currentUserProfile.name.toLowerCase()}</h1>
                     <div className="importants">
                       <span><span className="icon-email" />{currentUserProfile.email}</span>
                       {
@@ -628,7 +631,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
             <div className="friendCard" key={`dashboard-friend-${index}`}>
               <Card>
                 <div className="friend">
-                  <h1>{currentUserProfile.name}</h1>
+                  <h1>{currentUserProfile.name.toLowerCase()}</h1>
                   <div className="importants">
                     <span><span className="icon-email" />{currentUserProfile.email}</span>
                     {
@@ -684,6 +687,14 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
                     <h4><span>Born in </span>{value.detail_kenalan.birth_place}, {value.detail_kenalan.birth_date}</h4>
                     <h4><span>Alumnus of </span>{value.detail_kenalan.asal_sma}</h4>
                     <h5>{value.detail_kenalan.story}</h5>
+                    {
+                      isMaba &&
+                      value.status.status === 'rejected' &&
+                      value.notes &&
+                      <h6 className="notes">
+                        Notes: {value.notes}
+                      </h6>
+                    }
                     {detailKenalanAction}
                   </div>
                 </div>
@@ -790,7 +801,16 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
       return (
         <div className="statusConfirmOverlay">
           <div className="confirmBox">
-            <h1>You are sure going to <span className={this.state.isChangingStatus}>{this.state.isChangingStatus}</span> this request?</h1>
+            <h1>Are you sure you want to <span className={this.state.isChangingStatus}>{this.state.isChangingStatus}</span> this request?</h1>
+            {
+              this.state.isChangingStatus === 'reject' &&
+              <input
+                className="rejectInput"
+                placeholder="What is your reason to reject?"
+                value={this.state.rejectReason}
+                onChange={(evt) => this.onChange(evt.target.value, 'rejectReason')}
+              />
+            }
             <div className="actions">
               <button className="edit" onClick={this.cancelConfirmChangeStatus}><span className="icon-left" />No</button>
               {
@@ -812,6 +832,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
 
   render() {
     const { userProfile } = this.props.Dashboard;
+    const isMaba = !isEmpty(this.props.Global.user) ? this.props.Global.user.role === 'mahasiswa baru' : false;
 
     const pagination = this.renderPagination();
     const friendlistRender = this.renderFriendlist();
@@ -960,9 +981,21 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
                   placeholder="Search here, type any name"
                   onChange={(evt) => this.onSearch(evt.target.value)}
                 />
+                <span>Sort By</span>
+                <select
+                  value={this.props.Dashboard.currentSort}
+                  onChange={(evt) => this.props.changeSort(evt.target.value, isMaba)}
+                >
+                  <option value="status">Status</option>
+                  <option value="new">Newest</option>
+                  <option value="alpha">Alphabetical</option>
+                </select>
               </div>
             </div>
             {friendlistRender}
+            <div className="bottomPagination">
+              {pagination}
+            </div>
             {resubmitFormRender}
             {changeStatusConfirmationRender}
           </div>
@@ -982,6 +1015,7 @@ DashboardPage.propTypes = {
   fetchFriendlist: PropTypes.func.isRequired,
   changeFriendStatus: PropTypes.func.isRequired,
   changeDetailKenalan: PropTypes.func.isRequired,
+  changeSort: PropTypes.func.isRequired,
   Dashboard: PropTypes.object,
   Global: PropTypes.object,
 };
@@ -999,6 +1033,7 @@ function mapDispatchToProps(dispatch) {
     fetchFriendlist: () => dispatch(fetchFriendlist()),
     changeFriendStatus: (params, data, index) => dispatch(changeFriendStatus(params, data, index)),
     changeDetailKenalan: (params, data, paramsTwo, dataTwo, index) => dispatch(changeDetailKenalan(params, data, paramsTwo, dataTwo, index)),
+    changeSort: (sort, isMaba) => dispatch(changeSort(sort, isMaba)),
   };
 }
 
