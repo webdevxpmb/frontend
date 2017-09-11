@@ -16,7 +16,7 @@ function Structure(props) {
   return (
     <div>
       <h3 className="text-center">{props.position}</h3>
-      <img className="rounded-image" src={props.images} alt="Foto Panitia PMB"/>
+      <img className="rounded-image" src={props.images} alt="Foto Panitia PMB" />
       <h4 className="text-center">{props.name}</h4>
     </div>
   );
@@ -28,7 +28,7 @@ function Panitia() {
       <div className="kp-wkp">
         {
              listStructure.kpWkp.map((item) => (
-              <Structure images={item.images} name={item.name} position={item.position} styleName={item.styleName} />
+               <Structure images={item.images} name={item.name} position={item.position} styleName={item.styleName} />
              ))
         }
       </div>
