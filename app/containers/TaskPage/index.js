@@ -93,7 +93,7 @@ export class TaskPage extends React.Component { // eslint-disable-line react/pre
         }
 
         return (
-          <TaskItem key={`pmb-task-${index}`} task={value} user={this.props.Global.user} />
+          <TaskItem key={`pmb-task-${index}`} task={value} submit={this.props.submit} user={this.props.Global.user} />
         );
       });
 
@@ -126,7 +126,7 @@ export class TaskPage extends React.Component { // eslint-disable-line react/pre
         }
 
         return (
-          <TaskItem overdue key={`pmb-task-${index}`} task={value} user={this.props.Global.user} />
+          <TaskItem overdue key={`pmb-task-${index}`} task={value} submit={this.props.submit} user={this.props.Global.user} />
         );
       });
     }
