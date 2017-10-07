@@ -10,6 +10,7 @@ import {
   FETCH_KENALAN_SUCCESS,
   POST_KENALAN_SUCCESS,
   DELETE_KENALAN,
+  FETCH_KENALAN_NON_SSO_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -27,6 +28,9 @@ function tokenModuleReducer(state = initialState, action) {
       return state.set('kenalan', action.detailKenalan);
     case DELETE_KENALAN:
       return state.set('kenalan', fromJS({}));
+    case FETCH_KENALAN_NON_SSO_SUCCESS:
+      console.log('masuk 3', action);
+      return state.set('kenalan', action.kenalan);
     default:
       return state;
   }
