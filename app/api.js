@@ -82,3 +82,7 @@ export function postElementWords(data) {
 export function getUserStatistic() {
   return request.get(`${API_PREFIX}/user-statistic/`);
 }
+
+export function createKenalanNonSSO() {
+  return request.get(`${API_PREFIX}/create-kenalan-non-sso/`);
+}

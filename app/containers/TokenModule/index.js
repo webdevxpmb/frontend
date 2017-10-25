@@ -20,6 +20,7 @@ import {
   fetchKenalan,
   postKenalan,
   deleteKenalan,
+  fetchKenalanNonSSO,
 } from './actions';
 
 import {
@@ -37,17 +38,24 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
       difference: -1,
       inputToken: '',
       phone_number: '',
+      name: '',
       birth_place: '',
       birth_date: '',
       asal_sma: '',
       story: '',
+      angkatan: '',
+      link_photo: '',
       isCanceling: false,
+      isKenalanNonSSO: false,
       warning: {
+        name: '',
         phone_number: '',
         birth_place: '',
         birth_date: '',
         asal_sma: '',
         story: '',
+        angkatan: '',
+        link_photo: '',
       },
     };
 
@@ -57,6 +65,7 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
     this.postKenalan = this.postKenalan.bind(this);
     this.cancelKenalan = this.cancelKenalan.bind(this);
     this.cancelCancelKenalan = this.cancelCancelKenalan.bind(this);
+    this.getKenalanNonSSO = this.getKenalanNonSSO.bind(this);
   }
 
   componentDidMount() {
@@ -103,6 +112,32 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
     this.setState({ ...newState });
   }
 
+
+  getKenalanNonSSO() {
+    this.props.fetchKenalanNonSSO();
+    this.setState({
+      ...this.state,
+      inputToken: '',
+      phone_number: '',
+      birth_place: '',
+      birth_date: '',
+      asal_sma: '',
+      story: '',
+      isCanceling: false,
+      isKenalanNonSSO: true,
+      warning: {
+        name: '',
+        phone_number: '',
+        birth_place: '',
+        birth_date: '',
+        asal_sma: '',
+        story: '',
+        angkatan: '',
+        link_photo: '',
+      },
+    });
+  }
+
   getKenalan() {
     if (this.state.inputToken && this.state.inputToken.length === 6) {
       this.props.fetchKenalan(this.state.inputToken);
@@ -116,11 +151,14 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
         story: '',
         isCanceling: false,
         warning: {
+          name: '',
           phone_number: '',
           birth_place: '',
           birth_date: '',
           asal_sma: '',
           story: '',
+          angkatan: '',
+          link_photo: '',
         },
       });
     }
@@ -129,13 +167,21 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
   postKenalan() {
     const dateTimeRegex = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/;
     const warning = {
+      name: '',
       phone_number: '',
       birth_place: '',
       birth_date: '',
       asal_sma: '',
       story: '',
+      angkatan: '',
+      link_photo: '',
     };
     let isInvalid = false;
+
+    if ((!this.state.name || this.state.name.length < 1) && this.state.isKenalanNonSSO) {
+      warning.name = 'Name cannot be empty';
+      isInvalid = true;
+    }
 
     if (!this.state.phone_number || this.state.phone_number.length < 6 || isNaN(this.state.phone_number)) {
       warning.phone_number = 'Phone Number cannot be less than 6 character and must be a number';
@@ -165,8 +211,23 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
       isInvalid = true;
     }
 
+    if (!this.state.story || this.state.story.length <= 0) {
+      warning.story = 'Unique Story cannot be empty';
+      isInvalid = true;
+    }
+
+    if ((!this.state.link_photo || this.state.link_photo.length <= 0) && this.state.isKenalanNonSSO) {
+      warning.link_photo = 'Link Photo cannot be empty';
+      isInvalid = true;
+    }
+
+    if ((!this.state.angkatan || this.state.angkatan.length <= 0) && this.state.isKenalanNonSSO) {
+      warning.angkatan = 'Angkatan cannot be empty';
+      isInvalid = true;
+    }
+
     if (!isInvalid) {
-      const finalData = {
+      let finalData = {
         ...this.props.TokenModule.kenalan.detail_kenalan,
         phone_number: this.state.phone_number,
         birth_place: this.state.birth_place,
@@ -174,6 +235,15 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
         asal_sma: this.state.asal_sma,
         story: this.state.story,
       };
+
+      if (this.state.isKenalanNonSSO) {
+        finalData = {
+          ...finalData,
+          name: this.state.name,
+          angkatan: this.state.angkatan,
+          link_photo: this.state.link_photo,
+        };
+      }
 
       this.props.postKenalan(finalData);
     } else {
@@ -227,22 +297,60 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
     const currentlyKenalan = isMaba ? !isEmpty(this.props.TokenModule.kenalan) && !isEmpty(this.props.TokenModule.kenalan.detail_kenalan) : false;
     const successfullyKenalan = isMaba ? !isEmpty(this.props.TokenModule.kenalan) && isEmpty(this.props.TokenModule.kenalan.detail_kenalan) : false;
     const currentToken = !isMaba && !isEmpty(this.props.TokenModule.token) ? this.props.TokenModule.token.token : '-';
-
+    const isKenalanNonSSO = isEmpty(this.props.TokenModule.kenalan.user_elemen);
     let kenalanFormRender = null;
     let successRender = null;
 
+
     if (currentlyKenalan) {
+      let kenalanInputName = (
+        <input
+          value={this.props.TokenModule.kenalan.detail_kenalan.name}
+          type="text"
+          placeholder="Name"
+          disabled/>
+      );
+
+      let angkatanInputRender = null;
+      let linkPhotoInputRender = null;
+      if (isKenalanNonSSO) {
+        kenalanInputName = (
+          <input
+            value={this.state.name}
+            type="text"
+            placeholder="Name"
+            onChange={(evt) => this.onInputChange('name', evt.target.value)}
+          />
+        );
+
+        angkatanInputRender = (
+          <input
+            value={this.state.angkatan}
+            type="text"
+            placeholder="Angkatan"
+            onChange={(evt) => this.onInputChange('angkatan', evt.target.value)}
+          />
+        );
+
+        linkPhotoInputRender = (
+          <input
+            value={this.state.link_photo}
+            type="text"
+            placeholder="Link Photo"
+            onChange={(evt) => this.onInputChange('link_photo', evt.target.value)}
+          />
+        )
+      }
       kenalanFormRender = (
         <div className="kenalanOverlay">
           <div className="container">
             <h1>Get to know your new friend more, fill these informations about your new friend and hit submit when you are done</h1>
             <div className="inputForm">
-              <input
-                value={this.props.TokenModule.kenalan.detail_kenalan.name}
-                type="text"
-                placeholder="Name"
-                disabled
-              />
+              {kenalanInputName}
+              {
+                this.state.warning.name &&
+                <h2>{this.state.warning.name}</h2>
+              }
               <input
                 value={this.state.phone_number}
                 type="tel"
@@ -273,6 +381,11 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
                 this.state.warning.birth_date &&
                 <h2>{this.state.warning.birth_date}</h2>
               }
+              {angkatanInputRender}
+              {
+                this.state.warning.angkatan &&
+                <h2>{this.state.warning.angkatan}</h2>
+              }
               <input
                 value={this.state.asal_sma}
                 type="text"
@@ -291,6 +404,11 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
               {
                 this.state.warning.story &&
                 <h2>{this.state.warning.story}</h2>
+              }
+              {linkPhotoInputRender}
+              {
+                this.state.warning.link_photo &&
+                <h2>{this.state.warning.link_photo}</h2>
               }
             </div>
             <button className="submit" onClick={this.postKenalan}><span className="icon-send" />Go</button>
@@ -326,6 +444,9 @@ export class TokenModule extends React.Component { // eslint-disable-line react/
             <div className="form">
               <input value={this.state.inputToken} onChange={(evt) => this.onInputChange('inputToken', evt.target.value)} className="input" type="number" placeholder="Token elemen" />
               <button onClick={this.getKenalan}><span className="icon-send" />Go</button>
+            </div>
+            <div className="non-sso">
+              <h6> Your friend doesn't have SSO? Please fill this form  <button onClick={this.getKenalanNonSSO}><span className="icon-send" />  Go</button></h6>
             </div>
           </div>
           {kenalanFormRender}
@@ -372,6 +493,7 @@ TokenModule.propTypes = {
   user: PropTypes.object,
   TokenModule: PropTypes.object,
   Global: PropTypes.object,
+  fetchKenalanNonSSO: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -385,6 +507,7 @@ function mapDispatchToProps(dispatch) {
     fetchKenalan: (token) => dispatch(fetchKenalan(token)),
     postKenalan: (detailKenalan) => dispatch(postKenalan(detailKenalan)),
     deleteKenalan: () => dispatch(deleteKenalan()),
+    fetchKenalanNonSSO: () => dispatch(fetchKenalanNonSSO()),
   };
 }
 
