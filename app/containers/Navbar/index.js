@@ -50,7 +50,7 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
               <button onClick={() => this.props.push('/announcement')} className="link">Announcement</button>
               <button onClick={() => this.props.push('/task')} className="link">Task</button>
               <button onClick={() => this.props.push('/event')} className="link">Event</button>
-              <button onClick={() => this.props.push('/help')} className="link">Help</button>
+              {/* <button onClick={() => this.props.push('/help')} className="link">Help</button> */}
               <button onClick={() => this.props.push('/about')} className="link">About</button>
               <button onClick={() => this.props.push('/dashboard')} className="dashboard">Dashboard</button>
               <button onClick={this.props.logout} className="logout">Logout</button>
