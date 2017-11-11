@@ -4,16 +4,14 @@
  *
  */
 
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import SectionHeading from 'components/SectionHeading';
 import ContactPmb from 'components/ContactPmb';
 import Faq from 'components/Faq';
 import Bantuan from './styled';
-import Panitia from 'components/Structure';
 
-export class BantuanPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class BantuanPage extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <Bantuan>
@@ -32,21 +30,10 @@ export class BantuanPage extends React.PureComponent { // eslint-disable-line re
             Frequently Answered Questions (FAQs)
           </SectionHeading>
           <Faq />
-          <Panitia />
         </div>
       </Bantuan>
     );
   }
 }
 
-BantuanPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-export default connect(null, mapDispatchToProps)(BantuanPage);
+export default BantuanPage;

@@ -1,8 +1,8 @@
-const listStructure = {
+const data = {
   kpWkp:
   [
     {
-      name: 'Farid Wadji',
+      name: 'Farid Wajdi',
       images: 'https://preview.ibb.co/m4Ny8a/kp.png',
       position: 'Ketua Pelaksana',
     },
@@ -15,7 +15,7 @@ const listStructure = {
   sekreBendahara:
   [
     {
-      name: 'Rizkah Shaliah',
+      name: 'Rizkah Shalihah',
       images: 'https://preview.ibb.co/gFJuWv/sekretaris1.png',
       position: 'Sekretaris 1',
     },
@@ -68,7 +68,7 @@ const listStructure = {
       position: 'PJ Medis',
     },
     {
-      name: 'Aji Imawan',
+      name: 'Aji Imawan Omi',
       images: 'https://preview.ibb.co/i1gWBv/pj_mentor.png',
       position: 'PJ Mentor',
     },
@@ -85,5 +85,4 @@ const listStructure = {
   ],
 };
 
-
-export default listStructure;
+export default data;

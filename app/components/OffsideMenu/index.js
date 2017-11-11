@@ -43,9 +43,8 @@ class OffsideMenu extends React.Component { // eslint-disable-line react/prefer-
           <button onClick={() => this.goTo('/announcement')} className="link"><span className="icon-announcement" />Announcement</button>
           <button onClick={() => this.goTo('/task')} className="link"><span className="icon-task" />Task</button>
           <button onClick={() => this.goTo('/event')} className="link"><span className="icon-event" />Event</button>
-          {
-            // <button onClick={() => this.goTo('/help')} className="link"><span className="icon-help" />Help</button>
-          }
+          <button onClick={() => this.goTo('/help')} className="link"><span className="icon-help" />Help</button>
+          <button onClick={() => this.goTo('/about')} className="link"><span className="icon-help" />About</button>
           <button onClick={() => this.goTo('/dashboard')} className="link"><span className="icon-dashboard" />Dashboard</button>
           <button onClick={this.props.logout} className="link"><span className="icon-close" />Logout</button>
           <button onClick={this.props.toggleOffside} className="close">

@@ -5,19 +5,18 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
-
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
-import listStructure from './listStructure';
+import Card from 'components/Card';
+import data from './data';
 import Style from './style';
 
 function Structure(props) {
   return (
-    <div>
-      <h3 className="text-center">{props.position}</h3>
+    <div className="structure-list">
+      <Card>
+        <h3 className="text-center">{props.position}</h3>
+      </Card>
       <img className="rounded-image" src={props.images} alt="Foto Panitia PMB" />
-      <h4 className="text-center">{props.name}</h4>
+      <h4 className="text-center name">{props.name}</h4>
     </div>
   );
 }
@@ -27,21 +26,21 @@ function Panitia() {
     <Style>
       <div className="kp-wkp">
         {
-             listStructure.kpWkp.map((item) => (
+             data.kpWkp.map((item) => (
                <Structure images={item.images} name={item.name} position={item.position} styleName={item.styleName} />
              ))
         }
       </div>
       <div className="sekre-benda">
         {
-          listStructure.sekreBendahara.map((item) => (
+          data.sekreBendahara.map((item) => (
             <Structure images={item.images} name={item.name} position={item.position} styleName={item.styleName} />
           ))
         }
       </div>
       <div className="pj">
         {
-          listStructure.pj.map((item) => (
+          data.pj.map((item) => (
             <Structure images={item.images} name={item.name} position={item.position} styleName={item.styleName} />
           ))
         }
