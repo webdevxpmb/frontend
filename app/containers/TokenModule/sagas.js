@@ -11,6 +11,7 @@ import {
   generateToken,
   createKenalan,
   putDetailKenalan,
+  createKenalanNonSSO,
 } from 'api';
 
 import {
@@ -27,6 +28,9 @@ import {
   POST_KENALAN,
   POST_KENALAN_SUCCESS,
   POST_KENALAN_FAILED,
+  FETCH_KENALAN_NON_SSO,
+  FETCH_KENALAN_NON_SSO_SUCCESS,
+  FETCH_KENALAN_NON_SSO_FAILED,
 } from './constants';
 
 export function* fetchToken() {
@@ -98,6 +102,9 @@ export function* postKenalan(detailKenalan) {
       birth_date: detailKenalan.birth_date,
       asal_sma: detailKenalan.asal_sma,
       story: detailKenalan.story,
+      name: detailKenalan.name,
+      angkatan: detailKenalan.angkatan,
+      link_photo: detailKenalan.link_photo,
     };
 
     const detailKenalanRequest = yield call(putDetailKenalan, detailKenalan.id, detailKenalanData);
@@ -125,15 +132,47 @@ export function* postKenalanFlow() {
   }
 }
 
+export function* fetchKenalanNonSSOFlow() {
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const request = yield take(FETCH_KENALAN_NON_SSO);
+
+    yield call(fetchKenalanNonSSO);
+  }
+}
+
+export function* fetchKenalanNonSSO() {
+  console.log('masuk 4');
+  yield put({ type: SENDING_REQUEST, sending: true });
+
+  try {
+    const kenalan = yield call(createKenalanNonSSO);
+
+    yield put({ type: FETCH_KENALAN_NON_SSO_SUCCESS, kenalan: kenalan.body });
+
+    return true;
+  } catch (error) {
+    yield put({ type: FETCH_KENALAN_NON_SSO_FAILED });
+
+    return false;
+  } finally {
+    // When done, we tell Redux we're not in the middle of a request any more
+    yield put({ type: SENDING_REQUEST, sending: false });
+  }
+}
+
 export function* rootSaga() {
   const fetchTokenSaga = yield fork(fetchTokenFlow);
   const fetchKenalanSaga = yield fork(fetchKenalanFlow);
   const postKenalanSaga = yield fork(postKenalanFlow);
+  const fetchKenalanNonSSOSaga = yield fork(fetchKenalanNonSSOFlow);
 
   yield take(LOCATION_CHANGE);
   yield cancel(fetchTokenSaga);
   yield cancel(fetchKenalanSaga);
   yield cancel(postKenalanSaga);
+  yield cancel(fetchKenalanNonSSOSaga);
+
 }
 
 export default [rootSaga];

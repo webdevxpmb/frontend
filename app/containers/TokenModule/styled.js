@@ -176,6 +176,20 @@ export const TokenForm = styled.div`
       margin-bottom: 2rem;
       text-align: center;
     }
+    
+    h6 {
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    
+    .non-sso button {
+      &:hover {
+        color: #2d587c;
+      }
+      
+      border-bottom: 1px solid;
+    }
 
     .form {
       display: flex;

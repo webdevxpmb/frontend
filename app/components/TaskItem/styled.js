@@ -92,7 +92,7 @@ export const Task = styled.div`
               return props.theme.darkBlue;
             }
             if (!props.isValid && !props.isEmpty) {
-              return props.theme.red;
+              return props.theme.yellow;
             }
 
             return props.theme.white;

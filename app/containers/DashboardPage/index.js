@@ -50,18 +50,25 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
       birth_place: '',
       birth_date: '',
       isFixing: -1,
+      isKenalanNonSSO: false,
       fixingData: {
         phone_number: '',
         birth_place: '',
         birth_date: '',
         asal_sma: '',
         story: '',
+        angkatan: '',
+        name: '',
+        link_photo: '',
         warning: {
           phone_number: '',
           birth_place: '',
           birth_date: '',
           asal_sma: '',
           story: '',
+          name: '',
+          angkatan: '',
+          link_photo: '',
         },
       },
       isChangingStatus: '',
@@ -195,10 +202,11 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
   onOpenResubmitForm(index) {
     const { friendlist } = this.props.Dashboard;
     const currentDetailKenalan = friendlist[index].detail_kenalan;
-
+    const boolKenalanNonSSO = !isEmpty(currentDetailKenalan.angkatan);
     this.setState({
       ...this.state,
       isFixing: index,
+      isKenalanNonSSO: boolKenalanNonSSO,
       fixingData: {
         ...this.state.fixingData,
         phone_number: currentDetailKenalan.phone_number,
@@ -206,6 +214,9 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
         birth_date: currentDetailKenalan.birth_date,
         asal_sma: currentDetailKenalan.asal_sma,
         story: currentDetailKenalan.story,
+        name: currentDetailKenalan.name,
+        angkatan: currentDetailKenalan.angkatan,
+        link_photo: currentDetailKenalan.link_photo,
       },
     });
   }
@@ -286,9 +297,17 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
       birth_date: '',
       asal_sma: '',
       story: '',
+      name: '',
+      angkatan: '',
+      link_photo: '',
     };
 
     let isInvalid = false;
+
+    if ((!this.state.fixingData.name || this.state.fixingData.phone_number.name < 1) && this.state.isKenalanNonSSO ) {
+      warning.name = 'Name cannot be empty';
+      isInvalid = true;
+    }
 
     if (!this.state.fixingData.phone_number || this.state.fixingData.phone_number.length < 6 || isNaN(this.state.fixingData.phone_number)) {
       warning.phone_number = 'Phone Number cannot be less than 6 character and must be a number';
@@ -318,24 +337,41 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
       isInvalid = true;
     }
 
+    if ((!this.state.fixingData.angkatan || this.state.fixingData.angkatan < 1) && this.state.isKenalanNonSSO ) {
+      warning.angkatan = 'Angkatan cannot be empty';
+      isInvalid = true;
+    }
+
+    if ((!this.state.fixingData.link_photo || this.state.fixingData.link_photo < 1) && this.state.isKenalanNonSSO ) {
+      warning.link_photo = 'Link Photo cannot be empty';
+      isInvalid = true;
+    }
+
     if (
       currentDetailKenalan.phone_number === this.state.fixingData.phone_number &&
       currentDetailKenalan.birth_place === this.state.fixingData.birth_place &&
       currentDetailKenalan.birth_date === this.state.fixingData.birth_date &&
       currentDetailKenalan.asal_sma === this.state.fixingData.asal_sma &&
-      currentDetailKenalan.story === this.state.fixingData.story
+      currentDetailKenalan.story === this.state.fixingData.story &&
+      currentDetailKenalan.angkatan === this.state.fixingData.angkatan &&
+      currentDetailKenalan.link_photo === this.state.fixingData.link_photo &&
+      currentDetailKenalan.name === this.state.fixingData.name
     ) {
       isInvalid = true;
     }
 
     if (!isInvalid) {
+      const fixingName = this.state.isKenalanNonSSO? this.state.fixingData.name : currentDetailKenalan.name;
       const finalData = {
         ...currentDetailKenalan,
+        name: fixingName,
         phone_number: this.state.fixingData.phone_number,
         birth_place: this.state.fixingData.birth_place,
         birth_date: this.state.fixingData.birth_date,
         asal_sma: this.state.fixingData.asal_sma,
         story: this.state.fixingData.story,
+        angkatan: this.state.fixingData.angkatan,
+        link_photo: this.state.fixingData.link_photo,
       };
 
       this.props.changeDetailKenalan(currentDetailKenalan.id, finalData, currentId, { status: 2 }, this.state.isFixing);
@@ -362,7 +398,10 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
       currentDetailKenalan.birth_place === this.state.fixingData.birth_place &&
       currentDetailKenalan.birth_date === this.state.fixingData.birth_date &&
       currentDetailKenalan.asal_sma === this.state.fixingData.asal_sma &&
-      currentDetailKenalan.story === this.state.fixingData.story
+      currentDetailKenalan.story === this.state.fixingData.story &&
+      currentDetailKenalan.angkatan === this.state.fixingData.angkatan &&
+      currentDetailKenalan.link_photo === this.state.fixingData.link_photo &&
+      currentDetailKenalan.name === this.state.fixingData.name
     ) {
       this.setState({
         ...this.state,
@@ -374,6 +413,9 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
             birth_date: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
             asal_sma: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
             story: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
+            name: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
+            link_photo: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
+            angkatan: 'Nothing has been changed, you can only resubmit if you had fixed at least 1 data in here',
           },
         },
       });
@@ -501,8 +543,29 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
         return friendlist.map((value, index) => {
           let currentUserProfile = value.user_maba.profile;
 
-          if (isMaba) {
+          if (isMaba && (value.user_elemen)) {
             currentUserProfile = value.user_elemen.profile;
+          }
+
+          const elemenName = value.detail_kenalan.name ? value.detail_kenalan.name : '';
+          let linkPhotoRender = null;
+          if (!(value.user_elemen)) {
+
+            linkPhotoRender = (
+              <a href={value.detail_kenalan.link_photo} target="_blank">
+                <span className="icon-link" /> Photo
+              </a>
+            );
+
+            currentUserProfile = {
+              name: elemenName,
+              email: '',
+              phone_number: '',
+              facebook: '',
+              linkedin: '',
+              birth_date: '',
+              birth_place: '',
+            };
           }
 
           let detailKenalanAction = null;
@@ -585,6 +648,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
                       <h4><span>Born in </span>{value.detail_kenalan.birth_place}, {value.detail_kenalan.birth_date}</h4>
                       <h4><span>Alumnus of </span>{value.detail_kenalan.asal_sma}</h4>
                       <h5>{value.detail_kenalan.story}</h5>
+                      {linkPhotoRender}
                       {detailKenalanAction}
                     </div>
                   </div>
@@ -603,10 +667,30 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
 
         let currentUserProfile = value.user_maba.profile;
 
-        if (isMaba) {
+        if (isMaba && (value.user_elemen)) {
           currentUserProfile = value.user_elemen.profile;
         }
 
+        const elemenName = value.detail_kenalan.name ? value.detail_kenalan.name : '';
+        let linkPhotoRender = null;
+        if (!(value.user_elemen)) {
+
+          linkPhotoRender = (
+            <a href={value.detail_kenalan.link_photo} target="_blank">
+              <span className="icon-link" /> Photo
+            </a>
+          );
+
+          currentUserProfile = {
+            name: elemenName,
+            email: '',
+            phone_number: '',
+            facebook: '',
+            linkedin: '',
+            birth_date: '',
+            birth_place: '',
+          };
+        }
         let detailKenalanAction = null;
 
         if (isMaba && value.status.status === 'rejected') {
@@ -687,6 +771,7 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
                     <h4><span>Born in </span>{value.detail_kenalan.birth_place}, {value.detail_kenalan.birth_date}</h4>
                     <h4><span>Alumnus of </span>{value.detail_kenalan.asal_sma}</h4>
                     <h5>{value.detail_kenalan.story}</h5>
+                    {linkPhotoRender}
                     {
                       isMaba &&
                       value.status.status === 'rejected' &&
@@ -724,18 +809,54 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
 
     if (currentlyFixing) {
       const currentDetailKenalan = friendlist[this.state.isFixing].detail_kenalan;
+      let renderName = (
+        <input
+          value={currentDetailKenalan.name}
+          type="text"
+          placeholder="Name"
+          disabled
+        />
+      );
+      let renderAngkatan = null;
+      let renderLinkPhoto = null;
+
+      if (this.state.isKenalanNonSSO) {
+        renderName = (
+          <input
+            value={this.state.fixingData.name}
+            type="text"
+            placeholder="Name"
+            onChange={(evt) => this.onFixingDataChange('name', evt.target.value)}
+          />
+        );
+        renderAngkatan = (
+          <input
+            value={this.state.fixingData.angkatan}
+            type="text"
+            placeholder="Angkatan"
+            onChange={(evt) => this.onFixingDataChange('angkatan', evt.target.value)}
+          />
+        );
+        renderLinkPhoto = (
+          <input
+            value={this.state.fixingData.link_photo}
+            type="text"
+            placeholder="Link Photo"
+            onChange={(evt) => this.onFixingDataChange('link_photo', evt.target.value)}
+          />
+        );
+      }
 
       return (
         <div className="kenalanOverlay">
           <div className="container">
             <h1>Fix your data properly, contact the person if you need to. Resubmit if you are sure the data is correct.</h1>
             <div className="inputForm">
-              <input
-                value={currentDetailKenalan.name}
-                type="text"
-                placeholder="Name"
-                disabled
-              />
+              {renderName}
+              {
+                this.state.fixingData.warning.name &&
+                <h2>{this.state.fixingData.warning.name}</h2>
+              }
               <input
                 value={this.state.fixingData.phone_number}
                 type="tel"
@@ -766,6 +887,11 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
                 this.state.fixingData.warning.birth_date &&
                 <h2>{this.state.fixingData.warning.birth_date}</h2>
               }
+              {renderAngkatan}
+              {
+                this.state.fixingData.warning.angkatan &&
+                <h2>{this.state.fixingData.warning.angkatan}</h2>
+              }
               <input
                 value={this.state.fixingData.asal_sma}
                 type="text"
@@ -784,6 +910,11 @@ export class DashboardPage extends React.Component { // eslint-disable-line reac
               {
                 this.state.fixingData.warning.story &&
                 <h2>{this.state.fixingData.warning.story}</h2>
+              }
+              {renderLinkPhoto}
+              {
+                this.state.fixingData.warning.link_photo &&
+                <h2>{this.state.fixingData.warning.link_photo}</h2>
               }
             </div>
             <button className="submit" onClick={this.resubmitKenalan}><span className="icon-send" />Go</button>

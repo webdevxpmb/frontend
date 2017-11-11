@@ -15,6 +15,9 @@ import {
   POST_KENALAN_SUCCESS,
   POST_KENALAN_FAILED,
   DELETE_KENALAN,
+  FETCH_KENALAN_NON_SSO,
+  FETCH_KENALAN_NON_SSO_SUCCESS,
+  FETCH_KENALAN_NON_SSO_FAILED,
 } from './constants';
 
 export function generateToken() {
@@ -82,5 +85,26 @@ export function postKenalanFailed(err) {
 export function deleteKenalan() {
   return {
     type: DELETE_KENALAN,
+  };
+}
+
+export function fetchKenalanNonSSO() {
+  console.log('masuk 2');
+  return {
+    type: FETCH_KENALAN_NON_SSO,
+  };
+}
+
+export function fetchKenalanNonSSOSuccess(kenalan) {
+  return {
+    type: FETCH_KENALAN_NON_SSO_SUCCESS,
+    kenalan,
+  };
+}
+
+export function fetchKenalanNonSSOFailed(err) {
+  return {
+    type: FETCH_KENALAN_NON_SSO_FAILED,
+    err,
   };
 }
