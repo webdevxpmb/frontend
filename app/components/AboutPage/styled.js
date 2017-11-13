@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-const Bantuan = styled.div`
+const Style = styled.div`
   position: relative;
   width: 100%;
   height: auto;
   min-height: 100vh;
+  background-image: ${(props) => props.theme.blueGradient};
 
   .content {
     width: 100%;
@@ -41,4 +42,4 @@ const Bantuan = styled.div`
   }
 `;
 
-export default Bantuan;
+export default Style;
